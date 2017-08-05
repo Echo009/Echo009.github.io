@@ -1,5 +1,5 @@
 /*头像*/
-.js-avatar :hover {
+.js-avatar:hover {
 
   transform: rotate(360deg);
   -webkit-transform: rotate(360deg);

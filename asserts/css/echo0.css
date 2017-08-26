@@ -1,12 +1,7 @@
 /*头像*/
 
-
 .js-avatar:hover {
-  transform: rotateY(180deg) !important;
-  -webkit-transform: rotateY(180deg) !important;
-  -moz-transform: rotateY(180deg) !important;
-  -o-transform: rotateY(180deg) !important;
-  -ms-transform: rotateY(180deg) !important;
+  opacity:0.9 !important;
 }
 
 * {

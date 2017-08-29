@@ -1952,8 +1952,8 @@ pre .css ~ * .id, pre .id {
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: #434343;
-  text-shadow: 1px 1px rgba(60, 210, 237, 0.32);
+  color: rgba(37, 221, 235, 0.57);
+  text-shadow: 1px 1px rgba(237, 60, 229, 0.52);
 }
 
 .body-wrap > article {

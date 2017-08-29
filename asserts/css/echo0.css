@@ -3,9 +3,13 @@
 .js-avatar:hover {
   opacity:0.9 !important;
 }
-* {
-  -webkit-transition: all ease-in 1.5s !important;
-  -moz-transition: all ease-in 1.5s !important;
-  -o-transition: all ease-in 1.5s !important;
-  -ms-transition: all ease-in 1.5s !important;
-}
+/** {*/
+  /*-webkit-transition: all ease-in 1.5s !important;*/
+  /*-moz-transition: all ease-in 1.5s !important;*/
+  /*-o-transition: all ease-in 1.5s !important;*/
+  /*-ms-transition: all ease-in 1.5s !important;*/
+/*}*/
+/*#Mycanvas{*/
+  /*z-index: -1;*/
+  /*position: fixed;*/
+/*}*/

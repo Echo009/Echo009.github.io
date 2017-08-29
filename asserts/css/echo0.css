@@ -3,6 +3,14 @@
 .js-avatar:hover {
   opacity:0.9 !important;
 }
+/*隐藏more标签，显示展开全文*/
+p.article-more-link > a.article-more-a {
+  display: inline-block;!important;
+}
+a.article-more-a {
+  display: none;;
+}
+
 /** {*/
   /*-webkit-transition: all ease-in 1.5s !important;*/
   /*-moz-transition: all ease-in 1.5s !important;*/

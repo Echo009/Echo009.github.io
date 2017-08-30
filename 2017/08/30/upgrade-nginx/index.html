@@ -7,17 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://echo0.cn">
 
-  <title>Archives | Imagine</title>
+  <title>平滑升级Nginx，添加ssl以及echo模块 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目前还是个瓜皮罢了。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Imagine">
-<meta property="og:url" content="http://echo0.cn/archives/index.html">
+  <meta name="description" content="之前在服务器上安装Nginx时，什么模块都没有安装，需要支持ssl，于是只好重新折腾一波。 安装部署Nginx所用到的工具以及相关库1234#默认安装的http_rewrite_module（使用正则对请求重写）需pcre库#默认安装的httP_gzip_module（Gzip压缩）需zlib库#安装http_ssl_module(HTTPS/SLL)需openssl库yum -y install">
+<meta name="keywords" content="nginx,echo,ssl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="平滑升级Nginx，添加ssl以及echo模块">
+<meta property="og:url" content="http://echo0.cn/2017/08/30/upgrade-nginx/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="目前还是个瓜皮罢了。">
+<meta property="og:description" content="之前在服务器上安装Nginx时，什么模块都没有安装，需要支持ssl，于是只好重新折腾一波。 安装部署Nginx所用到的工具以及相关库1234#默认安装的http_rewrite_module（使用正则对请求重写）需pcre库#默认安装的httP_gzip_module（Gzip压缩）需zlib库#安装http_ssl_module(HTTPS/SLL)需openssl库yum -y install">
+<meta property="og:updated_time" content="2017-08-30T07:41:25.276Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Imagine">
-<meta name="twitter:description" content="目前还是个瓜皮罢了。">
+<meta name="twitter:title" content="平滑升级Nginx，添加ssl以及echo模块">
+<meta name="twitter:description" content="之前在服务器上安装Nginx时，什么模块都没有安装，需要支持ssl，于是只好重新折腾一波。 安装部署Nginx所用到的工具以及相关库1234#默认安装的http_rewrite_module（使用正则对请求重写）需pcre库#默认安装的httP_gzip_module（Gzip压缩）需zlib库#安装http_ssl_module(HTTPS/SLL)需openssl库yum -y install">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -163,36 +165,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-upgrade-nginx" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/30/upgrade-nginx/" class="archive-article-date">
-  	<time datetime="2017-08-30T07:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/30/upgrade-nginx/">平滑升级Nginx，添加ssl以及echo模块</a>
+    <h1 class="article-title" itemprop="name">
+      平滑升级Nginx，添加ssl以及echo模块
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/08/30/upgrade-nginx/" class="archive-article-date">
+  	<time datetime="2017-08-30T07:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <p>之前在服务器上安装Nginx时，什么模块都没有安装，需要支持ssl，于是只好重新折腾一波。</p>
+<h2 id="安装部署Nginx所用到的工具以及相关库"><a href="#安装部署Nginx所用到的工具以及相关库" class="headerlink" title="安装部署Nginx所用到的工具以及相关库"></a>安装部署Nginx所用到的工具以及相关库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#默认安装的http_rewrite_module（使用正则对请求重写）需pcre库</span></div><div class="line"><span class="comment">#默认安装的httP_gzip_module（Gzip压缩）需zlib库</span></div><div class="line"><span class="comment">#安装http_ssl_module(HTTPS/SLL)需openssl库</span></div><div class="line">yum -y install gcc pcre pcre-devel zlib zlib-devel openssl openssl-devel</div></pre></td></tr></table></figure>
+<h2 id="下载echo模块-并解压"><a href="#下载echo模块-并解压" class="headerlink" title="下载echo模块,并解压"></a>下载echo模块,并解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># current directory:  /usr/local/src</span></div><div class="line">wget https://github.com/openresty/<span class="built_in">echo</span>-nginx-module/archive/v0.60.tar.gz</div><div class="line">tar -zxvf v0.60</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><h4 id="下载Nginx并解压"><a href="#下载Nginx并解压" class="headerlink" title="下载Nginx并解压"></a>下载Nginx并解压</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># current directory:  /usr/local/src</span></div><div class="line">wget http://nginx.org/download/nginx-1.9.9.tar.gz</div><div class="line">tar -zxvf nginx-1.9.9.tar.gz</div></pre></td></tr></table></figure>
+<h4 id="查看Nginx的原有版本的编译参数"><a href="#查看Nginx的原有版本的编译参数" class="headerlink" title="查看Nginx的原有版本的编译参数"></a>查看Nginx的原有版本的编译参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -V</div></pre></td></tr></table></figure>
+<h4 id="进入Nginx源码目录，配置编译参数"><a href="#进入Nginx源码目录，配置编译参数" class="headerlink" title="进入Nginx源码目录，配置编译参数"></a>进入Nginx源码目录，配置编译参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># current directory:  /usr/local/src</span></div><div class="line"><span class="built_in">cd</span> nginx-1.9.9</div><div class="line"><span class="comment"># 配置编译参数，这里注意要加上原来的参数，否则可能导致升级失败，全新安装就无所谓了</span></div><div class="line">./configure --prefix=/usr/<span class="built_in">local</span>/nginx  --with-http_ssl_module --add-module=/usr/<span class="built_in">local</span>/src/<span class="built_in">echo</span>-nginx-module-0.60</div></pre></td></tr></table></figure>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># current directory:  /usr/local/src/nginx-1.9.9</span></div><div class="line">make -j2</div></pre></td></tr></table></figure>
+<h4 id="平滑升级Nginx"><a href="#平滑升级Nginx" class="headerlink" title="平滑升级Nginx"></a>平滑升级Nginx</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># current directory:  /usr/local/src/nginx-1.9.9</span></div><div class="line">mv /usr/<span class="built_in">local</span>/nginx/sbin/nginx /usr/<span class="built_in">local</span>/nginx/sbin/nginx.old</div><div class="line">cp -f objs/nginx /usr/<span class="built_in">local</span>/nginx/sbin/</div><div class="line">make upgrade</div><div class="line"><span class="comment"># 全新安装的话直接 make install</span></div></pre></td></tr></table></figure>
+<h2 id="使用echo模块示例"><a href="#使用echo模块示例" class="headerlink" title="使用echo模块示例"></a>使用echo模块示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#在server 节点下添加</div><div class="line">#当用户访问/realip 时 ，返回用户的真实ip地址</div><div class="line">location /realip &#123;</div><div class="line">        echo $remote_addr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用-s reload 命令重新加载配置文件即可</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -212,103 +226,126 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://echo0.cn/2017/08/30/upgrade-nginx/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/30/nginx-config/" class="archive-article-date">
-  	<time datetime="2017-08-30T01:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/30/nginx-config/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nginx简介及配置详解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/30/nginx-config/">nginx简介及配置详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反向代理服务器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装部署Nginx所用到的工具以及相关库"><span class="toc-number">1.</span> <span class="toc-text">安装部署Nginx所用到的工具以及相关库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载echo模块-并解压"><span class="toc-number">2.</span> <span class="toc-text">下载echo模块,并解压</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Nginx"><span class="toc-number">3.</span> <span class="toc-text">安装Nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#下载Nginx并解压"><span class="toc-number">3.0.1.</span> <span class="toc-text">下载Nginx并解压</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看Nginx的原有版本的编译参数"><span class="toc-number">3.0.2.</span> <span class="toc-text">查看Nginx的原有版本的编译参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进入Nginx源码目录，配置编译参数"><span class="toc-number">3.0.3.</span> <span class="toc-text">进入Nginx源码目录，配置编译参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编译"><span class="toc-number">3.0.4.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#平滑升级Nginx"><span class="toc-number">3.0.5.</span> <span class="toc-text">平滑升级Nginx</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用echo模块示例"><span class="toc-number">4.</span> <span class="toc-text">使用echo模块示例</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/29/use-mybatis-generator/" class="archive-article-date">
-  	<time datetime="2017-08-29T06:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/29/use-mybatis-generator/">Use mybatis-generator</a>
-    </h1>
+        
+    </div>
+</aside>
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis-generator</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">插件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="upgrade-nginx" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cytbNO1rA"; 
+var conf = "prod_4fe0c917b9b999b4a07c07296da1fcba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -332,8 +369,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

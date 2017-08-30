@@ -1943,7 +1943,7 @@ pre .css ~ * .id, pre .id {
   padding-right: 1rem;
   text-align: center;
   line-height: 2.5rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 
   display: -webkit-box;
   display: -ms-flexbox;

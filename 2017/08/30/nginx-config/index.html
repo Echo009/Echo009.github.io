@@ -7,17 +7,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://echo0.cn">
 
-  <title>Archives: 2017/8 | Imagine</title>
+  <title>nginx简介及配置详解 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目前还是个瓜皮罢了。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Imagine">
-<meta property="og:url" content="http://echo0.cn/archives/2017/08/index.html">
+  <meta name="description" content="Nginx简述Nginx是一款开源代码的高性能HTTP服务器和反向代理服务器，同时支持IMAP/POP3/SMTP代理服务。具有以下特点：  处理静态文件、索引文件以及自动索引效率高。 快速高效反向代理，提升网站性能。 内部支持Rails和PHP,也可支持HTTP代理服务器，对外进行服务。同时支持简单容错和利用算法进行负载均衡。 性能方面，Nginx专门为性能设计，实现注重效率。采用Poll模型，">
+<meta name="keywords" content="nginx,反向代理服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx简介及配置详解">
+<meta property="og:url" content="http://echo0.cn/2017/08/30/nginx-config/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="目前还是个瓜皮罢了。">
+<meta property="og:description" content="Nginx简述Nginx是一款开源代码的高性能HTTP服务器和反向代理服务器，同时支持IMAP/POP3/SMTP代理服务。具有以下特点：  处理静态文件、索引文件以及自动索引效率高。 快速高效反向代理，提升网站性能。 内部支持Rails和PHP,也可支持HTTP代理服务器，对外进行服务。同时支持简单容错和利用算法进行负载均衡。 性能方面，Nginx专门为性能设计，实现注重效率。采用Poll模型，">
+<meta property="og:image" content="http://img.blog.csdn.net/20170830104430763?">
+<meta property="og:updated_time" content="2017-08-30T05:06:08.165Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Imagine">
-<meta name="twitter:description" content="目前还是个瓜皮罢了。">
+<meta name="twitter:title" content="nginx简介及配置详解">
+<meta name="twitter:description" content="Nginx简述Nginx是一款开源代码的高性能HTTP服务器和反向代理服务器，同时支持IMAP/POP3/SMTP代理服务。具有以下特点：  处理静态文件、索引文件以及自动索引效率高。 快速高效反向代理，提升网站性能。 内部支持Rails和PHP,也可支持HTTP代理服务器，对外进行服务。同时支持简单容错和利用算法进行负载均衡。 性能方面，Nginx专门为性能设计，实现注重效率。采用Poll模型，">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170830104430763?">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -163,36 +167,68 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-nginx-config" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/30/nginx-config/" class="archive-article-date">
-  	<time datetime="2017-08-30T01:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/30/nginx-config/">nginx简介及配置详解</a>
+    <h1 class="article-title" itemprop="name">
+      nginx简介及配置详解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/08/30/nginx-config/" class="archive-article-date">
+  	<time datetime="2017-08-30T01:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <h2 id="Nginx简述"><a href="#Nginx简述" class="headerlink" title="Nginx简述"></a>Nginx简述</h2><p>Nginx是一款开源代码的高性能HTTP服务器和反向代理服务器，同时支持IMAP/POP3/SMTP代理服务。<br>具有以下特点：</p>
+<ul>
+<li>处理静态文件、索引文件以及自动索引效率高。</li>
+<li>快速高效反向代理，提升网站性能。</li>
+<li>内部支持Rails和PHP,也可支持HTTP代理服务器，对外进行服务。同时支持简单容错和利用算法进行负载均衡。</li>
+<li>性能方面，Nginx专门为性能设计，实现注重效率。采用Poll模型，可以支持更多的并发连接，并在大并发时占用很低内存。</li>
+<li>稳定性方面，采用分阶段资源分配技术，使CPU资源占用率低。</li>
+<li>高可用性方面，支持热备，启动迅速。</li>
+</ul>
+<h2 id="Nginx安装"><a href="#Nginx安装" class="headerlink" title="Nginx安装"></a>Nginx安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>安装部署nginx所用到的安装工具和相关库</div><div class="line"><span class="meta">#</span>默认安装的http_rewrite_module（使用正则对请求重写）需pcre库</div><div class="line"><span class="meta">#</span>默认安装的httP_gzip_module（Gzip压缩）需zlib库</div><div class="line"><span class="meta">#</span>安装http_ssl_module(HTTPS/SLL)需openssl库</div><div class="line">yum -y install gcc pcre pcre-devel zlib zlib-devel openssl openssl-devel</div><div class="line"><span class="meta">#</span>下载nginx源码包，并解压</div><div class="line">wget http://nginx.org/download/nginx-1.10.3.tar.gz</div><div class="line">tar -zxvf nginx-1.10.3.tar.gz</div><div class="line">cd nginx-1.10.3</div><div class="line"><span class="meta">#</span>设置参数 参数具体参考《Nginx编译参数》</div><div class="line">./configure \</div><div class="line">--prefix=/usr/local/nginx \</div><div class="line">--with-http_ssl_module</div><div class="line"><span class="meta">#</span>编译并安装</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><h3 id="配置文件结构"><a href="#配置文件结构" class="headerlink" title="配置文件结构"></a>配置文件结构</h3><p>配置文件为安装目录下的 nginx/conf/nginx.conf<br>主要包括以下模块：</p>
+<ul>
+<li>main(全区设置)</li>
+<li>server(主机配置)</li>
+<li>upstream(负载均衡服务器设置)</li>
+<li>location(URL匹配特定位置设置)<h4 id="配置文件结构如下"><a href="#配置文件结构如下" class="headerlink" title="配置文件结构如下"></a>配置文件结构如下</h4><img src="http://img.blog.csdn.net/20170830104430763?" alt="structure"></li>
+</ul>
+<h3 id="配置示例"><a href="#配置示例" class="headerlink" title="配置示例"></a>配置示例</h3><h4 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#Nginx的worker进程运行用户以及用户组</div><div class="line">#user  nobody nobody;</div><div class="line">#Nginx开启的进程数,根据硬件调整，通常等于CPU数量或者2倍于CPU。</div><div class="line">worker_processes  1;</div><div class="line">#worker_processes auto;</div><div class="line">#以下参数指定了哪个cpu分配给哪个进程，一般来说不用特殊指定。如果一定要设的话，用0和1指定分配方式.</div><div class="line">#这样设就是给1-4个进程分配单独的核来运行，出现第5个进程是就是随机分配了。eg:</div><div class="line">#worker_processes 4     #4核CPU</div><div class="line">#worker_cpu_affinity 0001 0010 0100 1000</div><div class="line"></div><div class="line">#定义全局错误日志定义类型，[debug|info|notice|warn|crit]</div><div class="line">#error_log  logs/error.log  info;</div><div class="line">#指定进程ID存储文件位置</div><div class="line">#pid        logs/nginx.pid;</div><div class="line">#一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（ulimit -n）与nginx进程数相除，但是nginx分配请求并不是那么均匀，所以最好与ulimit -n的值保持一致。</div><div class="line">#vim /etc/security/limits.conf</div><div class="line">#  *                soft    nproc          65535</div><div class="line">#  *                hard    nproc          65535</div><div class="line">#  *                soft    nofile         65535</div><div class="line">#  *                hard    nofile         65535</div><div class="line">worker_rlimit_nofile 65535;</div></pre></td></tr></table></figure>
+<h4 id="事件配置"><a href="#事件配置" class="headerlink" title="事件配置"></a>事件配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">events &#123;</div><div class="line">    #use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll模型是Linux 2.6以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。</div><div class="line">    use epoll;</div><div class="line"></div><div class="line">    #每个进程可以处理的最大连接数，理论上每台nginx服务器的最大连接数为worker_processes*worker_connections。理论值：worker_rlimit_nofile/worker_processes</div><div class="line">    #注意：最大客户数也由系统的可用socket连接数限制（~ 64K），所以设置不切实际的高没什么好处</div><div class="line">    worker_connections  65535;</div><div class="line"></div><div class="line">    #worker工作方式：串行（一定程度降低负载，但服务器吞吐量大时，关闭使用并行方式）</div><div class="line">    #multi_accept on;</div><div class="line"></div><div class="line">    #keepalive 超时时间。</div><div class="line">    #keepalive_timeout 60;</div><div class="line"></div><div class="line">    #客户端请求头部的缓冲区大小。这个可以根据你的系统分页大小来设置，一般一个请求头的大小不会超过1k，不过由于一般系统分页都要大于1k，所以这里设置为分页大小。</div><div class="line">    #分页大小可以用命令getconf PAGESIZE 取得。</div><div class="line">    client_header_buffer_size 4k;</div><div class="line"></div><div class="line">    #这个将为打开文件指定缓存，默认是没有启用的，max指定缓存数量，建议和打开文件数一致，inactive是指经过多长时间文件没被请求后删除缓存。</div><div class="line">    #open_file_cache max=65535 inactive=60s;</div><div class="line"></div><div class="line">    #这个是指多长时间检查一次缓存的有效信息。</div><div class="line">    #open_file_cache_valid 80s;</div><div class="line"></div><div class="line">    #open_file_cache指令中的inactive参数时间内文件的最少使用次数，如果超过这个数字，文件描述符一直是在缓存中打开的，如上例，如果有一个文件在inactive时间内一次没被使用，它将被移除。</div><div class="line">    #open_file_cache_min_uses 1;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Http参数"><a href="#Http参数" class="headerlink" title="Http参数"></a>Http参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">#文件扩展名与文件类型映射表</div><div class="line">    include mime.types;</div><div class="line">    #默认文件类型</div><div class="line">    default_type application/octet-stream;</div><div class="line"></div><div class="line">#日志相关定义</div><div class="line">    #log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</div><div class="line">    #                  &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</div><div class="line">    #                  &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</div><div class="line">    #定义日志的格式。后面定义要输出的内容。</div><div class="line">    #1.$remote_addr 与$http_x_forwarded_for 用以记录客户端的ip地址；</div><div class="line">    #2.$remote_user ：用来记录客户端用户名称；</div><div class="line">    #3.$time_local ：用来记录访问时间与时区；</div><div class="line">    #4.$request  ：用来记录请求的url与http协议；</div><div class="line">    #5.$status ：用来记录请求状态；</div><div class="line">    #6.$body_bytes_sent ：记录发送给客户端文件主体内容大小；</div><div class="line">    #7.$http_referer ：用来记录从那个页面链接访问过来的；</div><div class="line">    #8.$http_user_agent ：记录客户端浏览器的相关信息</div><div class="line">    #连接日志的路径，指定的日志格式放在最后。</div><div class="line">    #access_log  logs/access.log  main;</div><div class="line">    #只记录更为严重的错误日志，减少IO压力</div><div class="line">    error_log logs/error.log crit;</div><div class="line">    #关闭日志</div><div class="line">    #access_log  off;</div><div class="line"></div><div class="line">    #默认编码</div><div class="line">    #charset utf-8;</div><div class="line">    #服务器名字的hash表大小</div><div class="line">    server_names_hash_bucket_size 128;</div><div class="line">    #客户端请求单个文件的最大字节数</div><div class="line">    client_max_body_size 8m;</div><div class="line">    #指定来自客户端请求头的hearerbuffer大小</div><div class="line">    client_header_buffer_size 32k;</div><div class="line">    #指定客户端请求中较大的消息头的缓存最大数量和大小。</div><div class="line">    large_client_header_buffers 4 64k;</div><div class="line">    #开启高效传输模式。</div><div class="line">    sendfile        on;</div><div class="line">    #防止网络阻塞</div><div class="line">    tcp_nopush on;</div><div class="line">    tcp_nodelay on;    </div><div class="line">    #客户端连接超时时间，单位是秒</div><div class="line">    keepalive_timeout 60;</div><div class="line">    #客户端请求头读取超时时间</div><div class="line">    client_header_timeout 10;</div><div class="line">    #设置客户端请求主体读取超时时间</div><div class="line">    client_body_timeout 10;</div><div class="line">    #响应客户端超时时间</div><div class="line">    send_timeout 10;</div><div class="line"></div><div class="line">#FastCGI相关参数是为了改善网站的性能：减少资源占用，提高访问速度。</div><div class="line">    fastcgi_connect_timeout 300;</div><div class="line">    fastcgi_send_timeout 300;</div><div class="line">    fastcgi_read_timeout 300;</div><div class="line">    fastcgi_buffer_size 64k;</div><div class="line">    fastcgi_buffers 4 64k;</div><div class="line">    fastcgi_busy_buffers_size 128k;</div><div class="line">    fastcgi_temp_file_write_size 128k;</div><div class="line"></div><div class="line">#gzip模块设置</div><div class="line">    #开启gzip压缩输出</div><div class="line">    gzip on;</div><div class="line">    #最小压缩文件大小</div><div class="line">    gzip_min_length 1k;</div><div class="line">    #压缩缓冲区</div><div class="line">    gzip_buffers 4 16k;</div><div class="line">    #压缩版本（默认1.1，前端如果是squid2.5请使用1.0）</div><div class="line">    gzip_http_version 1.0;</div><div class="line">    #压缩等级 1-9 等级越高，压缩效果越好，节约宽带，但CPU消耗大</div><div class="line">    gzip_comp_level 2;</div><div class="line">    #压缩类型，默认就已经包含text/html，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。</div><div class="line">    gzip_types text/plain application/x-javascript text/css application/xml;</div><div class="line">    #前端缓存服务器缓存经过压缩的页面</div><div class="line">    gzip_vary on;</div></pre></td></tr></table></figure>
+<h4 id="虚拟主机配置"><a href="#虚拟主机配置" class="headerlink" title="虚拟主机配置"></a>虚拟主机配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">#虚拟主机定义</div><div class="line">    server &#123;</div><div class="line">        #监听端口</div><div class="line">        listen       80;</div><div class="line">        #访问域名</div><div class="line">        server_name  localhost;</div><div class="line">        #编码格式，若网页格式与此不同，将被自动转码</div><div class="line">        #charset koi8-r;</div><div class="line">        #虚拟主机访问日志定义</div><div class="line">        #access_log  logs/host.access.log  main;</div><div class="line">        #对URL进行匹配</div><div class="line">        location / &#123;</div><div class="line">            #访问路径，可相对也可绝对路径</div><div class="line">            root   html;</div><div class="line">            #首页文件。以下按顺序匹配</div><div class="line">            index  index.html index.htm;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">#错误信息返回页面</div><div class="line">        #error_page  404              /404.html;</div><div class="line">        # redirect server error pages to the static page /50x.html</div><div class="line">        #</div><div class="line">        error_page   500 502 503 504  /50x.html;</div><div class="line">        location = /50x.html &#123;</div><div class="line">            root   html;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">#访问URL以.php结尾则自动转交给127.0.0.1</div><div class="line">        # proxy the PHP scripts to Apache listening on 127.0.0.1:80</div><div class="line">        #</div><div class="line">        #location ~ \.php$ &#123;</div><div class="line">        #    proxy_pass   http://127.0.0.1;</div><div class="line">        #&#125;</div><div class="line">#php脚本请求全部转发给FastCGI处理</div><div class="line">        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</div><div class="line">        #</div><div class="line">        #location ~ \.php$ &#123;</div><div class="line">        #    root           html;</div><div class="line">        #    fastcgi_pass   127.0.0.1:9000;</div><div class="line">        #    fastcgi_index  index.php;</div><div class="line">        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</div><div class="line">        #    include        fastcgi_params;</div><div class="line">        #&#125;</div><div class="line"></div><div class="line">#禁止访问.ht页面 （需ngx_http_access_module模块）</div><div class="line">        # deny access to .htaccess files, if Apache&apos;s document root</div><div class="line">        # concurs with nginx&apos;s one</div><div class="line">        #</div><div class="line">        #location ~ /\.ht &#123;</div><div class="line">        #    deny  all;</div><div class="line">        #&#125;</div><div class="line">    &#125;</div><div class="line">#HTTPS虚拟主机定义</div><div class="line">    # HTTPS server</div><div class="line">    #</div><div class="line">    #server &#123;</div><div class="line">    #    listen       443 ssl;</div><div class="line">    #    server_name  localhost;</div><div class="line">    #    ssl_certificate      cert.pem;</div><div class="line">    #    ssl_certificate_key  cert.key;</div><div class="line">    #    ssl_session_cache    shared:SSL:1m;</div><div class="line">    #    ssl_session_timeout  5m;</div><div class="line">    #    ssl_ciphers  HIGH:!aNULL:!MD5;</div><div class="line">    #    ssl_prefer_server_ciphers  on;</div><div class="line">    #    location / &#123;</div><div class="line">    #        root   html;</div><div class="line">    #        index  index.html index.htm;</div><div class="line">    #    &#125;</div><div class="line">    #&#125;</div></pre></td></tr></table></figure>
+<h4 id="反向代理配置"><a href="#反向代理配置" class="headerlink" title="反向代理配置"></a>反向代理配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">#以下配置追加在HTTP的全局变量中</div><div class="line"></div><div class="line">#nginx跟后端服务器连接超时时间(代理连接超时)</div><div class="line">proxy_connect_timeout      5;</div><div class="line">#后端服务器数据回传时间(代理发送超时)</div><div class="line">proxy_send_timeout         5;</div><div class="line">#连接成功后，后端服务器响应时间(代理接收超时)</div><div class="line">proxy_read_timeout         60;</div><div class="line">#设置代理服务器（nginx）保存用户头信息的缓冲区大小</div><div class="line">proxy_buffer_size          16k;</div><div class="line">#proxy_buffers缓冲区，网页平均在32k以下的话，这样设置</div><div class="line">proxy_buffers              4 32k;</div><div class="line">#高负荷下缓冲大小（proxy_buffers*2）</div><div class="line">proxy_busy_buffers_size    64k;</div><div class="line">#设定缓存文件夹大小，大于这个值，将从upstream服务器传</div><div class="line">proxy_temp_file_write_size 64k;</div><div class="line">#反向代理缓存目录</div><div class="line">proxy_cache_path /data/proxy/cache levels=1:2 keys_zone=cache_one:500m inactive=1d max_size=1g;</div><div class="line">#levels=1:2 设置目录深度，第一层目录是1个字符，第2层是2个字符</div><div class="line">#keys_zone:设置web缓存名称和内存缓存空间大小</div><div class="line">#inactive:自动清除缓存文件时间。</div><div class="line">#max_size:硬盘空间最大可使用值。</div><div class="line">#指定临时缓存文件的存储路径(路径需和上面路径在同一分区)</div><div class="line">proxy_temp_path /data/proxy/temp</div><div class="line"></div><div class="line">#服务配置</div><div class="line">server &#123;</div><div class="line">    #侦听的80端口</div><div class="line">    listen       80;</div><div class="line">    server_name  localhost;</div><div class="line">    location / &#123;</div><div class="line">        #反向代理缓存设置命令(proxy_cache zone|off,默认关闭所以要设置)</div><div class="line">        proxy_cache cache_one;</div><div class="line">        #对不同的状态码缓存不同时间</div><div class="line">        proxy_cache_valid 200 304 12h;</div><div class="line">        #设置以什么样参数获取缓存文件名</div><div class="line">        proxy_cache_key $host$uri$is_args$args;</div><div class="line">        #后7端的Web服务器可以通过X-Forwarded-For获取用户真实IP</div><div class="line">        proxy_set_header Host $host;</div><div class="line">        proxy_set_header X-Real-IP $remote_addr;</div><div class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line"></div><div class="line">        #代理设置</div><div class="line">        proxy_pass   http://IP;</div><div class="line">        #文件过期时间控制</div><div class="line">        expires    1d;</div><div class="line">    &#125;</div><div class="line">    #配置手动清除缓存(实现此功能需第三方模块 ngx_cache_purge)</div><div class="line">    location ~ /purge(/.*) &#123;</div><div class="line">        allow    127.0.0.1;</div><div class="line">        deny    all;</div><div class="line">        proxy_cache_purge    cache_one    $host$1$is_args$args;</div><div class="line">    &#125;</div><div class="line">    #设置扩展名以.jsp、.php、.jspx结尾的动态应用程序不做缓存</div><div class="line">    location ~.*\.(jsp|php|jspx)?$ &#123;</div><div class="line">        proxy_set_header Host $host;</div><div class="line">        proxy_set_header X-Real-IP $remote_addr;</div><div class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;   </div><div class="line">        proxy_pass http://http://IP;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="负载均衡配置"><a href="#负载均衡配置" class="headerlink" title="负载均衡配置"></a>负载均衡配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">upstream my_server_pool &#123;</div><div class="line">    #调度算法</div><div class="line">    #1.轮循（默认,每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除）（weight轮循权值）</div><div class="line">    #2.ip_hash：根据每个请求访问IP的hash结果分配。（会话保持）</div><div class="line">    #3.fair:根据后端服务器响应时间最短请求。（upstream_fair模块）</div><div class="line">    #4.url_hash:根据访问的url的hash结果分配。（需hash软件包）</div><div class="line">    #参数：</div><div class="line">    #down：表示不参与负载均衡</div><div class="line">    #backup:备份服务器,其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。</div><div class="line">    #max_fails:允许最大请求错误次数,允许请求失败的次数默认为1.当超过最大次数时，返回proxy_next_upstream模块定义的错误</div><div class="line">    #fail_timeout:请求失败后暂停服务时间。</div><div class="line">    server 192.168.1.109:80 weight=1 max_fails=2 fail_timeout=30;</div><div class="line">    server 192.168.1.108:80 weight=2 max_fails=2 fail_timeout=30;</div><div class="line">&#125;</div><div class="line">#负载均衡调用</div><div class="line">server &#123;</div><div class="line">    ...</div><div class="line">    location / &#123;</div><div class="line">    proxy_pass http://my_server_pool;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>Ngx_http_core_module模块支持内置变量，他们的名字和apache的内置变量是一致的。首先是说明客户请求title中的行，如$http_user_agent,$http_cookie等等。此外还有其它的一些变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$content_length等于请求行的“Content_Length”的值。</div><div class="line"></div><div class="line">$content_type等同与请求头部的”Content_Type”的值</div><div class="line"></div><div class="line">$document_root等同于当前请求的root指令指定的值</div><div class="line"></div><div class="line">$document_uri与$uri一样</div><div class="line"></div><div class="line">$host与请求头部中“Host”行指定的值或是request到达的server的名字（没有Host行）一样</div><div class="line"></div><div class="line">$limit_rate允许限制的连接速率</div><div class="line"></div><div class="line">$request_method等同于request的method，通常是“GET”或“POST”</div><div class="line"></div><div class="line">$remote_addr客户端ip</div><div class="line"></div><div class="line">$remote_port客户端port</div><div class="line"></div><div class="line">$remote_user等同于用户名，由ngx_http_auth_basic_module认证</div><div class="line"></div><div class="line">$request_filename当前请求的文件的路径名，由root或alias和URI request组合而成</div><div class="line"></div><div class="line">$request_body_file</div><div class="line"></div><div class="line">$request_uri含有参数的完整的初始URI</div><div class="line"></div><div class="line">$query_string与$args一样</div><div class="line"></div><div class="line">$sheeme http模式（http,https）尽在要求是评估例如</div><div class="line"></div><div class="line">Rewrite ^(.+)$ $sheme://example.com$; Redirect;</div><div class="line"></div><div class="line">$server_protocol等同于request的协议，使用“HTTP/或“HTTP/</div><div class="line"></div><div class="line">$server_addr request到达的server的ip，一般获得此变量的值的目的是进行系统调用。为了避免系统调用，有必要在listen指令中指明ip，并使用bind参数。</div><div class="line"></div><div class="line">$server_name请求到达的服务器名</div><div class="line"></div><div class="line">$server_port请求到达的服务器的端口号</div><div class="line"></div><div class="line">$uri等同于当前request中的URI，可不同于初始值，例如内部重定向时或使用index</div></pre></td></tr></table></figure></p>
+<h5 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h5><blockquote>
+<ul>
+<li><a href="http://blog.csdn.net/hzsunshine/article/details/63687054" target="_blank" rel="external">Nginx简介及配置文件详解</a></li>
+<li><a href="http://blog.csdn.net/tjcyjd/article/details/50695922" target="_blank" rel="external">Nginx配置文件（nginx.conf）配置详解</a></li>
+</ul>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -208,61 +244,126 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://echo0.cn/2017/08/30/nginx-config/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/29/use-mybatis-generator/" class="archive-article-date">
-  	<time datetime="2017-08-29T06:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/29/use-mybatis-generator/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Use mybatis-generator</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/29/use-mybatis-generator/">Use mybatis-generator</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis-generator</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">插件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx简述"><span class="toc-number">1.</span> <span class="toc-text">Nginx简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx安装"><span class="toc-number">2.</span> <span class="toc-text">Nginx安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx配置"><span class="toc-number">3.</span> <span class="toc-text">Nginx配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件结构"><span class="toc-number">3.1.</span> <span class="toc-text">配置文件结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置文件结构如下"><span class="toc-number">3.1.1.</span> <span class="toc-text">配置文件结构如下</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置示例"><span class="toc-number">3.2.</span> <span class="toc-text">配置示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#全局配置"><span class="toc-number">3.2.1.</span> <span class="toc-text">全局配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件配置"><span class="toc-number">3.2.2.</span> <span class="toc-text">事件配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Http参数"><span class="toc-number">3.2.3.</span> <span class="toc-text">Http参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟主机配置"><span class="toc-number">3.2.4.</span> <span class="toc-text">虚拟主机配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反向代理配置"><span class="toc-number">3.2.5.</span> <span class="toc-text">反向代理配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#负载均衡配置"><span class="toc-number">3.2.6.</span> <span class="toc-text">负载均衡配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#变量"><span class="toc-number">3.2.7.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#参考文章"><span class="toc-number">3.2.7.1.</span> <span class="toc-text">参考文章</span></a></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+  <div id="SOHUCS" sid="nginx-config" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cytbNO1rA"; 
+var conf = "prod_4fe0c917b9b999b4a07c07296da1fcba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -286,8 +387,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -199,7 +199,7 @@
 <li>稳定性方面，采用分阶段资源分配技术，使CPU资源占用率低。</li>
 <li>高可用性方面，支持热备，启动迅速。</li>
 </ul>
-<h2 id="Nginx安装"><a href="#Nginx安装" class="headerlink" title="Nginx安装"></a>Nginx安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>安装部署nginx所用到的安装工具和相关库</div><div class="line"><span class="meta">#</span>默认安装的http_rewrite_module（使用正则对请求重写）需pcre库</div><div class="line"><span class="meta">#</span>默认安装的httP_gzip_module（Gzip压缩）需zlib库</div><div class="line"><span class="meta">#</span>安装http_ssl_module(HTTPS/SLL)需openssl库</div><div class="line">yum -y install gcc pcre pcre-devel zlib zlib-devel openssl openssl-devel</div><div class="line"><span class="meta">#</span>下载nginx源码包，并解压</div><div class="line">wget http://nginx.org/download/nginx-1.10.3.tar.gz</div><div class="line">tar -zxvf nginx-1.10.3.tar.gz</div><div class="line">cd nginx-1.10.3</div><div class="line"><span class="meta">#</span>设置参数 参数具体参考《Nginx编译参数》</div><div class="line">./configure \</div><div class="line">--prefix=/usr/local/nginx \</div><div class="line">--with-http_ssl_module</div><div class="line"><span class="meta">#</span>编译并安装</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+<h2 id="Nginx安装"><a href="#Nginx安装" class="headerlink" title="Nginx安装"></a>Nginx安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">安装部署nginx所用到的安装工具和相关库</span></div><div class="line"><span class="meta">#</span><span class="bash">默认安装的http_rewrite_module（使用正则对请求重写）需pcre库</span></div><div class="line"><span class="meta">#</span><span class="bash">默认安装的httP_gzip_module（Gzip压缩）需zlib库</span></div><div class="line"><span class="meta">#</span><span class="bash">安装http_ssl_module(HTTPS/SLL)需openssl库</span></div><div class="line">yum -y install gcc pcre pcre-devel zlib zlib-devel openssl openssl-devel</div><div class="line"><span class="meta">#</span><span class="bash">下载nginx源码包，并解压</span></div><div class="line">wget http://nginx.org/download/nginx-1.10.3.tar.gz</div><div class="line">tar -zxvf nginx-1.10.3.tar.gz</div><div class="line">cd nginx-1.10.3</div><div class="line"><span class="meta">#</span><span class="bash">设置参数 参数具体参考《Nginx编译参数》</span></div><div class="line">./configure \</div><div class="line">--prefix=/usr/local/nginx \</div><div class="line">--with-http_ssl_module</div><div class="line"><span class="meta">#</span><span class="bash">编译并安装</span></div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><h3 id="配置文件结构"><a href="#配置文件结构" class="headerlink" title="配置文件结构"></a>配置文件结构</h3><p>配置文件为安装目录下的 nginx/conf/nginx.conf<br>主要包括以下模块：</p>
 <ul>
@@ -492,6 +492,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小哥哥</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cisco</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">路由器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ccna</a>
               </li>
              
               <li class="article-tag-list-item">

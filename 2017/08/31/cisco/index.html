@@ -18,7 +18,7 @@
 <meta property="og:description" content="之前的整理的重点 ： CCNA网页版 CCNA-pdf     ImportantDCE接口必须设置时钟频率,默认情况下所有串口都是DTE1234en #进入特权模式config t #进入全局配置模式int s0/0 #进入串口s0/0配置clock rate 9600 #将该串口的时钟频率设置为9600bit/s 连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下基本配置配置主机">
 <meta property="og:image" content="http://echo0.cn/data/img/protocol.png">
 <meta property="og:image" content="http://echo0.cn/photos/love/xixi.png">
-<meta property="og:updated_time" content="2017-08-31T17:25:16.392Z">
+<meta property="og:updated_time" content="2017-08-31T17:29:36.796Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="这是 CCNA 重点吗？">
 <meta name="twitter:description" content="之前的整理的重点 ： CCNA网页版 CCNA-pdf     ImportantDCE接口必须设置时钟频率,默认情况下所有串口都是DTE1234en #进入特权模式config t #进入全局配置模式int s0/0 #进入串口s0/0配置clock rate 9600 #将该串口的时钟频率设置为9600bit/s 连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下基本配置配置主机">
@@ -202,6 +202,7 @@
 </blockquote>
 <h2 id="Important"><a href="#Important" class="headerlink" title="Important"></a>Important</h2><h4 id="DCE接口必须设置时钟频率-默认情况下所有串口都是DTE"><a href="#DCE接口必须设置时钟频率-默认情况下所有串口都是DTE" class="headerlink" title="DCE接口必须设置时钟频率,默认情况下所有串口都是DTE"></a>DCE接口必须设置时钟频率,默认情况下所有串口都是DTE</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">en <span class="comment">#进入特权模式</span></div><div class="line">config t <span class="comment">#进入全局配置模式</span></div><div class="line">int s0/0 <span class="comment">#进入串口s0/0配置</span></div><div class="line">clock rate 9600 <span class="comment">#将该串口的时钟频率设置为9600bit/s</span></div></pre></td></tr></table></figure>
 <h4 id="连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下"><a href="#连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下" class="headerlink" title="连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下"></a>连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下</h4><h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><h4 id="配置主机名"><a href="#配置主机名" class="headerlink" title="配置主机名"></a>配置主机名</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">en <span class="comment">#进入特权模式</span></div><div class="line">config t <span class="comment">#进入全局配置模式</span></div><div class="line">hostname lan <span class="comment">#将主机名设置为lan</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="设置特权模式（加密）密码"><a href="#设置特权模式（加密）密码" class="headerlink" title="设置特权模式（加密）密码"></a>设置特权模式（加密）密码</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">en <span class="comment">#进入特权模式</span></div><div class="line">config t <span class="comment">#进入全局配置模式</span></div><div class="line"><span class="built_in">enable</span> secret lanlan <span class="comment">#将密码设置为lanlan</span></div></pre></td></tr></table></figure>
 <h4 id="设置控制台密码"><a href="#设置控制台密码" class="headerlink" title="设置控制台密码"></a>设置控制台密码</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">en <span class="comment">#进入特权模式</span></div><div class="line">config t <span class="comment">#进入全局配置模式</span></div><div class="line">line console 0 <span class="comment">#进入线路控制台的配置模式</span></div><div class="line">password lanlan <span class="comment">#将控制台密码设置为lanlan</span></div><div class="line">login <span class="comment">#启用密码</span></div></pre></td></tr></table></figure>
 <h4 id="设置控制台密码-1"><a href="#设置控制台密码-1" class="headerlink" title="设置控制台密码"></a>设置控制台密码</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">en <span class="comment">#进入特权模式</span></div><div class="line">config t <span class="comment">#进入全局配置模式</span></div><div class="line">line vty 0 4 <span class="comment">#进入telnet线路配置模式</span></div><div class="line">password lanlan <span class="comment">#将telnet（vty）密码设置为lanlan</span></div><div class="line">login <span class="comment">#启用密码</span></div></pre></td></tr></table></figure>
@@ -660,15 +661,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">echo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
               </li>
              
               <li class="article-tag-list-item">

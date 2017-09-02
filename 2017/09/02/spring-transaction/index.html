@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/02/spring-transaction/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="Spring中的事务管理 spring 支持编程式事务和声明式事务  编程式事务管理 使用TransactionTemplate或者直接使用底层的PlatformTransactionManager。对于编程式事务管理，spring推荐用用TransactionTemplate。  声明式事务管理 建立在AOP之上的。其本质是对方法前后进行拦截，然后在目标方法开始之前创建或者加入一个事务，在执行完">
-<meta property="og:updated_time" content="2017-09-02T07:21:15.021Z">
+<meta property="og:updated_time" content="2017-09-02T07:26:29.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring中的事务管理">
 <meta name="twitter:description" content="Spring中的事务管理 spring 支持编程式事务和声明式事务  编程式事务管理 使用TransactionTemplate或者直接使用底层的PlatformTransactionManager。对于编程式事务管理，spring推荐用用TransactionTemplate。  声明式事务管理 建立在AOP之上的。其本质是对方法前后进行拦截，然后在目标方法开始之前创建或者加入一个事务，在执行完">
@@ -191,7 +191,7 @@
         <h3 id="Spring中的事务管理"><a href="#Spring中的事务管理" class="headerlink" title="Spring中的事务管理"></a>Spring中的事务管理</h3><p> <code>spring</code> 支持<strong>编程式事务</strong>和<strong>声明式事务</strong></p>
 <p> <strong>编程式事务管理</strong> 使用<code>TransactionTemplate</code>或者直接使用底层的<code>PlatformTransactionManager</code>。对于编程式事务管理，<code>spring</code>推荐用用<code>TransactionTemplate</code>。</p>
 <p> <strong>声明式事务管理</strong> 建立在AOP之上的。其本质是对方法前后进行拦截，然后在目标方法开始之前创建或者加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务。声明式事务最大的优点就是不需要通过编程的方式管理事务，这样就不需要在业务逻辑代码中掺杂事务管理的代码，只需在配置文件中做相关的事务规则声明(或通过基于 <code>@Transactional</code> 注解的方式)，便可以将事务规则应用到业务逻辑中</p>
-<p> 一般而言建议使用声明式事务，这样不会污染业务代码。与编程式事务不足在于粒度最细只能作用到方法级别，无法做到像编程式事务那样作用到代码块级别。</p>
+<p> 一般而言建议使用声明式事务，这样不会污染业务代码。与编程式事务不足在于粒度最细只能作用到方法级别，无法做到像编程式事务那样作用到代码块级别。<br><a id="more"></a></p>
 <h3 id="声明式事务管理"><a href="#声明式事务管理" class="headerlink" title="声明式事务管理"></a>声明式事务管理</h3><p>声明式事务管理也有两种常用的方式，一种是基于tx和aop名字空间的xml配置文件，另一种就是基于<code>`@Transactional</code>注解。</p>
 <h4 id="使用xml配置文件"><a href="#使用xml配置文件" class="headerlink" title="使用xml配置文件"></a><strong>使用xml配置文件</strong></h4><h5 id="引入-aop-和-tx-的-命名空间"><a href="#引入-aop-和-tx-的-命名空间" class="headerlink" title="引入 aop 和 tx 的 命名空间"></a><strong>引入 aop 和 tx 的 命名空间</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></div><div class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></div><div class="line"><span class="tag"><span class="string">                            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd</span></span></div><div class="line"><span class="tag"><span class="string"></span></span></div><div class="line"><span class="tag"><span class="string">                            http://www.springframework.org/schema/aop</span></span></div><div class="line"><span class="tag"><span class="string">                            http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></div><div class="line"><span class="tag"><span class="string">              	            http://www.springframework.org/schema/tx/</span></span></div><div class="line"><span class="tag"><span class="string">              	            http://www.springframework.org/schema/tx/spring-tx.xsd</span></span></div><div class="line"><span class="tag"><span class="string"></span></span></div><div class="line"><span class="tag"><span class="string">                            http://www.springframework.org/schema/context</span></span></div><div class="line"><span class="tag"><span class="string">                            http://www.springframework.org/schema/context/spring-context-3.1.xsd "</span>&gt;</span></div></pre></td></tr></table></figure>
 <h5 id="定义事务管理器"><a href="#定义事务管理器" class="headerlink" title="定义事务管理器"></a><strong>定义事务管理器</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span></span></div><div class="line"><span class="tag">      <span class="attr">destroy-method</span>=<span class="string">"close"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.driverClassName&#125;"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.url&#125;"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.username&#125;"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.password&#125;"</span>/&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 初始化连接大小 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialSize"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.initialSize&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 连接池最大数量 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxActive"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.maxActive&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 连接池最大空闲 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxIdle"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.maxIdle&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 连接池最小空闲 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minIdle"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.minIdle&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 获取连接最大等待时间 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxWait"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.maxWait&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- (事务管理)transaction manager ,需要注入一个数据源--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span></span></div><div class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -523,6 +523,14 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CCNA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小哥哥</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cisco</a>
               </li>
              
@@ -535,23 +543,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CCNA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小哥哥</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,15 +559,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">mybatis-generator</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
               </li>
             
             <div class="clearfix"></div>

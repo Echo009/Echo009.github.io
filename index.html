@@ -165,19 +165,177 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-cisco" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-spring-transaction" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/31/cisco/">这是 CCNA 重点吗？</a>
+      <a class="article-title" href="/2017/09/02/spring-transaction/">Spring中的事务管理</a>
     </h1>
   
 
         
-        <a href="/2017/08/31/cisco/" class="archive-article-date">
+        <a href="/2017/09/02/spring-transaction/" class="archive-article-date">
+  	<time datetime="2017-09-02T03:24:33.668Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <h3 id="Spring中的事务管理"><a href="#Spring中的事务管理" class="headerlink" title="Spring中的事务管理"></a>Spring中的事务管理</h3><p> <code>spring</code> 支持<strong>编程式事务</strong>和<strong>声明式事务</strong></p>
+<p> <strong>编程式事务管理</strong> 使用<code>TransactionTemplate</code>或者直接使用底层的<code>PlatformTransactionManager</code>。对于编程式事务管理，<code>spring</code>推荐用用<code>TransactionTemplate</code>。</p>
+<p> <strong>声明式事务管理</strong> 建立在AOP之上的。其本质是对方法前后进行拦截，然后在目标方法开始之前创建或者加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务。声明式事务最大的优点就是不需要通过编程的方式管理事务，这样就不需要在业务逻辑代码中掺杂事务管理的代码，只需在配置文件中做相关的事务规则声明(或通过基于 <code>@Transactional</code> 注解的方式)，便可以将事务规则应用到业务逻辑中</p>
+<p> 一般而言建议使用声明式事务，这样不会污染业务代码。与编程式事务不足在于粒度最细只能作用到方法级别，无法做到像编程式事务那样作用到代码块级别。</p>
+<h3 id="声明式事务管理"><a href="#声明式事务管理" class="headerlink" title="声明式事务管理"></a>声明式事务管理</h3><p>声明式事务管理也有两种常用的方式，一种是基于tx和aop名字空间的xml配置文件，另一种就是基于<code>`@Transactional</code>注解。</p>
+<h4 id="使用xml配置文件"><a href="#使用xml配置文件" class="headerlink" title="使用xml配置文件"></a><strong>使用xml配置文件</strong></h4><h5 id="引入-aop-和-tx-的-命名空间"><a href="#引入-aop-和-tx-的-命名空间" class="headerlink" title="引入 aop 和 tx 的 命名空间"></a><strong>引入 aop 和 tx 的 命名空间</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></div><div class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></div><div class="line"><span class="tag"><span class="string">                            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd</span></span></div><div class="line"><span class="tag"><span class="string"></span></span></div><div class="line"><span class="tag"><span class="string">                            http://www.springframework.org/schema/aop</span></span></div><div class="line"><span class="tag"><span class="string">                            http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></div><div class="line"><span class="tag"><span class="string">              	            http://www.springframework.org/schema/tx/</span></span></div><div class="line"><span class="tag"><span class="string">              	            http://www.springframework.org/schema/tx/spring-tx.xsd</span></span></div><div class="line"><span class="tag"><span class="string"></span></span></div><div class="line"><span class="tag"><span class="string">                            http://www.springframework.org/schema/context</span></span></div><div class="line"><span class="tag"><span class="string">                            http://www.springframework.org/schema/context/spring-context-3.1.xsd "</span>&gt;</span></div></pre></td></tr></table></figure>
+<h5 id="定义事务管理器"><a href="#定义事务管理器" class="headerlink" title="定义事务管理器"></a><strong>定义事务管理器</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span></span></div><div class="line"><span class="tag">      <span class="attr">destroy-method</span>=<span class="string">"close"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.driverClassName&#125;"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.url&#125;"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.username&#125;"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.password&#125;"</span>/&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 初始化连接大小 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialSize"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.initialSize&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 连接池最大数量 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxActive"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.maxActive&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 连接池最大空闲 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxIdle"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.maxIdle&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 连接池最小空闲 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minIdle"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.minIdle&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 获取连接最大等待时间 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxWait"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.maxWait&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- (事务管理)transaction manager ,需要注入一个数据源--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span></span></div><div class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h5 id="定义事务Adivce"><a href="#定义事务Adivce" class="headerlink" title="定义事务Adivce"></a><strong>定义事务Adivce</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"txAdvice"</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></div><div class="line">           <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"get*"</span> <span class="attr">isolation</span>=<span class="string">"DEFAULT"</span> <span class="attr">propagation</span>=<span class="string">"NESTED"</span>/&gt;</span></div><div class="line">       <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></div></pre></td></tr></table></figure>
+<h6 id="tx-method-属性"><a href="#tx-method-属性" class="headerlink" title="tx:method 属性"></a><strong>tx:method 属性</strong></h6><ul>
+<li><code>name</code> 匹配的方法名称</li>
+<li><code>propagation</code> 事务的传播行为</li>
+<li><code>isolation</code> 事务隔离级别</li>
+<li><code>timeout</code> 超时</li>
+<li><code>read-only</code> 是否只读事务</li>
+<li><code>rollback-for</code> 触发回滚的异常，逗号分隔</li>
+<li><code>no-rollback-for</code> 不触发回滚的异常，逗号分隔<h5 id="定义PonintCut"><a href="#定义PonintCut" class="headerlink" title="定义PonintCut"></a><strong>定义PonintCut</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aop:config</span> &gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"daoOperation"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.echo0.dao.PersonMapper.*(..))"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"txAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"daoOperation"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="使用-Transcation注解"><a href="#使用-Transcation注解" class="headerlink" title="使用@Transcation注解"></a><strong>使用@Transcation注解</strong></h4><h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h5><ul>
+<li><strong>只有<code>@Transactional</code>注解应用到 public 方法，才能进行事务管理。</strong></li>
+<li><strong>避免 Spring 的 AOP 的自调用问题</strong></li>
+</ul>
+<blockquote>
+<p> 在 Spring 的 AOP 代理下，只有目标方法由外部调用，目标方法才由 Spring 生成的代理对象来管理，这会造成自调用问题。若同一类中的其他没有<code>@Transactional</code> 注解的方法内部调用有<code>@Transactional</code>注解的方法，有<code>@Transactional</code> 注解的方法的事务被忽略，不会发生回滚。</p>
+</blockquote>
+<p>  如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderService</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">()</span> </span>&#123;</div><div class="line">      insertOrder();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Transactional</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertOrder</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//insert log info</span></div><div class="line">        <span class="comment">//insertOrder</span></div><div class="line">        <span class="comment">//updateAccount</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p> insertOrder 尽管有@Transactional 注解，但它被内部方法 insert 调用，事务被忽略，出现异常事务不会发生回滚。<br>  上面的两个问题@Transactional 注解只应用到 public 方法和自调用问题，是由于使用 Spring AOP 代理造成的。<br>  为解决这两个问题，可以使用 AspectJ 取代 Spring AOP 代理。<br>  需要将下面的 AspectJ 信息添加到 xml 配置信息中<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">mode</span>=<span class="string">"aspectj"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.transaction.aspectj.AnnotationTransactionAspect"</span> <span class="attr">factory-method</span>=<span class="string">"aspectOf"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"transactionManager"</span> <span class="attr">ref</span>=<span class="string">"transactionManager"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>  同时在 Maven 的 pom 文件中加入 spring-aspects 和 aspectjrt 的 dependency 以及 aspectj-maven-plugin<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aspects<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.3.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjrt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectj-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">showWeaveInfo</span>&gt;</span>true<span class="tag">&lt;/<span class="name">showWeaveInfo</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">aspectLibraries</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">aspectLibrary</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aspects<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">aspectLibrary</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">aspectLibraries</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>test-compile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div></pre></td></tr></table></figure></p>
+</blockquote>
+<h5 id="定义事务管理器-1"><a href="#定义事务管理器-1" class="headerlink" title="定义事务管理器"></a><strong>定义事务管理器</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span></span></div><div class="line"><span class="tag">      <span class="attr">destroy-method</span>=<span class="string">"close"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.driverClassName&#125;"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.url&#125;"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.username&#125;"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.password&#125;"</span>/&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 初始化连接大小 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialSize"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.initialSize&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 连接池最大数量 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxActive"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.maxActive&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 连接池最大空闲 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxIdle"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.maxIdle&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 连接池最小空闲 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minIdle"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.minIdle&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 获取连接最大等待时间 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxWait"</span> <span class="attr">value</span>=<span class="string">"$&#123;db.maxWait&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- (事务管理)transaction manager ,需要注入一个数据源--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span></span></div><div class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h5 id="在配置文件中开启对注解事务的支持"><a href="#在配置文件中开启对注解事务的支持" class="headerlink" title="在配置文件中开启对注解事务的支持"></a><strong>在配置文件中开启对注解事务的支持</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span>&gt;</span><span class="tag">&lt;/<span class="name">tx:annotation-driven</span>&gt;</span></div></pre></td></tr></table></figure>
+<h5 id="在需要事务控制的方法或者类名上使用-Transcation注解"><a href="#在需要事务控制的方法或者类名上使用-Transcation注解" class="headerlink" title="在需要事务控制的方法或者类名上使用@Transcation注解"></a><strong>在需要事务控制的方法或者类名上使用@Transcation注解</strong></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Transactional</span>(value = <span class="string">"transactionManager"</span>,propagation = Propagation.REQUIRED,isolation = Isolation.READ_COMMITTED)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PersonMapper</span> </span>&#123;</div><div class="line">    <span class="meta">@Delete</span>(&#123;</div><div class="line">        <span class="string">"delete from person"</span>,</div><div class="line">        <span class="string">"where id = #&#123;id,jdbcType=INTEGER&#125;"</span></div><div class="line">    &#125;)</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">deleteByPrimaryKey</span><span class="params">(Integer id)</span></span>;</div><div class="line">    ....</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="Transcation-注解"><a href="#Transcation-注解" class="headerlink" title="@Transcation 注解"></a><strong>@Transcation 注解</strong></h6><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.transaction.annotation;</div><div class="line">....</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Transactional &#123;</div><div class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</div><div class="line"></div><div class="line">    <span class="function">Propagation <span class="title">propagation</span><span class="params">()</span> <span class="keyword">default</span> Propagation.REQUIRED</span>;</div><div class="line"></div><div class="line">    <span class="function">Isolation <span class="title">isolation</span><span class="params">()</span> <span class="keyword">default</span> Isolation.DEFAULT</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">timeout</span><span class="params">()</span> <span class="keyword">default</span> -1</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">readOnly</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</div><div class="line"></div><div class="line">    Class&lt;? extends Throwable&gt;[] rollbackFor() <span class="keyword">default</span> &#123;&#125;;</div><div class="line"></div><div class="line">    String[] rollbackForClassName() <span class="keyword">default</span> &#123;&#125;;</div><div class="line"></div><div class="line">    Class&lt;? extends Throwable&gt;[] noRollbackFor() <span class="keyword">default</span> &#123;&#125;;</div><div class="line"></div><div class="line">    String[] noRollbackForClassName() <span class="keyword">default</span> &#123;&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>属性</strong>：</p>
+<blockquote>
+<ul>
+<li><code>value</code>  ： 指定使用的<code>TranscationManager</code></li>
+<li><code>propagation</code>  ： 事务的传播行为</li>
+<li><code>isolation</code>  ： 事务隔离级别</li>
+<li><code>timeout</code>  ： 超时时间</li>
+<li><code>readOnly</code>  ： 是否只读事务</li>
+<li><code>rollbackFor</code>  ： 触发回滚的异常类对象数组</li>
+<li><code>rollbackForClassName</code>  ： 触发回滚的异常类名称数组</li>
+<li><code>noRollbackFor</code>  ： 不触发回滚的异常类对象数组</li>
+<li><code>noRollbackForClassName</code> ： 不触发回滚的异常类名称数组</li>
+</ul>
+</blockquote>
+<h3 id="事务的属性"><a href="#事务的属性" class="headerlink" title="事务的属性"></a>事务的属性</h3><h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a><strong>事务的隔离级别</strong></h4><p>隔离级别是指若干个并发的事务之间的隔离程度，与我们开发时候主要相关的场景包括：脏读取、重复读、幻读。</p>
+<p><code>org.springframework.transaction.annotation.Isolation</code>枚举类中定义了五个表示隔离级别的值：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.transaction.annotation;</div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Isolation &#123;</div><div class="line">    DEFAULT(-<span class="number">1</span>),</div><div class="line">    READ_UNCOMMITTED(<span class="number">1</span>),</div><div class="line">    READ_COMMITTED(<span class="number">2</span>),</div><div class="line">    REPEATABLE_READ(<span class="number">4</span>),</div><div class="line">    SERIALIZABLE(<span class="number">8</span>);</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Isolation</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.value = value;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.value;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong><code>DEFAULT</code></strong>：这是默认值，表示使用底层数据库的默认隔离级别。对大部分数据库而言，通常这值就是：<code>READ_COMMITTED</code>。</p>
+<p><strong><code>READ_UNCOMMITTED</code></strong>：该隔离级别表示一个事务可以读取另一个事务修改但还没有提交的数据。该级别不能防止脏读和不可重复读，因此很少使用该隔离级别。</p>
+<p><strong><code>READ_COMMITTED</code></strong>：该隔离级别表示一个事务只能读取另一个事务已经提交的数据。该级别可以防止脏读，这也是大多数情况下的推荐值。</p>
+<p><strong><code>REPEATABLE_READ</code></strong>：该隔离级别表示一个事务在整个过程中可以多次重复执行某个查询，并且每次返回的记录都相同。即使在多次查询之间有新增的数据满足该查询，这些新增的记录也会被忽略。该级别可以防止脏读和不可重复读。</p>
+<p><strong><code>SERIALIZABLE</code></strong>：所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止脏读、不可重复读以及幻读。但是这将严重影响程序的性能。通常情况下也不会用到该级别。</p>
+</blockquote>
+<h4 id="事务的传播行为"><a href="#事务的传播行为" class="headerlink" title="事务的传播行为"></a><strong>事务的传播行为</strong></h4><p>所谓事务的传播行为是指，如果在开始当前事务之前，一个事务上下文已经存在，此时有若干选项可以指定一个事务性方法的执行行为。</p>
+<p><code>org.springframework.transaction.annotation.Propagation</code>枚举类中定义了6个表示传播行为的枚举值：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.transaction.annotation;</div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Propagation &#123;</div><div class="line">    REQUIRED(<span class="number">0</span>),</div><div class="line">    SUPPORTS(<span class="number">1</span>),</div><div class="line">    MANDATORY(<span class="number">2</span>),</div><div class="line">    REQUIRES_NEW(<span class="number">3</span>),</div><div class="line">    NOT_SUPPORTED(<span class="number">4</span>),</div><div class="line">    NEVER(<span class="number">5</span>),</div><div class="line">    NESTED(<span class="number">6</span>);</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> value;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Propagation</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.value = value;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.value;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong><code>REQUIRED</code></strong>：如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。内部事务会影响外部事务。</p>
+<p><strong><code>SUPPORTS</code></strong>：该如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。</p>
+<p><strong><code>NOT_SUPPORTS</code></strong>：以非事务方式运行，如果当前存在事务，则把当前事务挂起。</p>
+<p><strong><code>MANDATORY</code></strong>：该如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。</p>
+<p><strong><code>REQUIRES_NEW</code></strong>：创建一个新的事务，如果当前存在事务，则把当前事务挂起。</p>
+<p><strong><code>NEVER</code></strong>：以非事务方式运行，如果当前存在事务，则抛出异常。</p>
+<p><strong><code>NESTED</code></strong>：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于REQUIRED。内部事务并不会影响外部的事务（savepoint）。</p>
+</blockquote>
+<h4 id="事务的超时时间"><a href="#事务的超时时间" class="headerlink" title="事务的超时时间"></a><strong>事务的超时时间</strong></h4><p>所谓事务超时，就是指一个事务所允许执行的最长时间，如果超过该时间限制但事务还没有完成，则自动回滚事务。在 TransactionDefinition 中以 int 的值来表示超时时间，其单位是秒。</p>
+<p>默认设置为底层事务系统的超时值，如果底层数据库事务系统没有设置超时值，那么就是none，没有超时限制。</p>
+<h4 id="事务的只读属性"><a href="#事务的只读属性" class="headerlink" title="事务的只读属性"></a><strong>事务的只读属性</strong></h4><p>只读事务用于客户代码只读但不修改数据的情形，只读事务用于特定情景下的优化。默认为读写事务。<br>“只读事务”并不是一个强制选项，它只是一个“暗示”，提示数据库驱动程序和数据库系统，这个事务并不包含更改数据的操作，那么JDBC驱动程序和数据库就有可能根据这种情况对该事务进行一些特定的优化，比方说不安排相应的数据库锁，以减轻事务对数据库的压力，毕竟事务也是要消耗数据库的资源的。</p>
+<p>但是你非要在“只读事务”里面修改数据，也并非不可以，只不过对于数据一致性的保护不像“读写事务”那样保险而已。</p>
+<p>因此，“只读事务”仅仅是一个性能优化的推荐配置而已，并非强制你要这样做不可。</p>
+<h4 id="事务的回滚规则"><a href="#事务的回滚规则" class="headerlink" title="事务的回滚规则"></a><strong>事务的回滚规则</strong></h4><p>指示spring事务管理器回滚一个事务的推荐方法是在当前事务的上下文内抛出异常。spring事务管理器会捕捉任何未处理的异常，然后依据规则决定是否回滚抛出异常的事务。</p>
+<p>默认配置下，spring只有在抛出的异常为运行时unchecked异常时才回滚该事务，也就是抛出的异常为RuntimeException的子类(Errors也会导致事务回滚)，而抛出checked异常则不会导致事务回滚。可以明确的配置在抛出那些异常时回滚事务，包括checked异常。也可以明确定义那些异常抛出时不回滚事务。还可以编程性的通过setRollbackOnly()方法来指示一个事务必须回滚，在调用完setRollbackOnly()后你所能执行的唯一操作就是回滚。</p>
+<h3 id="Springboot-中的事务"><a href="#Springboot-中的事务" class="headerlink" title="Springboot 中的事务"></a>Springboot 中的事务</h3><p>在<code>Spring Boot</code>中，当我们使用了<code>spring-boot-starter-jdbc</code>或<code>spring-boot-starter-data-jpa</code>依赖的时候，框架会自动默认分别注入<code>DataSourceTransactionManager</code>或<code>JpaTransactionManager</code>。所以我们不需要任何额外配置就可以用<code>`@Transactional</code>注解进行事务的使用。</p>
+<p>在项目中仅有一个数据源的情况下，是不需要指定事务管理器的，但是在项目中配置有多个数据源的情况下则需要通过<code>@Transactional</code>的<code>value</code>属性指定事务管理器</p>
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p><a href="https://www.ibm.com/developerworks/cn/java/j-master-spring-transactional-use/index.html" target="_blank" rel="external">透彻的掌握 Spring 中@transactional 的使用</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">事务管理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/02/spring-transaction/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ccna" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/31/ccna/">这是 CCNA 重点吗？</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/31/ccna/" class="archive-article-date">
   	<time datetime="2017-08-31T03:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-31</time>
 </a>
         
@@ -200,7 +358,7 @@
 <h2 id="Important"><a href="#Important" class="headerlink" title="Important"></a>Important</h2><h4 id="DCE接口必须设置时钟频率-默认情况下所有串口都是DTE"><a href="#DCE接口必须设置时钟频率-默认情况下所有串口都是DTE" class="headerlink" title="DCE接口必须设置时钟频率,默认情况下所有串口都是DTE"></a>DCE接口必须设置时钟频率,默认情况下所有串口都是DTE</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">en <span class="comment">#进入特权模式</span></div><div class="line">config t <span class="comment">#进入全局配置模式</span></div><div class="line">int s0/0 <span class="comment">#进入串口s0/0配置</span></div><div class="line">clock rate 9600 <span class="comment">#将该串口的时钟频率设置为9600bit/s</span></div></pre></td></tr></table></figure>
 <h4 id="连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下"><a href="#连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下" class="headerlink" title="连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下"></a>连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下</h4><h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><h4 id="配置主机名"><a href="#配置主机名" class="headerlink" title="配置主机名"></a>配置主机名</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">en <span class="comment">#进入特权模式</span></div><div class="line">config t <span class="comment">#进入全局配置模式</span></div><div class="line">hostname lan <span class="comment">#将主机名设置为lan</span></div></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2017/08/31/cisco/#more">more >></a>
+          <a class="article-more-a" href="/2017/08/31/ccna/#more">more >></a>
         
       
 
@@ -232,7 +390,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/31/cisco/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/31/ccna/">展开全文 >></a>
         </p>
       
 
@@ -752,6 +910,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CCNA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小哥哥</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -764,7 +930,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -776,11 +946,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CCNA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小哥哥</a>
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
               </li>
             
             <div class="clearfix"></div>

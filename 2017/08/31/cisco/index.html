@@ -18,7 +18,7 @@
 <meta property="og:description" content="之前的整理的重点 ： CCNA网页版 CCNA-pdf     ImportantDCE接口必须设置时钟频率,默认情况下所有串口都是DTE1234en #进入特权模式config t #进入全局配置模式int s0/0 #进入串口s0/0配置clock rate 9600 #将该串口的时钟频率设置为9600bit/s 连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下基本配置配置主机">
 <meta property="og:image" content="http://echo0.cn/data/img/protocol.png">
 <meta property="og:image" content="http://echo0.cn/photos/love/xixi.png">
-<meta property="og:updated_time" content="2017-09-02T08:43:56.031Z">
+<meta property="og:updated_time" content="2017-09-06T00:57:15.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="这是 CCNA 重点吗？">
 <meta name="twitter:description" content="之前的整理的重点 ： CCNA网页版 CCNA-pdf     ImportantDCE接口必须设置时钟频率,默认情况下所有串口都是DTE1234en #进入特权模式config t #进入全局配置模式int s0/0 #进入串口s0/0配置clock rate 9600 #将该串口的时钟频率设置为9600bit/s 连接两个路由器的线路的两个接口的ip地址必须位于同一个网络下基本配置配置主机">
@@ -219,7 +219,7 @@
 <h4 id="备份以及恢复路由器配置"><a href="#备份以及恢复路由器配置" class="headerlink" title="备份以及恢复路由器配置"></a>备份以及恢复路由器配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#备份 ：</span></div><div class="line">copy running-config tftp</div><div class="line"><span class="comment">#恢复 ：</span></div><div class="line">copy tftp running-config</div></pre></td></tr></table></figure>
 <h2 id="telnet相关命令"><a href="#telnet相关命令" class="headerlink" title="telnet相关命令"></a>telnet相关命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#登录到远程主机</span></div><div class="line">Telnet ipAddr|hostName <span class="comment">#或者直接输入 ip地址</span></div><div class="line"><span class="comment">#查看会话（本机到远端）</span></div><div class="line">Show sessions</div><div class="line"><span class="comment">#查看连接到本机的用户</span></div><div class="line">Show users</div><div class="line"><span class="comment">#关闭telnet会话</span></div><div class="line">Exit</div><div class="line"><span class="comment">#关闭 连接到本机的telnet会话</span></div><div class="line">Disconnect connNumber</div><div class="line"><span class="comment">#通过telnet 会话查看给定控制台的信息</span></div><div class="line">Terminal monitor</div></pre></td></tr></table></figure>
 <h2 id="路由相关配置"><a href="#路由相关配置" class="headerlink" title="路由相关配置"></a>路由相关配置</h2><h4 id="配置ip地址"><a href="#配置ip地址" class="headerlink" title="配置ip地址"></a>配置ip地址</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">en <span class="comment">#进入特权模式</span></div><div class="line">config t <span class="comment">#进入全局配置模式</span></div><div class="line">int f0/0 <span class="comment">#配置快速以太网接口0/0</span></div><div class="line">ip address 192.168.1.1 255.255.255.0 <span class="comment">#将该接口的ip地址设置为192.168.1.1</span></div></pre></td></tr></table></figure>
-<h4 id="通用配置"><a href="#通用配置" class="headerlink" title="通用配置"></a>通用配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ip default-network 192.168.1.1 <span class="comment"># 全局配置模式下使用，设置默认路由</span></div><div class="line">show ip protocols <span class="comment"># 特权模式下使用， 查看当前启用的路由协议</span></div><div class="line">passive-interface f0/0 <span class="comment"># 全局配置模式下使用，抑制f0/0接口上路由协议相关报文的收发 ，如果启用的是rip协议，那么这个接口可以接收其他路由器的路由表信息，但不能发送。如果启用的是eigrp协议，那么既不能收也不能发送hello包</span></div></pre></td></tr></table></figure>
+<h4 id="通用配置"><a href="#通用配置" class="headerlink" title="通用配置"></a>通用配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ip default-network 192.168.1.1 <span class="comment"># 全局配置模式下使用，设置默认路由</span></div><div class="line">show ip protocols <span class="comment"># 特权模式下使用， 查看当前启用的路由协议</span></div><div class="line">passive-interface f0/0 <span class="comment"># 路由配置模式（router(config-route)#）下使用，抑制f0/0接口上路由协议相关报文的收发 ，如果启用的是rip协议，那么这个接口可以接收其他路由器的路由表信息，但不能发送。如果启用的是eigrp协议，那么既不能收也不能发送hello包</span></div></pre></td></tr></table></figure>
 <h4 id="配置静态路由"><a href="#配置静态路由" class="headerlink" title="配置静态路由"></a>配置静态路由</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Ip route ipAddr subMask nextHopAddr ,如</span></div><div class="line">Ip route 192.168.1.0 255.255.255.0 192.168.1.2 <span class="comment"># 配置模式下 ，这条命令的作用是将目的ip的网络地址属于192.168.1.0的报文均转发至ip地址为192.168.1.2的这个接口</span></div></pre></td></tr></table></figure>
 <h4 id="配置ospf"><a href="#配置ospf" class="headerlink" title="配置ospf"></a>配置ospf</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">en <span class="comment">#进入特权模式</span></div><div class="line">config t <span class="comment">#进入全局配置模式</span></div><div class="line">router ospf 1 <span class="comment">#启用ospf协议，并使用1作为进程id，这个取值仅具有本地意义，范围1~65535</span></div><div class="line">network 192.168.1.0  0.0.0.255  area 0 <span class="comment">#发布网络192.168.1.0  区域号为0 ，注意这里的区域号，后面发布的网络 区域号相同，它们才可以互相通信</span></div></pre></td></tr></table></figure>
 <h4 id="设置某个接口的优先级"><a href="#设置某个接口的优先级" class="headerlink" title="设置某个接口的优先级"></a>设置某个接口的优先级</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Ip ospf priority priorityNum <span class="comment">#接口配置模式下</span></div></pre></td></tr></table></figure>
@@ -670,14 +670,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">api</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -686,11 +678,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">api</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,11 +706,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis-generator</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">插件</a>
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,6 +719,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis-generator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
             
             <div class="clearfix"></div>

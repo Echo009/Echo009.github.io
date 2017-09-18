@@ -98,7 +98,7 @@
 		        
 					<a class="bilibili" target="_blank" href="#" title="bilibili"><i class="icon-bilibili"></i></a>
 		        
-					<a class="mail" target="_blank" href="http://extreme.lll@echo0.cn" title="mail"><i class="icon-mail"></i></a>
+					<a class="mail" target="_blank" href="mailto:extreme.lll@echo0.cn" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
 		</nav>
@@ -139,7 +139,7 @@
 			        
 						<a class="bilibili" target="_blank" href="#" title="bilibili"><i class="icon-bilibili"></i></a>
 			        
-						<a class="mail" target="_blank" href="http://extreme.lll@echo0.cn" title="mail"><i class="icon-mail"></i></a>
+						<a class="mail" target="_blank" href="mailto:extreme.lll@echo0.cn" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
 			</nav>
@@ -164,6 +164,95 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-upgrade-nginx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/30/upgrade-nginx/">平滑升级Nginx，添加ssl以及echo模块</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/30/upgrade-nginx/" class="archive-article-date">
+  	<time datetime="2017-08-30T07:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <p>之前在服务器上安装Nginx时，什么模块都没有安装，需要支持ssl，于是只好重新折腾一波。</p>
+<h2 id="安装部署Nginx所用到的工具以及相关库"><a href="#安装部署Nginx所用到的工具以及相关库" class="headerlink" title="安装部署Nginx所用到的工具以及相关库"></a>安装部署Nginx所用到的工具以及相关库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#默认安装的http_rewrite_module（使用正则对请求重写）需pcre库</span></div><div class="line"><span class="comment">#默认安装的httP_gzip_module（Gzip压缩）需zlib库</span></div><div class="line"><span class="comment">#安装http_ssl_module(HTTPS/SLL)需openssl库</span></div><div class="line">yum -y install gcc pcre pcre-devel zlib zlib-devel openssl openssl-devel</div></pre></td></tr></table></figure>
+<h2 id="下载echo模块-并解压"><a href="#下载echo模块-并解压" class="headerlink" title="下载echo模块,并解压"></a>下载echo模块,并解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># current directory:  /usr/local/src</span></div><div class="line">wget https://github.com/openresty/<span class="built_in">echo</span>-nginx-module/archive/v0.60.tar.gz</div><div class="line">tar -zxvf v0.60</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/08/30/upgrade-nginx/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">echo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssl</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/30/upgrade-nginx/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-nginx-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -473,6 +562,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -497,6 +594,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
@@ -506,14 +611,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">api doc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">

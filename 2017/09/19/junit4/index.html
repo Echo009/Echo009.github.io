@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://ovqnrx6ra.bkt.clouddn.com/blog/img/junit/3.png">
 <meta property="og:image" content="http://ovqnrx6ra.bkt.clouddn.com/blog/img/junit/1.png">
 <meta property="og:image" content="http://ovqnrx6ra.bkt.clouddn.com/blog/img/junit/2.jpg">
-<meta property="og:updated_time" content="2017-09-19T16:39:16.585Z">
+<meta property="og:updated_time" content="2017-09-19T16:50:13.774Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Junit4使用教程">
 <meta name="twitter:description" content="Junit简介 JUnit is a simple framework to write repeatable tests. It is an instance of the xUnit architecture for unit testing frameworks.  Junit 是一个用于编写和运行可重复的测试的一个框架，它是用于单元测试框架体系xUnit的一个实例。 现已更新到 JUnit">
@@ -199,29 +199,34 @@
 <p>现已更新到 <a href="http://junit.org/junit5/" target="_blank" rel="external">JUnit5</a> , 本篇文章中使用的是 <a href="http://junit.org/junit4/" target="_blank" rel="external">JUnit4</a> 的4.12 [2017-09-10] 版本。</p>
 <a id="more"></a>
 <p>JUnit 的特点：</p>
-<pre><code>- 提供了注释，以确定测试方法。
-
-- 提供断言测试预期结果。
-
-- 提供了测试运行的运行测试。
-
-- JUnit测试让您可以更快地编写代码，提高质量
-
-- JUnit是优雅简洁。
-
-- JUnit测试可以自动运行，检查自己的结果，并提供即时反馈。没有必要通过测试结果报告来手动梳理。
-
-- JUnit测试可以组织成测试套件包含测试案例，甚至其他测试套件。
-
-- Junit显示测试进度的，如果测试是没有问题条形是绿色的，测试失败则会变成红色。
-</code></pre><h2 id="什么是单元测试"><a href="#什么是单元测试" class="headerlink" title="什么是单元测试?"></a>什么是单元测试?</h2><blockquote>
+<ul>
+<li><p>提供了注释，以确定测试方法。</p>
+</li>
+<li><p>提供断言测试预期结果。</p>
+</li>
+<li><p>提供了测试运行的运行测试。</p>
+</li>
+<li><p>JUnit测试让您可以更快地编写代码，提高质量</p>
+</li>
+<li><p>JUnit是优雅简洁。</p>
+</li>
+<li><p>JUnit测试可以自动运行，检查自己的结果，并提供即时反馈。没有必要通过测试结果报告来手动梳理。</p>
+</li>
+<li><p>JUnit测试可以组织成测试套件包含测试案例，甚至其他测试套件。</p>
+</li>
+<li><p>Junit显示测试进度的，如果测试是没有问题条形是绿色的，测试失败则会变成红色。</p>
+</li>
+</ul>
+<h2 id="什么是单元测试"><a href="#什么是单元测试" class="headerlink" title="什么是单元测试?"></a>什么是单元测试?</h2><blockquote>
 <p>从名字上看，单元测试是为了测试某一个代码单元而写的测试代码。但是什么叫“一个代码单元”呢？是一个模块、还是一个类、还是一个方法（函数）呢？不同的人、不同的语言，都有不同的理解。一般的定义，尤其是是在OOP领域，是一个类的一个方法。在此，我们也这样理解：单元测试，是为了测试某一个类的某一个方法能否正常工作，而写的测试代码。</p>
 </blockquote>
 <h1 id="Junit4的使用"><a href="#Junit4的使用" class="headerlink" title="Junit4的使用"></a>Junit4的使用</h1><h2 id="测试方法的组成"><a href="#测试方法的组成" class="headerlink" title="测试方法的组成"></a>测试方法的组成</h2><p>一般而言，一个测试方法主要包括以下三个部分：</p>
-<pre><code>- Init，即初始化操作，一般是新建需要测试的类的实例，并且设置一些前提条件，如数据库的连接。
-- 执行操作，即调用你要测试的那个方法，并获取运行结果。
-- 验证结果，验证结果是否和预期的一致。
-</code></pre><h2 id="相关注解"><a href="#相关注解" class="headerlink" title="相关注解"></a>相关注解</h2><p><strong>初始化操作相关 ：</strong></p>
+<ul>
+<li>Init，即初始化操作，一般是新建需要测试的类的实例，并且设置一些前提条件，如数据库的连接。</li>
+<li>执行操作，即调用你要测试的那个方法，并获取运行结果。</li>
+<li>验证结果，验证结果是否和预期的一致。</li>
+</ul>
+<h2 id="相关注解"><a href="#相关注解" class="headerlink" title="相关注解"></a>相关注解</h2><p><strong>初始化操作相关 ：</strong></p>
 <blockquote>
 <ul>
 <li><code>@Before</code> :  如果一个方法被 <code>@Before</code> 修饰过了，那么在每个测试方法调用之前，这个方法都会得到调用。</li>
@@ -232,16 +237,20 @@
 </blockquote>
 <p><strong>验证相关 ：</strong></p>
 <p>JUnit为我们提供的验证结果的方法，多数都在 Assert 这个类里面，常用的有：</p>
-<pre><code>- `assertEquals(expected, actual)` ：验证expected的值跟actual是一样的，如果是一样的话，测试通过，不然的话，测试失败。如果传入的是object，那么这里的对比用的是equals()。
-- `assertEquals(expected, actual, tolerance)` ：这里传入的expected和actual是float或double类型的，大家知道计算机表示浮点型数据都有一定的偏差，所以哪怕理论上他们是相等的，但是用计算机表示出来则可能不是，所以这里运行传入一个偏差值。如果两个数的差异在这个偏差值之内，则测试通过，否者测试失败。
-- `assertTrue(boolean condition)` ：验证contidion的值是true。
-- `assertFalse(boolean condition)` ：验证contidion的值是false。
-- `assertNull(Object obj)` ：验证obj的值是null。
-- `assertNotNull(Object obj)` ：验证obj的值不是null。
-- `assertSame(expected, actual)` ：验证expected和actual是同一个对象，即指向同一个对象。
-- `assertNotSame(expected, actual)` ：验证expected和actual不是同一个对象，即指向不同的对象。
-- `fail()` ：让测试方法失败。
-</code></pre><p>注意：上面的每一个方法，都有一个重载的方法，可以在前面加一个String类型的参数，表示如果验证失败的话，将用这个字符串作为失败的结果报告。</p>
+<blockquote>
+<ul>
+<li><code>assertEquals(expected, actual)</code> ：验证expected的值跟actual是一样的，如果是一样的话，测试通过，不然的话，测试失败。如果传入的是object，那么这里的对比用的是equals()。</li>
+<li><code>assertEquals(expected, actual, tolerance)</code> ：这里传入的expected和actual是float或double类型的，大家知道计算机表示浮点型数据都有一定的偏差，所以哪怕理论上他们是相等的，但是用计算机表示出来则可能不是，所以这里运行传入一个偏差值。如果两个数的差异在这个偏差值之内，则测试通过，否者测试失败。</li>
+<li><code>assertTrue(boolean condition)</code> ：验证contidion的值是true。</li>
+<li><code>assertFalse(boolean condition)</code> ：验证contidion的值是false。</li>
+<li><code>assertNull(Object obj)</code> ：验证obj的值是null。</li>
+<li><code>assertSame(expected, actual)</code> ：验证expected和actual是同一个对象，即指向同一个对象。</li>
+<li><code>assertNotNull(Object obj)</code> ：验证obj的值不是null。</li>
+<li><code>assertNotSame(expected, actual)</code> ：验证expected和actual不是同一个对象，即指向不同的对象。</li>
+<li><code>fail()</code> ：让测试方法失败。</li>
+</ul>
+</blockquote>
+<p>注意：上面的每一个方法，都有一个重载的方法，可以在前面加一个String类型的参数，表示如果验证失败的话，将用这个字符串作为失败的结果报告。</p>
 <p><strong>JUnit的其他功能 :</strong></p>
 <blockquote>
 <ul>
@@ -281,21 +290,21 @@
 <pre><code>@BeforeClass -&gt; @Before -&gt; @Test -&gt; @After -&gt; @AfterClass
 </code></pre><p>对于每个测试方法 ：</p>
 <pre><code>@Before -&gt; @Test -&gt; @After
-</code></pre><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><pre><code>①测试方法上必须使用@Test进行修饰
+</code></pre><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><pre><code>1. 测试方法上必须使用@Test进行修饰
 
-②测试方法必须使用public void 进行修饰，不能带任何的参数
+2. 测试方法必须使用public void 进行修饰，不能带任何的参数
 
-③新建一个源代码目录来存放我们的测试代码，即将测试代码和项目业务代码分开
+3. 新建一个源代码目录来存放我们的测试代码，即将测试代码和项目业务代码分开
 
-④测试类所在的包名应该和被测试类所在的包名保持一致
+4. 测试类所在的包名应该和被测试类所在的包名保持一致
 
-⑤测试单元中的每个方法必须可以独立测试，测试方法间不能有任何的依赖
+5. 测试单元中的每个方法必须可以独立测试，测试方法间不能有任何的依赖
 
-⑥测试类使用Test作为类名的后缀（不是必须）
+6. 测试类使用Test作为类名的后缀（不是必须）
 
-⑦测试方法使用test作为方法名的前缀（不是必须）
+7. 测试方法使用test作为方法名的前缀（不是必须）
 
-⑧不要在一个测试方法中使用多个断言
+8. 不要在一个测试方法中使用多个断言
 </code></pre>
       
 
@@ -557,14 +566,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cisco</a>
               </li>
              
@@ -574,6 +575,22 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ccna</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -593,19 +610,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">api</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -626,14 +643,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
               </li>
              
               <li class="article-tag-list-item">

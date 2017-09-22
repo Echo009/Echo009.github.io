@@ -9,17 +9,17 @@
 
   <title>使用Maven中常遇到的问题及解决方案 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="解决传递依赖的导致的版本冲突在存在冲突的依赖中，排除其中一个即可">
+  <meta name="description" content="解决传递依赖的导致的版本冲突传递依赖的优先级 ： 第一原则：路径最近者优先 如 A-&amp;gt; B-&amp;gt;C-&amp;gt;X(1.0) , A-&amp;gt;E-&amp;gt;X(2.0) 这样生效的就是X(2.0) 第二原则：在路径长度相等的前提下，pom中的依赖声明的顺序决定了谁会被解析。 先找到存在冲突的依赖，排除不需要的那个即可。">
 <meta name="keywords" content="Maven">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Maven中常遇到的问题及解决方案">
 <meta property="og:url" content="http://echo0.cn/2017/09/22/maven/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="解决传递依赖的导致的版本冲突在存在冲突的依赖中，排除其中一个即可">
-<meta property="og:updated_time" content="2017-09-22T00:45:56.526Z">
+<meta property="og:description" content="解决传递依赖的导致的版本冲突传递依赖的优先级 ： 第一原则：路径最近者优先 如 A-&amp;gt; B-&amp;gt;C-&amp;gt;X(1.0) , A-&amp;gt;E-&amp;gt;X(2.0) 这样生效的就是X(2.0) 第二原则：在路径长度相等的前提下，pom中的依赖声明的顺序决定了谁会被解析。 先找到存在冲突的依赖，排除不需要的那个即可。">
+<meta property="og:updated_time" content="2017-09-22T08:58:31.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Maven中常遇到的问题及解决方案">
-<meta name="twitter:description" content="解决传递依赖的导致的版本冲突在存在冲突的依赖中，排除其中一个即可">
+<meta name="twitter:description" content="解决传递依赖的导致的版本冲突传递依赖的优先级 ： 第一原则：路径最近者优先 如 A-&amp;gt; B-&amp;gt;C-&amp;gt;X(1.0) , A-&amp;gt;E-&amp;gt;X(2.0) 这样生效的就是X(2.0) 第二原则：在路径长度相等的前提下，pom中的依赖声明的顺序决定了谁会被解析。 先找到存在冲突的依赖，排除不需要的那个即可。">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -188,7 +188,11 @@
       <!--<canvas id="Mycanvas"></canvas>-->
 
       
-        <h1 id="解决传递依赖的导致的版本冲突"><a href="#解决传递依赖的导致的版本冲突" class="headerlink" title="解决传递依赖的导致的版本冲突"></a>解决传递依赖的导致的版本冲突</h1><p>在存在冲突的依赖中，排除其中一个即可</p>
+        <h1 id="解决传递依赖的导致的版本冲突"><a href="#解决传递依赖的导致的版本冲突" class="headerlink" title="解决传递依赖的导致的版本冲突"></a>解决传递依赖的导致的版本冲突</h1><p>传递依赖的优先级 ：</p>
+<p>第一原则：路径最近者优先</p>
+<p>如 A-&gt; B-&gt;C-&gt;X(1.0) , A-&gt;E-&gt;X(2.0) 这样生效的就是X(2.0)</p>
+<p>第二原则：在路径长度相等的前提下，pom中的依赖声明的顺序决定了谁会被解析。</p>
+<p>先找到存在冲突的依赖，排除不需要的那个即可。</p>
 
       
 
@@ -272,11 +276,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/22/interview/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/22/interview-backend/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          整理一波遇到的面试题
+          Java后端开发面试题整理
         
       </div>
     </a>
@@ -451,7 +455,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">atom</a>
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -467,15 +471,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+                <a href="javascript:void(0)" class="js-tag color5">atom</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,15 +487,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,14 +508,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,6 +536,26 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">

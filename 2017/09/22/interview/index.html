@@ -7,17 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://echo0.cn">
 
-  <title>Archives | Imagine</title>
+  <title>整理一波遇到的面试题 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目前还是个瓜皮罢了。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Imagine">
-<meta property="og:url" content="http://echo0.cn/archives/page/3/index.html">
+  <meta name="description" content="JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1 ，  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍然存活，将会被移到Surviv">
+<meta name="keywords" content="interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整理一波遇到的面试题">
+<meta property="og:url" content="http://echo0.cn/2017/09/22/interview/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="目前还是个瓜皮罢了。">
+<meta property="og:description" content="JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1 ，  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍然存活，将会被移到Surviv">
+<meta property="og:updated_time" content="2017-09-22T02:40:45.694Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Imagine">
-<meta name="twitter:description" content="目前还是个瓜皮罢了。">
+<meta name="twitter:title" content="整理一波遇到的面试题">
+<meta name="twitter:description" content="JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1 ，  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍然存活，将会被移到Surviv">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -163,201 +165,196 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-interview" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      整理一波遇到的面试题
+    </h1>
+  
+
+        
+        <a href="/2017/09/22/interview/" class="archive-article-date">
+  	<time datetime="2017-09-22T00:50:37.773Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="JMM-相关"><a href="#JMM-相关" class="headerlink" title="JMM 相关"></a>JMM 相关</h2><h3 id="1-什么情况下会触发Full-GC-？"><a href="#1-什么情况下会触发Full-GC-？" class="headerlink" title="1. 什么情况下会触发Full GC ？"></a>1. 什么情况下会触发Full GC ？</h3><p>方法区（永久代）空间不足，老年代空间不足，<code>System.gc()</code>（可能）</p>
+<h3 id="2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？"><a href="#2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？" class="headerlink" title="2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？"></a>2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？</h3><p>8:1:1 ，</p>
+<blockquote>
+<p>一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍然存活，将会被移到Survivor区。对象在Survivor每熬过一次minor GC 年龄就会增加一岁，当它的年龄增加到一定程度时，就会被移到老年代中 。</p>
+</blockquote>
+<p>因为年轻代中的对象基本都是朝生夕死的(80%以上)，所以在年轻代的垃圾回收算法使用的是复制算法，复制算法的基本思想就是将内存分为两块，每次只用其中一块，当这一块内存用完，就将还活着的对象复制到另外一块上面。复制算法不会产生内存碎片。</p>
+<a id="more"></a>
+<p>补充：</p>
+<p>有关年轻代的JVM参数</p>
+<p>1)-XX:NewSize和-XX:MaxNewSize</p>
+<p>用于设置年轻代的大小，建议设为整个堆大小的1/3或者1/4,两个值设为一样大。</p>
+<p>2)-XX:SurvivorRatio</p>
+<p>用于设置Eden和其中一个Survivor的比值，这个值也比较重要。</p>
+<p>3)-XX:+PrintTenuringDistribution</p>
+<p>这个参数用于显示每次Minor GC时Survivor区中各个年龄段的对象的大小。</p>
+<p>4).-XX:InitialTenuringThreshol和-XX:MaxTenuringThreshold</p>
+<p>用于设置晋升到老年代的对象年龄的最小值和最大值，每个对象在坚持过一次Minor GC之后，年龄就加1。</p>
+<h2 id="集合相关"><a href="#集合相关" class="headerlink" title="集合相关"></a>集合相关</h2><h3 id="1-HashMap-内部实现方式"><a href="#1-HashMap-内部实现方式" class="headerlink" title="1. HashMap 内部实现方式"></a>1. HashMap 内部实现方式</h3><ol>
+<li><p>如何得知容器内当前包含的元素个数 ？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  HashMap内部维护了一个计数器size ：</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * The number of key-value mappings contained in this map.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">transient</span> <span class="keyword">int</span> size;</div></pre></td></tr></table></figure>
+</li>
+<li><p>内部数组索引的计算 ？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注意HashMap内部(jdk 1.8.0_141)并没有这个函数，这里只是用来表述这种方式</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">indexFor</span><span class="params">(<span class="keyword">int</span> h, <span class="keyword">int</span> length)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> h &amp; (length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 还需要注意HashMap 并没有直接使用key的Hash值</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> h;</div><div class="line">    <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>装载因子，以及扩容过程 ？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  默认装载因子为0.75，当容器内的元素个数大于内部数组长度*装载因子时就会触发扩容。</span></div><div class="line"><span class="comment">//  下面这个函数用于计算实际容器容量，参数cap指给定的容量</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Returns a power of two size for the given target capacity.</span></div><div class="line"><span class="comment"> * 返回的是最接近给定容量的2的n次方 。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">tableSizeFor</span><span class="params">(<span class="keyword">int</span> cap)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> n = cap - <span class="number">1</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">1</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">2</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">4</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">8</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">16</span>;</div><div class="line">    <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 保证了HashMap 内部实际容量总是2的n次方</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="2-HashMap-，-如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么-？"><a href="#2-HashMap-，-如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么-？" class="headerlink" title="2. HashMap ， 如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么 ？"></a>2. HashMap ， 如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么 ？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在使用默认装载因子0.75 的情况下分析 ：</span></div><div class="line"><span class="comment">// 100 / 0.75 = 133.3  =&gt;  134</span></div><div class="line"><span class="comment">// 如果以这个为容量初始化参数</span></div><div class="line"><span class="comment">// HashMap 在内部会使用 tableSizeFor 方法重新计算一次实际容量 ，</span></div><div class="line"><span class="comment">// 返回的是大于该值的2的N次方，那么就是 256 ， 但 100 / 256 &lt; 0.5 &lt; 1.75 不会触发扩容</span></div><div class="line"><span class="comment">// 测试代码如下 ：</span></div><div class="line"></div><div class="line"><span class="keyword">package</span> cn.echo0.collection;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Field;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMapTheory</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException </span>&#123;</div><div class="line">        System.out.println(tableSizeFor((<span class="keyword">int</span>) (<span class="number">100</span> / <span class="number">0.75f</span>)));</div><div class="line">        HashMap map = <span class="keyword">new</span> HashMap((<span class="keyword">int</span>) (<span class="number">100</span> / <span class="number">0.75f</span>));</div><div class="line">        Class clazz = map.getClass();</div><div class="line">        Field[] fields = clazz.getDeclaredFields();</div><div class="line">        <span class="keyword">for</span> (Field field : fields) &#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (field.getName().equals(<span class="string">"threshold"</span>)) &#123;</div><div class="line">                field.setAccessible(<span class="keyword">true</span>);</div><div class="line">                System.out.println(field.get(map));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        System.out.println(map.size());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/03/restful-design/" class="archive-article-date">
-  	<time datetime="2017-09-03T11:46:07.383Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/03/restful-design/">理解RESTful api设计</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RESTful</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">api</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interview</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://echo0.cn/2017/09/22/interview/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/02/spring-transaction/" class="archive-article-date">
-  	<time datetime="2017-09-02T03:24:33.668Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/22/maven/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Maven中常遇到的问题及解决方案</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/02/spring-transaction/">Spring中的事务管理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">事务管理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java"><span class="toc-number">1.</span> <span class="toc-text">Java</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JMM-相关"><span class="toc-number">1.1.</span> <span class="toc-text">JMM 相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么情况下会触发Full-GC-？"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 什么情况下会触发Full GC ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集合相关"><span class="toc-number">1.2.</span> <span class="toc-text">集合相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-HashMap-内部实现方式"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. HashMap 内部实现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-HashMap-，-如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么-？"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. HashMap ， 如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么 ？</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/31/cisco/" class="archive-article-date">
-  	<time datetime="2017-08-31T03:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/31/cisco/">这是 CCNA 重点吗？</a>
-    </h1>
+        
+    </div>
+</aside>
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cisco</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">路由器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ccna</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/30/upgrade-nginx/" class="archive-article-date">
-  	<time datetime="2017-08-30T07:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/30/upgrade-nginx/">平滑升级Nginx，添加ssl以及echo模块</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">echo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssl</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
+  <div id="SOHUCS" sid="interview" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cytbNO1rA"; 
+var conf = "prod_4fe0c917b9b999b4a07c07296da1fcba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/4/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -382,8 +379,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

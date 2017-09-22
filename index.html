@@ -189,7 +189,7 @@
 
       
         <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="JMM-相关"><a href="#JMM-相关" class="headerlink" title="JMM 相关"></a>JMM 相关</h2><h3 id="1-什么情况下会触发Full-GC-？"><a href="#1-什么情况下会触发Full-GC-？" class="headerlink" title="1. 什么情况下会触发Full GC ？"></a>1. 什么情况下会触发Full GC ？</h3><p>方法区（永久代）空间不足，老年代空间不足，<code>System.gc()</code>（可能）</p>
-<h3 id="2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？"><a href="#2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？" class="headerlink" title="2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？"></a>2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？</h3><p>8:1:1 ，</p>
+<h3 id="2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？"><a href="#2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？" class="headerlink" title="2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？"></a>2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？</h3><p>8:1:1</p>
 <blockquote>
 <p>一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍然存活，将会被移到Survivor区。对象在Survivor每熬过一次minor GC 年龄就会增加一岁，当它的年龄增加到一定程度时，就会被移到老年代中 。</p>
 </blockquote>
@@ -734,10 +734,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">atom</a>
               </li>
              
@@ -754,11 +750,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -782,22 +798,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">api</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -806,11 +806,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
+                <a href="javascript:void(0)" class="js-tag color4">api</a>
               </li>
              
               <li class="article-tag-list-item">

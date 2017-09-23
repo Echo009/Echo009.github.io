@@ -9,15 +9,15 @@
 
   <title>Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目前还是个瓜皮罢了。">
+  <meta name="description" content="想要学习好多好多东西啊！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Imagine">
 <meta property="og:url" content="http://echo0.cn/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="目前还是个瓜皮罢了。">
+<meta property="og:description" content="想要学习好多好多东西啊！">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Imagine">
-<meta name="twitter:description" content="目前还是个瓜皮罢了。">
+<meta name="twitter:description" content="想要学习好多好多东西啊！">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -165,6 +165,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-common-sense" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/23/common-sense/">计算机基础</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/23/common-sense/" class="archive-article-date">
+  	<time datetime="2017-09-23T12:03:23.342Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <h1 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h1><h2 id="什么是尾递归-？"><a href="#什么是尾递归-？" class="headerlink" title="什么是尾递归 ？"></a>什么是尾递归 ？</h2><p>尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。</p>
+<p>## </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interview</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/23/common-sense/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-interview-frontend" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -189,23 +267,9 @@
 
       
         <h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h2 id="1-介绍一下XMLHTTPREQUEST对象"><a href="#1-介绍一下XMLHTTPREQUEST对象" class="headerlink" title="1. 介绍一下XMLHTTPREQUEST对象"></a>1. 介绍一下XMLHTTPREQUEST对象</h2><p>Ajax的核心是JavaScript对象XmlHttpRequest。该对象在Internet Explorer 5中首次引入，它是一种支持异步请求的技术。简而言之，XmlHttpRequest使您可以使用JavaScript向服务器提出请求并处理响应，而不阻塞用户。通过XMLHttpRequest对象，Web开发人员可以在页面加载以后进行页面的局部更新。</p>
-<h2 id="2-AJAX应用和传统Web应用有什么不同？"><a href="#2-AJAX应用和传统Web应用有什么不同？" class="headerlink" title="2. AJAX应用和传统Web应用有什么不同？"></a>2. AJAX应用和传统Web应用有什么不同？</h2><p>在传统的Javascript编程中，如果想得到服务器端数据库或文件上的信息，或者发送客户端信息到服务器，需要建立一个HTML form然后GET或者POST数据到服务器端。用户需要点击”Submit”按钮来发送或者接受数据信息，然后等待服务器响应请求，页面重新加载。</p>
-<p>因为服务器每次都会返回一个新的页面， 所以传统的web应用有可能很慢而且用户交互不友好。</p>
-<p>使用AJAX技术， 就可以使Javascript通过XMLHttpRequest对象直接与服务器进行交互。</p>
-<p>通过HTTP Request， 一个web页面可以发送一个请求到web服务器并且接受web服务器返回的信息(不用重新加载页面)，展示给用户的还是通一个页面，用户感觉页面刷新，也看不到到Javascript后台进行的发送请求和接受响应。</p>
-<h2 id="3-介绍一下XMLHttpRequest对象的常用方法和属性"><a href="#3-介绍一下XMLHttpRequest对象的常用方法和属性" class="headerlink" title="3. 介绍一下XMLHttpRequest对象的常用方法和属性"></a>3. 介绍一下XMLHttpRequest对象的常用方法和属性</h2><p>open(“method”,”URL”) 建立对服务器的调用，第一个参数是HTTP请求 方式可以为GET，POST或任何服务器所支持的您想调用的方式。 第二个参数是请求页面的URL。</p>
-<p>send()方法，发送具体请求</p>
-<p>abort()方法，停止当前请求</p>
-<p>readyState属性 请求的状态 有5个可取值 0=未初始化 ，1=正在加载 2=以加载，3=交互中，4=完成</p>
-<p>responseText 属性 服务器的响应，表示为一个串</p>
-<p>reponseXML 属性 服务器的响应，表示为XML</p>
-<p>status 服务器的HTTP状态码，200对应ok 400对应not found</p>
-<h2 id="4-AJAX-的优点"><a href="#4-AJAX-的优点" class="headerlink" title="4. AJAX 的优点"></a>4. AJAX 的优点</h2><ol>
-<li>通过异步模式，提升了用户体验</li>
-<li>优化了浏览器和服务器之间的传输，减少不必要的数据往返，减少了带宽占用</li>
-<li>Ajax引擎在客户端运行，承担了一部分本来由服务器承担的工作，从而减少了大用户量下的服务器负载</li>
-</ol>
-
+        
+          <a class="article-more-a" href="/2017/09/22/interview-frontend/#more">more >></a>
+        
       
 
       
@@ -285,7 +349,8 @@
       <!--<canvas id="Mycanvas"></canvas>-->
 
       
-        <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="JMM-相关"><a href="#JMM-相关" class="headerlink" title="JMM 相关"></a>JMM 相关</h2><h3 id="1-什么情况下会触发Full-GC-？"><a href="#1-什么情况下会触发Full-GC-？" class="headerlink" title="1. 什么情况下会触发Full GC ？"></a>1. 什么情况下会触发Full GC ？</h3><p>方法区（永久代）空间不足，老年代空间不足，<code>System.gc()</code>（可能）</p>
+        <p>一定要成为一个很厉害的人 ！！！</p>
+<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="JMM-相关"><a href="#JMM-相关" class="headerlink" title="JMM 相关"></a>JMM 相关</h2><h3 id="1-什么情况下会触发Full-GC-？"><a href="#1-什么情况下会触发Full-GC-？" class="headerlink" title="1. 什么情况下会触发Full GC ？"></a>1. 什么情况下会触发Full GC ？</h3><p>方法区（永久代）空间不足，老年代空间不足，<code>System.gc()</code>（可能）</p>
 <h3 id="2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？"><a href="#2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？" class="headerlink" title="2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？"></a>2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？</h3><p>8:1:1</p>
 <blockquote>
 <p>一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍然存活，将会被移到Survivor区。对象在Survivor每熬过一次minor GC 年龄就会增加一岁，当它的年龄增加到一定程度时，就会被移到老年代中 。</p>
@@ -511,96 +576,9 @@
 
 
   
-    <article id="post-junit4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/19/junit4/">Junit4使用教程</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/19/junit4/" class="archive-article-date">
-  	<time datetime="2017-09-19T05:58:53.994Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      <!--edit by echo0 2017年8月29日09:48:38 -->
-      <!--<canvas id="Mycanvas"></canvas>-->
-
-      
-        <h1 id="Junit简介"><a href="#Junit简介" class="headerlink" title="Junit简介"></a>Junit简介</h1><blockquote>
-<p>JUnit is a simple framework to write repeatable tests. It is an instance of the xUnit architecture for unit testing frameworks.</p>
-</blockquote>
-<p>Junit 是一个用于编写和运行可重复的测试的一个框架，它是用于<strong>单元测试</strong>框架体系xUnit的一个实例。</p>
-<p>现已更新到 <a href="http://junit.org/junit5/" target="_blank" rel="external">JUnit5</a> , 本篇文章中使用的是 <a href="http://junit.org/junit4/" target="_blank" rel="external">JUnit4</a> 的4.12 [2017-09-10] 版本。</p>
-        
-          <a class="article-more-a" href="/2017/09/19/junit4/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">junit4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">test</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/19/junit4/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -717,10 +695,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cisco</a>
               </li>
              
@@ -733,19 +707,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">atom</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,11 +719,39 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">atom</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">api</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -773,11 +763,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">api</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -793,23 +783,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis-generator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -821,11 +803,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis-generator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">插件</a>
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
             
             <div class="clearfix"></div>

@@ -9,17 +9,17 @@
 
   <title>Java后端开发面试题整理 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍然存活，将会被移到Survivor">
+  <meta name="description" content="一定要成为一个很厉害的人 ！！！ JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍">
 <meta name="keywords" content="interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java后端开发面试题整理">
 <meta property="og:url" content="http://echo0.cn/2017/09/22/interview-backend/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍然存活，将会被移到Survivor">
-<meta property="og:updated_time" content="2017-09-22T05:25:53.960Z">
+<meta property="og:description" content="一定要成为一个很厉害的人 ！！！ JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍">
+<meta property="og:updated_time" content="2017-09-23T15:42:06.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java后端开发面试题整理">
-<meta name="twitter:description" content="JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍然存活，将会被移到Survivor">
+<meta name="twitter:description" content="一定要成为一个很厉害的人 ！！！ JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -188,7 +188,8 @@
       <!--<canvas id="Mycanvas"></canvas>-->
 
       
-        <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="JMM-相关"><a href="#JMM-相关" class="headerlink" title="JMM 相关"></a>JMM 相关</h2><h3 id="1-什么情况下会触发Full-GC-？"><a href="#1-什么情况下会触发Full-GC-？" class="headerlink" title="1. 什么情况下会触发Full GC ？"></a>1. 什么情况下会触发Full GC ？</h3><p>方法区（永久代）空间不足，老年代空间不足，<code>System.gc()</code>（可能）</p>
+        <p>一定要成为一个很厉害的人 ！！！</p>
+<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="JMM-相关"><a href="#JMM-相关" class="headerlink" title="JMM 相关"></a>JMM 相关</h2><h3 id="1-什么情况下会触发Full-GC-？"><a href="#1-什么情况下会触发Full-GC-？" class="headerlink" title="1. 什么情况下会触发Full GC ？"></a>1. 什么情况下会触发Full GC ？</h3><p>方法区（永久代）空间不足，老年代空间不足，<code>System.gc()</code>（可能）</p>
 <h3 id="2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？"><a href="#2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？" class="headerlink" title="2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？"></a>2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？</h3><p>8:1:1</p>
 <blockquote>
 <p>一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍然存活，将会被移到Survivor区。对象在Survivor每熬过一次minor GC 年龄就会增加一岁，当它的年龄增加到一定程度时，就会被移到老年代中 。</p>
@@ -207,8 +208,27 @@
 <p>用于设置晋升到老年代的对象年龄的最小值和最大值，每个对象在坚持过一次Minor GC之后，年龄就加1。</p>
 <h2 id="集合相关"><a href="#集合相关" class="headerlink" title="集合相关"></a>集合相关</h2><h3 id="1-HashMap-内部实现方式"><a href="#1-HashMap-内部实现方式" class="headerlink" title="1. HashMap 内部实现方式"></a>1. HashMap 内部实现方式</h3><p>如何得知容器内当前包含的元素个数 ？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  HashMap内部维护了一个计数器size ：</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * The number of key-value mappings contained in this map.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">transient</span> <span class="keyword">int</span> size;</div></pre></td></tr></table></figure></p>
 <p>内部数组索引的计算 ？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注意HashMap内部(jdk 1.8.0_141)并没有这个函数，这里只是用来表述这种方式</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">indexFor</span><span class="params">(<span class="keyword">int</span> h, <span class="keyword">int</span> length)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> h &amp; (length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 还需要注意HashMap 并没有直接使用key的Hash值</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> h;</div><div class="line">    <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>装载因子，以及扩容过程 ？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  默认装载因子为0.75，当容器内的元素个数大于内部数组长度*装载因子时就会触发扩容。</span></div><div class="line"><span class="comment">//  下面这个函数用于计算实际容器容量，参数cap指给定的容量</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Returns a power of two size for the given target capacity.</span></div><div class="line"><span class="comment"> * 返回的是最接近给定容量的2的n次方 。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">tableSizeFor</span><span class="params">(<span class="keyword">int</span> cap)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> n = cap - <span class="number">1</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">1</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">2</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">4</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">8</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">16</span>;</div><div class="line">    <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 保证了HashMap 内部实际容量总是2的n次方</span></div></pre></td></tr></table></figure></p>
+<p>装载因子，以及扩容过程 ？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  默认装载因子为0.75，当容器内的元素个数大于内部数组长度*装载因子时就会触发扩容。</span></div><div class="line"><span class="comment">//  下面这个函数用于计算实际容器容量，参数cap指给定的容量</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Returns a power of two size for the given target capacity.</span></div><div class="line"><span class="comment"> * 返回的是大于且最接近给定容量的2的n次方 。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">tableSizeFor</span><span class="params">(<span class="keyword">int</span> cap)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> n = cap - <span class="number">1</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">1</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">2</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">4</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">8</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">16</span>;</div><div class="line">    <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 保证了HashMap 内部实际容量总是2的n次方</span></div></pre></td></tr></table></figure></p>
 <h3 id="2-HashMap-，-如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么-？"><a href="#2-HashMap-，-如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么-？" class="headerlink" title="2. HashMap ， 如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么 ？"></a>2. HashMap ， 如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么 ？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在使用默认装载因子0.75 的情况下分析 ：</span></div><div class="line"><span class="comment">// 100 / 0.75 = 133.3  =&gt;  134</span></div><div class="line"><span class="comment">// 如果以这个为容量初始化参数</span></div><div class="line"><span class="comment">// HashMap 在内部会使用 tableSizeFor 方法重新计算一次实际容量 ，</span></div><div class="line"><span class="comment">// 返回的是大于该值的2的N次方，那么就是 256 ，  100 / 256 &lt; 0.5 &lt; 1.75 不会触发扩容</span></div><div class="line"><span class="comment">// 测试代码如下 ：</span></div><div class="line"></div><div class="line"><span class="keyword">package</span> cn.echo0.collection;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Field;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMapTheory</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException </span>&#123;</div><div class="line"></div><div class="line">        HashMap map = <span class="keyword">new</span> HashMap((<span class="keyword">int</span>) (<span class="number">100</span> / <span class="number">0.75f</span>));</div><div class="line">        Class clazz = map.getClass();</div><div class="line">        Field[] fields = clazz.getDeclaredFields();</div><div class="line">        <span class="keyword">for</span> (Field field : fields) &#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (field.getName().equals(<span class="string">"threshold"</span>)) &#123;</div><div class="line">                field.setAccessible(<span class="keyword">true</span>);</div><div class="line">                System.out.println(field.get(map));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        System.out.println(map.size());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="一-、基本命令"><a href="#一-、基本命令" class="headerlink" title="一 、基本命令"></a>一 、基本命令</h2><h3 id="1-备份与恢复数据库"><a href="#1-备份与恢复数据库" class="headerlink" title="1. 备份与恢复数据库"></a>1. 备份与恢复数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 备份</span></div><div class="line">mysqldump -uroot -pPassword [database name] &gt; [dump file]</div><div class="line"><span class="comment">#  如果加上--opt参数则生成的dump文件中稍有不同：</span></div><div class="line"><span class="comment">#  . 建表语句包含drop table if exists tableName</span></div><div class="line"><span class="comment">#  . insert之前包含一个锁表语句lock tables tableName write，insert之后包含unlock tables</span></div><div class="line"></div><div class="line"><span class="comment"># 恢复</span></div><div class="line"></div><div class="line">mysql [database name] &lt; [backup file name]</div></pre></td></tr></table></figure>
+<h2 id="二-、索引"><a href="#二-、索引" class="headerlink" title="二 、索引"></a>二 、索引</h2><h3 id="1-查看索引"><a href="#1-查看索引" class="headerlink" title="1. 查看索引"></a>1. 查看索引</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">show index from tableName ;</div><div class="line"><span class="comment"># 或者</span></div><div class="line">show keys from tableName ;</div><div class="line"><span class="comment"># 或者</span></div><div class="line">desc tableName;</div></pre></td></tr></table></figure>
+<h3 id="2-如何确定SQL语句使用了索引？"><a href="#2-如何确定SQL语句使用了索引？" class="headerlink" title="2. 如何确定SQL语句使用了索引？"></a>2. 如何确定SQL语句使用了索引？</h3><p>在SQL语句前添加 Explain 关键字,<br>如 :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Explain select * from users <span class="built_in">where</span> id = 1405020207 ;</div></pre></td></tr></table></figure></p>
+<p>其中显示的结果中key那一列表示使用的索引。</p>
+<h3 id="3-哪些情况下索引会失效-？"><a href="#3-哪些情况下索引会失效-？" class="headerlink" title="3. 哪些情况下索引会失效 ？"></a>3. 哪些情况下索引会失效 ？</h3><ol>
+<li>条件中带有or子句。[要想使用or，又想让索引生效，只能将or条件中的每个列都加上索引]</li>
+<li>对于多列索引，不是使用的第一部分，则不会使用索引</li>
+<li>如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引</li>
+<li>like查询时以%开头</li>
+<li>如果mysql估计使用全表扫描要比使用索引快,则不使用索引</li>
+</ol>
+<h3 id="4-如何查看索引使用情况-？"><a href="#4-如何查看索引使用情况-？" class="headerlink" title="4. 如何查看索引使用情况 ？"></a>4. 如何查看索引使用情况 ？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">show status like ‘Handler_read%’;</div><div class="line"><span class="comment"># handler_read_key:这个值越高越好，越高表示使用索引查询到的次数</span></div><div class="line"><span class="comment"># handler_read_rnd_next:这个值越高，说明查询低效</span></div></pre></td></tr></table></figure>
+<h3 id="5-组合索引的使用"><a href="#5-组合索引的使用" class="headerlink" title="5. 组合索引的使用"></a>5. 组合索引的使用</h3><p>最左优先原则：</p>
+<p>组合索引的第一个字段必须出现在查询组句中，这个索引才会被用到</p>
+<p>给定一个组合索引 (colA,colB,colC)，则一下语句可以使用组合索引 ：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">colA = <span class="string">"some value"</span>;</div><div class="line">colA = <span class="string">"some value"</span> and colB = <span class="string">"some value"</span>;</div><div class="line">colA = <span class="string">"some value"</span> and colA = <span class="string">"some value"</span> and colC = <span class="string">"some value"</span>;</div><div class="line">colA = <span class="string">"some value"</span> and colA = <span class="string">"some value"</span> and colC = <span class="string">"some value"</span>;</div></pre></td></tr></table></figure></p>
+<p>需要注意 ，对于第四条语句，<strong>MySQL会自动将其优化为第三条语句的形式</strong>。</p>
+<h2 id="二-、数据类型"><a href="#二-、数据类型" class="headerlink" title="二 、数据类型"></a>二 、数据类型</h2><h3 id="1-char和varchar有何区别-？"><a href="#1-char和varchar有何区别-？" class="headerlink" title="1. char和varchar有何区别 ？"></a>1. char和varchar有何区别 ？</h3><p>首先明确的是,<strong>char的长度是不可变的，而varchar的长度是可变的</strong>，也就是说定义一个char[10]和varchar[10],如果存进去的是‘csdn’,那么char所占的长度依然为10，除了字符‘csdn’外，后面跟六个空格，而varchar就立马把长度变为4了，<strong>取数据的时候，char类型的要用trim()去掉多余的空格，而varchar是不需要的</strong>。</p>
+<p>尽管如此，<strong>char的存取数度还是要比varchar要快得多</strong>，因为其长度固定，方便程序的存储与查找；但是char也为此付出的是空间的代价，因为其长度固定，所以难免会有多余的空格占位符占据空间，可谓是以空间换取时间效率，而varchar是以空间效率为首位的。</p>
+<p>再者，<strong>char的存储方式是，对英文字符（ASCII）占用1个字节，对一个汉字占用两个字节；而varchar的存储方式是，对每个英文字符占用2个字节，汉字也占用2个字节</strong>两者的存储数据都非unicode的字符数据。</p>
 
       
 
@@ -330,7 +350,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java"><span class="toc-number">1.</span> <span class="toc-text">Java</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JMM-相关"><span class="toc-number">1.1.</span> <span class="toc-text">JMM 相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么情况下会触发Full-GC-？"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 什么情况下会触发Full GC ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集合相关"><span class="toc-number">1.2.</span> <span class="toc-text">集合相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-HashMap-内部实现方式"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. HashMap 内部实现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-HashMap-，-如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么-？"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. HashMap ， 如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么 ？</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java"><span class="toc-number">1.</span> <span class="toc-text">Java</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JMM-相关"><span class="toc-number">1.1.</span> <span class="toc-text">JMM 相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么情况下会触发Full-GC-？"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 什么情况下会触发Full GC ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-新生代中Eden-：-FromSurvivor-：-ToSurvivor-区的默认比例为多少-？-为什么要这样设计？"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集合相关"><span class="toc-number">1.2.</span> <span class="toc-text">集合相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-HashMap-内部实现方式"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. HashMap 内部实现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-HashMap-，-如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么-？"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. HashMap ， 如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么 ？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-number">2.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-、基本命令"><span class="toc-number">2.1.</span> <span class="toc-text">一 、基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-备份与恢复数据库"><span class="toc-number">2.1.1.</span> <span class="toc-text">1. 备份与恢复数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-、索引"><span class="toc-number">2.2.</span> <span class="toc-text">二 、索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-查看索引"><span class="toc-number">2.2.1.</span> <span class="toc-text">1. 查看索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-如何确定SQL语句使用了索引？"><span class="toc-number">2.2.2.</span> <span class="toc-text">2. 如何确定SQL语句使用了索引？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-哪些情况下索引会失效-？"><span class="toc-number">2.2.3.</span> <span class="toc-text">3. 哪些情况下索引会失效 ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-如何查看索引使用情况-？"><span class="toc-number">2.2.4.</span> <span class="toc-text">4. 如何查看索引使用情况 ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-组合索引的使用"><span class="toc-number">2.2.5.</span> <span class="toc-text">5. 组合索引的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-、数据类型"><span class="toc-number">2.3.</span> <span class="toc-text">二 、数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-char和varchar有何区别-？"><span class="toc-number">2.3.1.</span> <span class="toc-text">1. char和varchar有何区别 ？</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -471,10 +491,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cisco</a>
               </li>
              
@@ -487,19 +503,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">atom</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,11 +515,39 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">atom</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">api</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,11 +559,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">api</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,23 +579,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis-generator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,11 +599,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis-generator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">插件</a>
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
             
             <div class="clearfix"></div>

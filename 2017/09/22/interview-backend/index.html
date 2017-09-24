@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/22/interview-backend/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="一定要成为一个很厉害的人 ！！！ JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍">
-<meta property="og:updated_time" content="2017-09-24T08:06:43.325Z">
+<meta property="og:updated_time" content="2017-09-24T12:50:16.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java后端开发面试题整理">
 <meta name="twitter:description" content="一定要成为一个很厉害的人 ！！！ JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍">
@@ -230,7 +230,7 @@
 <h3 id="4-如何查看索引使用情况-？"><a href="#4-如何查看索引使用情况-？" class="headerlink" title="4. 如何查看索引使用情况 ？"></a>4. 如何查看索引使用情况 ？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">show status like ‘Handler_read%’;</div><div class="line"><span class="comment"># handler_read_key:这个值越高越好，越高表示使用索引查询到的次数</span></div><div class="line"><span class="comment"># handler_read_rnd_next:这个值越高，说明查询低效</span></div></pre></td></tr></table></figure>
 <h3 id="5-组合索引的使用"><a href="#5-组合索引的使用" class="headerlink" title="5. 组合索引的使用"></a>5. 组合索引的使用</h3><p>最左优先原则：</p>
 <p>组合索引的第一个字段必须出现在查询组句中，这个索引才会被用到</p>
-<p>给定一个组合索引 (colA,colB,colC)，则一下语句可以使用组合索引 ：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">colA = <span class="string">"some value"</span>;</div><div class="line">colA = <span class="string">"some value"</span> and colB = <span class="string">"some value"</span>;</div><div class="line">colA = <span class="string">"some value"</span> and colA = <span class="string">"some value"</span> and colC = <span class="string">"some value"</span>;</div><div class="line">colA = <span class="string">"some value"</span> and colA = <span class="string">"some value"</span> and colC = <span class="string">"some value"</span>;</div></pre></td></tr></table></figure></p>
+<p>给定一个组合索引 (colA,colB,colC)，则以下语句可以使用组合索引 ：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">colA = <span class="string">"some value"</span>;</div><div class="line">colA = <span class="string">"some value"</span> and colB = <span class="string">"some value"</span>;</div><div class="line">colA = <span class="string">"some value"</span> and colB = <span class="string">"some value"</span> and colC = <span class="string">"some value"</span>;</div><div class="line">colB = <span class="string">"some value"</span> and colA = <span class="string">"some value"</span> and colC = <span class="string">"some value"</span>;</div></pre></td></tr></table></figure></p>
 <p>需要注意 ，对于第四条语句，<strong>MySQL会自动将其优化为第三条语句的形式</strong>。</p>
 <h2 id="二-、数据类型"><a href="#二-、数据类型" class="headerlink" title="二 、数据类型"></a>二 、数据类型</h2><h3 id="1-char和varchar有何区别-？"><a href="#1-char和varchar有何区别-？" class="headerlink" title="1. char和varchar有何区别 ？"></a>1. char和varchar有何区别 ？</h3><p>首先明确的是,<strong>char的长度是不可变的，而varchar的长度是可变的</strong>，也就是说定义一个char[10]和varchar[10],如果存进去的是‘csdn’,那么char所占的长度依然为10，除了字符‘csdn’外，后面跟六个空格，而varchar就立马把长度变为4了，<strong>取数据的时候，char类型的要用trim()去掉多余的空格，而varchar是不需要的</strong>。</p>
 <p>尽管如此，<strong>char的存取数度还是要比varchar要快得多</strong>，因为其长度固定，方便程序的存储与查找；但是char也为此付出的是空间的代价，因为其长度固定，所以难免会有多余的空格占位符占据空间，可谓是以空间换取时间效率，而varchar是以空间效率为首位的。</p>
@@ -503,6 +503,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cisco</a>
               </li>
              
@@ -523,14 +527,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -539,11 +535,35 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">junit4</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,19 +583,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,18 +600,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">api doc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -9,17 +9,17 @@
 
   <title>计算机基础 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="编程什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。 ##">
+  <meta name="description" content="重要的基本概念1. 什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。">
 <meta name="keywords" content="interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机基础">
 <meta property="og:url" content="http://echo0.cn/2017/09/23/common-sense/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="编程什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。 ##">
-<meta property="og:updated_time" content="2017-09-23T12:05:27.803Z">
+<meta property="og:description" content="重要的基本概念1. 什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。">
+<meta property="og:updated_time" content="2017-09-24T06:55:49.391Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机基础">
-<meta name="twitter:description" content="编程什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。 ##">
+<meta name="twitter:description" content="重要的基本概念1. 什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -188,8 +188,34 @@
       <!--<canvas id="Mycanvas"></canvas>-->
 
       
-        <h1 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h1><h2 id="什么是尾递归-？"><a href="#什么是尾递归-？" class="headerlink" title="什么是尾递归 ？"></a>什么是尾递归 ？</h2><p>尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。</p>
-<p>## </p>
+        <h1 id="重要的基本概念"><a href="#重要的基本概念" class="headerlink" title="重要的基本概念"></a>重要的基本概念</h1><h2 id="1-什么是尾递归-？"><a href="#1-什么是尾递归-？" class="headerlink" title="1. 什么是尾递归 ？"></a>1. 什么是尾递归 ？</h2><p>尾递归是指，<strong>在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。</strong> 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。<br><a id="more"></a></p>
+<h2 id="2-同步和异步"><a href="#2-同步和异步" class="headerlink" title="2. 同步和异步"></a>2. 同步和异步</h2><p>同步和异步关注的是消息通信机制 (synchronous communication/ asynchronous communication)所谓同步，就是在发出一个<em>调用</em>时，在没有得到结果之前，该<em>调用</em>就不返回。但是一旦调用返回，就得到返回值了。</p>
+<p>换句话说，就是由<em>调用者</em>主动等待这个<em>调用</em>的结果。而异步则是相反，<em>调用</em> 在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在 <em>调用</em> 发出后，<em>被调用者</em> 通过状态、通知来通知调用者，或通过回调函数处理这个调用。</p>
+<h2 id="3-阻塞与非阻塞"><a href="#3-阻塞与非阻塞" class="headerlink" title="3. 阻塞与非阻塞"></a>3. 阻塞与非阻塞</h2><p>阻塞和非阻塞关注的是程序在等待调用结果（消息，返回值）时的状态.</p>
+<p>阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。<br>非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。</p>
+<h2 id="4-异步传输和同步传输"><a href="#4-异步传输和同步传输" class="headerlink" title="4. 异步传输和同步传输"></a>4. 异步传输和同步传输</h2><p>通常，异步传输是以字符为传输单位，每个字符都要附加 1 位起始位和 1 位停止位，以标记一个字符的开始和结束，并以此实现数据传输同步。</p>
+<p>所谓异步传输是指字符与字符(一个字符结束到下一个字符开始)之间的时间间隔是可变的，并不需要严格地限制它们的时间关系。</p>
+<p>同步传输一般是以数据块为传输单位。</p>
+<p>同步传输是指数据块与数据块之间的时间间隔是固定的，必须严格地规定它们的时间关系。</p>
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h2 id="1-产生死锁的四个必要条件："><a href="#1-产生死锁的四个必要条件：" class="headerlink" title="1. 产生死锁的四个必要条件："></a>1. 产生死锁的四个必要条件：</h2><p>（1） 互斥条件：一个资源每次只能被一个进程使用。</p>
+<p>（2） 请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放。</p>
+<p>（3） 不剥夺条件:进程已获得的资源，在末使用完之前，不能强行剥夺。</p>
+<p>（4） 循环等待条件:若干进程之间形成一种头尾相接的循环等待资源关系。</p>
+<h2 id="2-进程和线程"><a href="#2-进程和线程" class="headerlink" title="2. 进程和线程"></a>2. 进程和线程</h2><p>进程是具有一定独立功能的程序关于某个数据集合上的一次运行活动,进程是系统进行资源分配和调度的一个独立单位.</p>
+<p>线程是进程的一个实体,是CPU调度和分派的基本单位,它是比进程更小的能独立运行的基本单位.</p>
+<p>线程自己基本上不拥有系统资源,只拥有一点在运行中必不可少的资源(如程序计数器,一组寄存器和栈),但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源.</p>
+<p>一个线程可以创建和撤销另一个线程;同一个进程中的多个线程之间可以并发执行.</p>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="1-乐观锁与悲观锁"><a href="#1-乐观锁与悲观锁" class="headerlink" title="1. 乐观锁与悲观锁"></a>1. <a href="http://www.open-open.com/lib/view/open1452046967245.html" target="_blank" rel="external">乐观锁与悲观锁</a></h2><p>悲观锁 ：</p>
+<p>在关系数据库管理系统里，悲观并发控制（又名“悲观锁”，Pessimistic Concurrency Control，缩写“PCC”）是一种并发控制的方法。它可以阻止一个事务以影响其他用户的方式来修改数据。如果一个事务执行的操作都某行数据应用了锁，那只有当这个事务把锁释放，其他事务才能够执行与该锁冲突的操作。悲观并发控制主要用于数据争用激烈的环境，以及发生并发冲突时使用锁保护数据的成本要低于回滚事务的成本的环境中。</p>
+<p>在数据库中，悲观锁的流程如下：</p>
+<p>在对任意记录进行修改前，先尝试为该记录加上排他锁（exclusive locking）。</p>
+<p>如果加锁失败，说明该记录正在被修改，那么当前查询可能要等待或者抛出异常。 具体响应方式由开发者根据实际需要决定。</p>
+<p>如果成功加锁，那么就可以对记录做修改，事务完成后就会解锁了。</p>
+<p>其间如果有其他对该记录做修改或加排他锁的操作，都会等待我们解锁或直接抛出异常。</p>
+<p>乐观锁 ：</p>
+<p>在关系数据库管理系统里，乐观并发控制（又名“乐观锁”，Optimistic Concurrency Control，缩写“OCC”）是一种并发控制的方法。它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，正在提交的事务会进行回滚。</p>
+<p>相对于悲观锁，在对数据库进行处理的时候，乐观锁并不会使用数据库提供的锁机制。一般的实现乐观锁的方式就是记录数据版本。</p>
+<p>数据版本,为数据增加的一个版本标识。当读取数据时，将版本标识的值一同读出，数据每更新一次，同时对版本标识进行更新。当我们提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的版本标识进行比对，如果数据库表当前版本号与第一次取出来的版本标识值相等，则予以更新，否则认为是过期数据。</p>
 
       
 
@@ -302,7 +328,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编程"><span class="toc-number">1.</span> <span class="toc-text">编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是尾递归-？"><span class="toc-number">1.1.</span> <span class="toc-text">什么是尾递归 ？</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#重要的基本概念"><span class="toc-number">1.</span> <span class="toc-text">重要的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是尾递归-？"><span class="toc-number">1.1.</span> <span class="toc-text">1. 什么是尾递归 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-同步和异步"><span class="toc-number">1.2.</span> <span class="toc-text">2. 同步和异步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-阻塞与非阻塞"><span class="toc-number">1.3.</span> <span class="toc-text">3. 阻塞与非阻塞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-异步传输和同步传输"><span class="toc-number">1.4.</span> <span class="toc-text">4. 异步传输和同步传输</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作系统"><span class="toc-number">2.</span> <span class="toc-text">操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-产生死锁的四个必要条件："><span class="toc-number">2.1.</span> <span class="toc-text">1. 产生死锁的四个必要条件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-进程和线程"><span class="toc-number">2.2.</span> <span class="toc-text">2. 进程和线程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库"><span class="toc-number">3.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-乐观锁与悲观锁"><span class="toc-number">3.1.</span> <span class="toc-text">1. 乐观锁与悲观锁</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -443,6 +469,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">atom</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cisco</a>
               </li>
              
@@ -455,10 +485,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
@@ -467,15 +493,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">atom</a>
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,19 +509,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">api</a>
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,11 +525,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+                <a href="javascript:void(0)" class="js-tag color4">api</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,6 +561,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
@@ -540,18 +578,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
             
             <div class="clearfix"></div>

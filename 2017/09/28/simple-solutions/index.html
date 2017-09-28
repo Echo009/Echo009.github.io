@@ -7,17 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://echo0.cn">
 
-  <title>Tag: api doc | Imagine</title>
+  <title>一些简单，但常见的编程题 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="想要学习好多好多东西啊！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Imagine">
-<meta property="og:url" content="http://echo0.cn/tags/api-doc/index.html">
+  <meta name="description" content="备战秋招，可是秋招都快结束了啊，Zzz … 没有收到心仪的Offer，慌的不行 。">
+<meta name="keywords" content="algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些简单，但常见的编程题">
+<meta property="og:url" content="http://echo0.cn/2017/09/28/simple-solutions/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="想要学习好多好多东西啊！">
+<meta property="og:description" content="备战秋招，可是秋招都快结束了啊，Zzz … 没有收到心仪的Offer，慌的不行 。">
+<meta property="og:updated_time" content="2017-09-28T15:03:04.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Imagine">
-<meta name="twitter:description" content="想要学习好多好多东西啊！">
+<meta name="twitter:title" content="一些简单，但常见的编程题">
+<meta name="twitter:description" content="备战秋招，可是秋招都快结束了啊，Zzz … 没有收到心仪的Offer，慌的不行 。">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -163,68 +165,175 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-simple-solutions" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/04/swagger/" class="archive-article-date">
-  	<time datetime="2017-09-04T04:13:28.467Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/04/swagger/">Springboot中使用Swagger2构建RESTful API文档</a>
+    <h1 class="article-title" itemprop="name">
+      一些简单，但常见的编程题
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/09/28/simple-solutions/" class="archive-article-date">
+  	<time datetime="2017-09-28T11:37:55.228Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <p>备战秋招，可是秋招都快结束了啊，Zzz …</p>
+<p>没有收到心仪的Offer，慌的不行 。</p>
+<a id="more"></a>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><h2 id="1-使用两个栈实现队列"><a href="#1-使用两个栈实现队列" class="headerlink" title="1. 使用两个栈实现队列"></a>1. 使用两个栈实现队列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SQueue</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="comment">//使用栈实现队列</span></div><div class="line">    <span class="keyword">private</span> Stack&lt;T&gt; stack1 = <span class="keyword">new</span> Stack();</div><div class="line">    <span class="keyword">private</span> Stack&lt;T&gt; stack2 = <span class="keyword">new</span> Stack();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">offer</span><span class="params">(T value)</span> </span>&#123;</div><div class="line">        stack1.push(value);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">poll</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!stack2.isEmpty()) &#123;</div><div class="line">            <span class="keyword">return</span> stack2.pop();</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!stack1.isEmpty() &amp;&amp; stack2.isEmpty()) &#123;</div><div class="line">            <span class="keyword">while</span> (stack1.size() != <span class="number">1</span>) &#123;</div><div class="line">                stack2.push(stack1.pop());</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> stack1.pop();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"Current queue is empty !"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h1><h2 id="1-多线程复制文件"><a href="#1-多线程复制文件" class="headerlink" title="1. 多线程复制文件"></a>1. 多线程复制文件</h2><p>没想到还会遇到这种题，猝 ， QAQ<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.echo0.file;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.RandomAccessFile;</div><div class="line"><span class="keyword">import</span> java.nio.channels.FileChannel;</div><div class="line"><span class="keyword">import</span> java.nio.channels.FileLock;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Author : Ech0</span></div><div class="line"><span class="comment"> * Email  : ech0.extreme@foxmail.com</span></div><div class="line"><span class="comment"> * Time   : 09/28/2017 09:34 PM</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="comment">// 多线程复制文件</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileUtils</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TaskThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> String from;</div><div class="line">        <span class="keyword">private</span> String to;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">long</span> startIdx;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">long</span> length;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">TaskThread</span><span class="params">(String from, String to, <span class="keyword">long</span> startIdx, <span class="keyword">long</span> length)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.from = from;</div><div class="line">            <span class="keyword">this</span>.to = to;</div><div class="line">            <span class="keyword">this</span>.startIdx = startIdx;</div><div class="line">            <span class="keyword">this</span>.length = length;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">try</span> (</div><div class="line">                    RandomAccessFile targetFile</div><div class="line">                            = <span class="keyword">new</span> RandomAccessFile(from, <span class="string">"r"</span>);</div><div class="line">                    RandomAccessFile toFile</div><div class="line">                            = <span class="keyword">new</span> RandomAccessFile(to, <span class="string">"rw"</span>);</div><div class="line">            ) &#123;</div><div class="line"></div><div class="line">                targetFile.seek(startIdx);</div><div class="line">                toFile.seek(startIdx);</div><div class="line">                FileChannel inChannel = targetFile.getChannel();</div><div class="line">                FileChannel outChannel = toFile.getChannel();</div><div class="line">                FileLock lock = outChannel.lock(startIdx, length,</div><div class="line">                        <span class="keyword">false</span>); <span class="comment">// 加非共享锁</span></div><div class="line">                inChannel.transferTo(startIdx, length, outChannel); <span class="comment">// 写入</span></div><div class="line">                lock.release(); <span class="comment">// 释放锁</span></div><div class="line">            &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">copyFileByMultiThread</span><span class="params">(String from, String to, <span class="keyword">int</span> threadCount)</span> </span>&#123;</div><div class="line">        File srcFile = <span class="keyword">new</span> File(from);</div><div class="line">        <span class="keyword">if</span> (!srcFile.exists()) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> length = srcFile.length();</div><div class="line">        <span class="keyword">long</span> avgLen = length / threadCount;</div><div class="line">        <span class="keyword">long</span> lastLen = avgLen + length % avgLen; <span class="comment">// 计算最后一段的长度</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; threadCount; i++) &#123;</div><div class="line">            <span class="keyword">long</span> currenLen = i == threadCount - <span class="number">1</span> ? lastLen : avgLen;</div><div class="line">            TaskThread t = <span class="keyword">new</span> TaskThread(from, to, avgLen * i, currenLen);</div><div class="line">            t.start();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="数列"><a href="#数列" class="headerlink" title="数列"></a>数列</h1><h2 id="跳台阶"><a href="#跳台阶" class="headerlink" title="跳台阶"></a>跳台阶</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JumpII</span> </span>&#123;</div><div class="line"><span class="comment">//    一只青蛙一次可以跳上1级台阶，也可以跳上2级……</span></div><div class="line"><span class="comment">// 它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">JumpFloorII</span><span class="params">(<span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (target &lt; <span class="number">3</span>) &#123;</div><div class="line">            <span class="keyword">return</span> target;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span>[] strategys = <span class="keyword">new</span> <span class="keyword">int</span>[target + <span class="number">1</span>];</div><div class="line">        strategys[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">        strategys[<span class="number">2</span>] = <span class="number">2</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= target; i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt; <span class="number">0</span>; j--) &#123;</div><div class="line">                strategys[i] += strategys[j];</div><div class="line">            &#125;</div><div class="line">            strategys[i]++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> strategys[target];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><h2 id="统计一个整数的二进制表示中的1的个数，负数用补码表示"><a href="#统计一个整数的二进制表示中的1的个数，负数用补码表示" class="headerlink" title="统计一个整数的二进制表示中的1的个数，负数用补码表示"></a>统计一个整数的二进制表示中的1的个数，负数用补码表示</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountNumberOf1</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countOf1</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (number != <span class="number">0</span>) &#123;</div><div class="line">            number = (number - <span class="number">1</span>) &amp; number;</div><div class="line">            count++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> count;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">swagger</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">api doc</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://echo0.cn/2017/09/28/simple-solutions/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/09/23/common-sense/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算机基础</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#栈"><span class="toc-number">1.</span> <span class="toc-text">栈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-使用两个栈实现队列"><span class="toc-number">1.1.</span> <span class="toc-text">1. 使用两个栈实现队列</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件"><span class="toc-number">2.</span> <span class="toc-text">文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-多线程复制文件"><span class="toc-number">2.1.</span> <span class="toc-text">1. 多线程复制文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数列"><span class="toc-number">3.</span> <span class="toc-text">数列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#跳台阶"><span class="toc-number">3.1.</span> <span class="toc-text">跳台阶</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#位运算"><span class="toc-number">4.</span> <span class="toc-text">位运算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计一个整数的二进制表示中的1的个数，负数用补码表示"><span class="toc-number">4.1.</span> <span class="toc-text">统计一个整数的二进制表示中的1的个数，负数用补码表示</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+  <div id="SOHUCS" sid="simple-solutions" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cytbNO1rA"; 
+var conf = "prod_4fe0c917b9b999b4a07c07296da1fcba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -248,9 +357,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

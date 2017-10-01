@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/30/fallibility/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="整理一波笔试中一些比较有意思的题目，顺便复习下 ~ 秋招真是叫人头大 。 不定时持续更新 ~">
-<meta property="og:updated_time" content="2017-09-30T07:24:19.231Z">
+<meta property="og:updated_time" content="2017-09-30T08:30:56.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些常见的易错笔试题（JAVA）">
 <meta name="twitter:description" content="整理一波笔试中一些比较有意思的题目，顺便复习下 ~ 秋招真是叫人头大 。 不定时持续更新 ~">
@@ -206,7 +206,7 @@ D. System.out.println(i02==i04);
 </code></pre><p>答案 ： A , B , D</p>
 <p>要做对这一题需要知道 ：</p>
 <p>① 包装类型的缓存机制 ， 对于Byte,Short,Integer,Long,Character这5种整型的包装类，<strong>在使用 = 直接赋值时</strong>，值的范围在∈[-128,127]时会使用缓存，即会将其置入常量池中，引用的是常量池中的对象。</p>
-<p>② 对于包装类的valueOf方法同样的也使用了常量池缓存技术：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Returns an &#123;<span class="doctag">@code</span> Integer&#125; instance representing the specified</span></div><div class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> int&#125; value.  If a new &#123;<span class="doctag">@code</span> Integer&#125; instance is not</span></div><div class="line"><span class="comment"> * required, this method should generally be used in preference to</span></div><div class="line"><span class="comment"> * the constructor &#123;<span class="doctag">@link</span> #Integer(int)&#125;, as this method is likely</span></div><div class="line"><span class="comment"> * to yield significantly better space and time performance by</span></div><div class="line"><span class="comment"> * caching frequently requested values.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * This method will always cache values in the range -128 to 127,</span></div><div class="line"><span class="comment"> * inclusive, and may cache other values outside of this range.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span>  i an &#123;<span class="doctag">@code</span> int&#125; value.</span></div><div class="line"><span class="comment"> * <span class="doctag">@return</span> an &#123;<span class="doctag">@code</span> Integer&#125; instance representing &#123;<span class="doctag">@code</span> i&#125;.</span></div><div class="line"><span class="comment"> * <span class="doctag">@since</span>  1.5</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</div><div class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>② 对于包装类的valueOf方法同样的也使用了常量池缓存技术，以Integer为例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Returns an &#123;<span class="doctag">@code</span> Integer&#125; instance representing the specified</span></div><div class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> int&#125; value.  If a new &#123;<span class="doctag">@code</span> Integer&#125; instance is not</span></div><div class="line"><span class="comment"> * required, this method should generally be used in preference to</span></div><div class="line"><span class="comment"> * the constructor &#123;<span class="doctag">@link</span> #Integer(int)&#125;, as this method is likely</span></div><div class="line"><span class="comment"> * to yield significantly better space and time performance by</span></div><div class="line"><span class="comment"> * caching frequently requested values.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * This method will always cache values in the range -128 to 127,</span></div><div class="line"><span class="comment"> * inclusive, and may cache other values outside of this range.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span>  i an &#123;<span class="doctag">@code</span> int&#125; value.</span></div><div class="line"><span class="comment"> * <span class="doctag">@return</span> an &#123;<span class="doctag">@code</span> Integer&#125; instance representing &#123;<span class="doctag">@code</span> i&#125;.</span></div><div class="line"><span class="comment"> * <span class="doctag">@since</span>  1.5</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</div><div class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>③ == 运算符在一边为数值类型，一边为包装类型时，会自动拆箱（编译器完成）。</p>
 <p>④ 使用new 关键字时引用的总是在堆中新建的对象。</p>
 
@@ -478,15 +478,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sentence</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,14 +510,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
@@ -530,15 +522,39 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">api</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,22 +567,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">api doc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">

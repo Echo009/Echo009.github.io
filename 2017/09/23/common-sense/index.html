@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/23/common-sense/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="重要的基本概念1. 什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。">
-<meta property="og:updated_time" content="2017-09-28T15:07:25.761Z">
+<meta property="og:updated_time" content="2017-10-01T10:34:52.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机基础">
 <meta name="twitter:description" content="重要的基本概念1. 什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。">
@@ -217,7 +217,8 @@
 <p>相对于悲观锁，在对数据库进行处理的时候，乐观锁并不会使用数据库提供的锁机制。一般的实现乐观锁的方式就是记录数据版本。</p>
 <p>数据版本,为数据增加的一个版本标识。当读取数据时，将版本标识的值一同读出，数据每更新一次，同时对版本标识进行更新。当我们提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的版本标识进行比对，如果数据库表当前版本号与第一次取出来的版本标识值相等，则予以更新，否则认为是过期数据。</p>
 <h2 id="2-使用-UNION-组合两个查询的结果集的两个基本规则"><a href="#2-使用-UNION-组合两个查询的结果集的两个基本规则" class="headerlink" title="2. 使用 UNION 组合两个查询的结果集的两个基本规则"></a>2. 使用 UNION 组合两个查询的结果集的两个基本规则</h2><p>1、要合并的结果的列数，列的顺序、以及每列的数据类型必须兼容</p>
-<p>2、使用UNION关键字，是将两个结果集合并到一个结果集中，并且它会去掉重复的部分<br>还有一个问题是关于使用UNION关键字后的列名问题，在这里我们需要注意，如果叠加后<br>的列名，我们没有使用AS子句将其变为相同的列名的话，那么，它会采取UNION关键字前<br>Select语句中的字段名<br>如果不想把重复的部分去掉的话，我们还可以使用关键字UNION ALL。</p>
+<p>2、使用UNION关键字，是将两个结果集合并到一个结果集中，并且它会去掉重复的部分</p>
+<p>还有一个问题是关于使用UNION关键字后的列名问题，在这里我们需要注意，如果叠加后的列名，我们没有使用AS子句将其变为相同的列名的话，那么，它会采取UNION关键字前Select语句中的字段名如果不想把重复的部分去掉的话，我们还可以使用关键字UNION ALL。</p>
 
       
 
@@ -496,15 +497,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sentence</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,14 +529,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
@@ -548,15 +541,39 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">api</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,22 +586,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">api doc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">

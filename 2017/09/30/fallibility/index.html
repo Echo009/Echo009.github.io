@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/30/fallibility/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="整理一波笔试中一些比较有意思的题目，顺便复习下 ~ 秋招真是叫人头大 。 不定时持续更新 ~">
-<meta property="og:updated_time" content="2017-09-30T08:30:56.894Z">
+<meta property="og:updated_time" content="2017-10-01T20:47:23.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些常见的易错笔试题（JAVA）">
 <meta name="twitter:description" content="整理一波笔试中一些比较有意思的题目，顺便复习下 ~ 秋招真是叫人头大 。 不定时持续更新 ~">
@@ -209,6 +209,13 @@ D. System.out.println(i02==i04);
 <p>② 对于包装类的valueOf方法同样的也使用了常量池缓存技术，以Integer为例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Returns an &#123;<span class="doctag">@code</span> Integer&#125; instance representing the specified</span></div><div class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> int&#125; value.  If a new &#123;<span class="doctag">@code</span> Integer&#125; instance is not</span></div><div class="line"><span class="comment"> * required, this method should generally be used in preference to</span></div><div class="line"><span class="comment"> * the constructor &#123;<span class="doctag">@link</span> #Integer(int)&#125;, as this method is likely</span></div><div class="line"><span class="comment"> * to yield significantly better space and time performance by</span></div><div class="line"><span class="comment"> * caching frequently requested values.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * This method will always cache values in the range -128 to 127,</span></div><div class="line"><span class="comment"> * inclusive, and may cache other values outside of this range.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span>  i an &#123;<span class="doctag">@code</span> int&#125; value.</span></div><div class="line"><span class="comment"> * <span class="doctag">@return</span> an &#123;<span class="doctag">@code</span> Integer&#125; instance representing &#123;<span class="doctag">@code</span> i&#125;.</span></div><div class="line"><span class="comment"> * <span class="doctag">@since</span>  1.5</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</div><div class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>③ == 运算符在一边为数值类型，一边为包装类型时，会自动拆箱（编译器完成）。</p>
 <p>④ 使用new 关键字时引用的总是在堆中新建的对象。</p>
+<h1 id="3-getClass"><a href="#3-getClass" class="headerlink" title="3. getClass()"></a>3. getClass()</h1><h2 id="下面一段代码的输出结果是什么-？"><a href="#下面一段代码的输出结果是什么-？" class="headerlink" title="下面一段代码的输出结果是什么 ？"></a>下面一段代码的输出结果是什么 ？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> test;</div><div class="line"><span class="keyword">import</span> java.util.Date;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SuperTest</span> <span class="keyword">extends</span> <span class="title">Date</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line">       System.out.println(<span class="keyword">super</span>.getClass().getName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</div><div class="line">       <span class="keyword">new</span> SuperTest().test();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>答案：test.SuperTest</p>
+<p>解析：<br>TestSuper和Date的getClass都没有重写，他们都是调用Object的getClass，而Object的getClass作用是返回的是运行时的类的名字。这个运行时的类就是当前类 。</p>
+<h1 id="4-数组的复制"><a href="#4-数组的复制" class="headerlink" title="4. 数组的复制"></a>4. 数组的复制</h1><h2 id="下面几种数组复制方法中，哪个效率最高？"><a href="#下面几种数组复制方法中，哪个效率最高？" class="headerlink" title="下面几种数组复制方法中，哪个效率最高？"></a>下面几种数组复制方法中，哪个效率最高？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">A. <span class="keyword">for</span>循环逐一复制</div><div class="line">B. System.arraycopy</div><div class="line">C. Array.copyof</div><div class="line">D. 使用clone方法</div></pre></td></tr></table></figure>
+<p>答案：B</p>
+<p>解析：for循环的话，肯定是最慢的，System.arraycopy 是native方法，Arrays.copyof本质上也是调用的System.arraycopy方法，故性能自然比System.arraycopy要低，clone的话返回的是Object类型，需要强制转换，故一般会慢一点。</p>
+<p>实际上，这几种方式在复制小型数组的时候，性能相差无几，一般在需要复制大型数组的时候使用System.arraycopy来提高性能。</p>
 
       
 
@@ -321,7 +328,7 @@ D. System.out.println(i02==i04);
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Try-Catch"><span class="toc-number">1.</span> <span class="toc-text">1. Try-Catch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-基本包装类型"><span class="toc-number">2.</span> <span class="toc-text">2. 基本包装类型</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Try-Catch"><span class="toc-number">1.</span> <span class="toc-text">1. Try-Catch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-基本包装类型"><span class="toc-number">2.</span> <span class="toc-text">2. 基本包装类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-getClass"><span class="toc-number">3.</span> <span class="toc-text">3. getClass()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面一段代码的输出结果是什么-？"><span class="toc-number">3.1.</span> <span class="toc-text">下面一段代码的输出结果是什么 ？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-数组的复制"><span class="toc-number">4.</span> <span class="toc-text">4. 数组的复制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面几种数组复制方法中，哪个效率最高？"><span class="toc-number">4.1.</span> <span class="toc-text">下面几种数组复制方法中，哪个效率最高？</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -494,14 +501,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -514,15 +513,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,23 +525,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,6 +534,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">api</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,6 +550,30 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">api doc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">

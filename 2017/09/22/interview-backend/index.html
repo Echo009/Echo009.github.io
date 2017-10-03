@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/22/interview-backend/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="一定要成为一个很厉害的人 ！！！ JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍">
-<meta property="og:updated_time" content="2017-10-01T05:00:42.519Z">
+<meta property="og:updated_time" content="2017-10-02T02:01:07.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java后端开发面试题整理">
 <meta name="twitter:description" content="一定要成为一个很厉害的人 ！！！ JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍">
@@ -236,6 +236,8 @@
 <h2 id="集合相关"><a href="#集合相关" class="headerlink" title="集合相关"></a>集合相关</h2><h3 id="1-HashMap-内部实现方式"><a href="#1-HashMap-内部实现方式" class="headerlink" title="1. HashMap 内部实现方式"></a>1. HashMap 内部实现方式</h3><p>如何得知容器内当前包含的元素个数 ？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  HashMap内部维护了一个计数器size ：</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * The number of key-value mappings contained in this map.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">transient</span> <span class="keyword">int</span> size;</div></pre></td></tr></table></figure></p>
 <p>内部数组索引的计算 ？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注意HashMap内部(jdk 1.8.0_141)并没有这个函数，这里只是用来表述这种方式</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">indexFor</span><span class="params">(<span class="keyword">int</span> h, <span class="keyword">int</span> length)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> h &amp; (length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 还需要注意HashMap 并没有直接使用key的Hash值</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> h;</div><div class="line">    <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>装载因子，以及扩容过程 ？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  默认装载因子为0.75，当容器内的元素个数大于内部数组长度*装载因子时就会触发扩容。</span></div><div class="line"><span class="comment">//  下面这个函数用于计算实际容器容量，参数cap指给定的容量</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Returns a power of two size for the given target capacity.</span></div><div class="line"><span class="comment"> * 返回的是大于且最接近给定容量的2的n次方 。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">tableSizeFor</span><span class="params">(<span class="keyword">int</span> cap)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> n = cap - <span class="number">1</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">1</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">2</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">4</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">8</span>;</div><div class="line">    n |= n &gt;&gt;&gt; <span class="number">16</span>;</div><div class="line">    <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 保证了HashMap 内部实际容量总是2的n次方</span></div></pre></td></tr></table></figure></p>
+<p>如何解决地址冲突？</p>
+<p>链地址，将新的节点插入对应链表的<strong>头部</strong>。这样在做put操作的时候时间复杂度总是O(1)。</p>
 <h3 id="2-HashMap-，-如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么-？"><a href="#2-HashMap-，-如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么-？" class="headerlink" title="2. HashMap ， 如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么 ？"></a>2. HashMap ， 如果确定只会装载100个元素，那么容量应该设置为多少才最合适？为什么 ？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在使用默认装载因子0.75 的情况下分析 ：</span></div><div class="line"><span class="comment">// 100 / 0.75 = 133.3  =&gt;  134</span></div><div class="line"><span class="comment">// 如果以这个为容量初始化参数</span></div><div class="line"><span class="comment">// HashMap 在内部会使用 tableSizeFor 方法重新计算一次实际容量 ，</span></div><div class="line"><span class="comment">// 返回的是大于该值的2的N次方，那么就是 256 ，  100 / 256 &lt; 0.5 &lt; 0.75 不会触发扩容</span></div><div class="line"><span class="comment">// 测试代码如下 ：</span></div><div class="line"></div><div class="line"><span class="keyword">package</span> cn.echo0.collection;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Field;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMapTheory</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IllegalAccessException </span>&#123;</div><div class="line"></div><div class="line">        HashMap map = <span class="keyword">new</span> HashMap((<span class="keyword">int</span>) (<span class="number">100</span> / <span class="number">0.75f</span>));</div><div class="line">        Class clazz = map.getClass();</div><div class="line">        Field[] fields = clazz.getDeclaredFields();</div><div class="line">        <span class="keyword">for</span> (Field field : fields) &#123;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (field.getName().equals(<span class="string">"threshold"</span>)) &#123;</div><div class="line">                field.setAccessible(<span class="keyword">true</span>);</div><div class="line">                System.out.println(field.get(map));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        System.out.println(map.size());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="一-、基本命令"><a href="#一-、基本命令" class="headerlink" title="一 、基本命令"></a>一 、基本命令</h2><h3 id="1-备份与恢复数据库"><a href="#1-备份与恢复数据库" class="headerlink" title="1. 备份与恢复数据库"></a>1. 备份与恢复数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 备份</span></div><div class="line">mysqldump -uroot -pPassword [database name] &gt; [dump file]</div><div class="line"><span class="comment">#  如果加上--opt参数则生成的dump文件中稍有不同：</span></div><div class="line"><span class="comment">#  . 建表语句包含drop table if exists tableName</span></div><div class="line"><span class="comment">#  . insert之前包含一个锁表语句lock tables tableName write，insert之后包含unlock tables</span></div><div class="line"><span class="comment"># 恢复</span></div><div class="line">mysql [database name] &lt; [backup file name]</div></pre></td></tr></table></figure>
 <h3 id="2-开启事务"><a href="#2-开启事务" class="headerlink" title="2. 开启事务"></a>2. 开启事务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> autocommit = 0;</div><div class="line">begin ;</div><div class="line"> <span class="comment"># exec DML , rollback</span></div><div class="line">commit ;</div></pre></td></tr></table></figure>
@@ -523,7 +525,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">atom</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,27 +553,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,6 +566,22 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,26 +605,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">swagger</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">api doc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">echo</a>
               </li>
              
@@ -628,6 +618,22 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">project</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">swagger</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">api doc</a>
               </li>
              
               <li class="article-tag-list-item">

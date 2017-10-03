@@ -7,19 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://echo0.cn">
 
-  <title>Atom的使用技巧 | Imagine</title>
+  <title>微信点餐系统数据库设计 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="常用快捷键编码方式   快捷键 功能     Ctrl + Shift + U 调出编码选项    文件切换   快捷键 功能     Ctrl + \ 隐藏目录树   Ctrl + P 查找文件   Ctrl + 0 将焦点移到目录树   Ctrl + b 在打开的文件之间切换">
-<meta name="keywords" content="atom">
+  <meta name="description" content="建库1CREATE DATABASE wechat_order_system; 商品表1234567891011CREATE TABLE product_info (  product_id varchar(32) not null,  product_name varchar(64) not null comment &apos;商品名称&apos;,  product_price decimal(8,2) not">
+<meta name="keywords" content="project">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Atom的使用技巧">
-<meta property="og:url" content="http://echo0.cn/2017/09/18/atom-skills/index.html">
+<meta property="og:title" content="微信点餐系统数据库设计">
+<meta property="og:url" content="http://echo0.cn/2017/10/02/wechat-order-system-dev-database/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="常用快捷键编码方式   快捷键 功能     Ctrl + Shift + U 调出编码选项    文件切换   快捷键 功能     Ctrl + \ 隐藏目录树   Ctrl + P 查找文件   Ctrl + 0 将焦点移到目录树   Ctrl + b 在打开的文件之间切换">
-<meta property="og:updated_time" content="2017-09-18T05:24:12.580Z">
+<meta property="og:description" content="建库1CREATE DATABASE wechat_order_system; 商品表1234567891011CREATE TABLE product_info (  product_id varchar(32) not null,  product_name varchar(64) not null comment &apos;商品名称&apos;,  product_price decimal(8,2) not">
+<meta property="og:updated_time" content="2017-10-03T00:09:04.612Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Atom的使用技巧">
-<meta name="twitter:description" content="常用快捷键编码方式   快捷键 功能     Ctrl + Shift + U 调出编码选项    文件切换   快捷键 功能     Ctrl + \ 隐藏目录树   Ctrl + P 查找文件   Ctrl + 0 将焦点移到目录树   Ctrl + b 在打开的文件之间切换">
+<meta name="twitter:title" content="微信点餐系统数据库设计">
+<meta name="twitter:description" content="建库1CREATE DATABASE wechat_order_system; 商品表1234567891011CREATE TABLE product_info (  product_id varchar(32) not null,  product_name varchar(64) not null comment &apos;商品名称&apos;,  product_price decimal(8,2) not">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -165,20 +165,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-atom-skills" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-wechat-order-system-dev-database" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Atom的使用技巧
+      微信点餐系统数据库设计
     </h1>
   
 
         
-        <a href="/2017/09/18/atom-skills/" class="archive-article-date">
-  	<time datetime="2017-09-18T02:00:15.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-18</time>
+        <a href="/2017/10/02/wechat-order-system-dev-database/" class="archive-article-date">
+  	<time datetime="2017-10-02T08:09:37.802Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
 </a>
         
       </header>
@@ -188,247 +188,11 @@
       <!--<canvas id="Mycanvas"></canvas>-->
 
       
-        <h1 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h1><h2 id="编码方式"><a href="#编码方式" class="headerlink" title="编码方式"></a>编码方式</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">快捷键</th>
-<th style="text-align:left">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Ctrl + Shift + U</td>
-<td style="text-align:left">调出编码选项</td>
-</tr>
-</tbody>
-</table>
-<h2 id="文件切换"><a href="#文件切换" class="headerlink" title="文件切换"></a>文件切换</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">快捷键</th>
-<th style="text-align:left">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Ctrl + \</td>
-<td style="text-align:left">隐藏目录树</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + P</td>
-<td style="text-align:left">查找文件</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + 0</td>
-<td style="text-align:left">将焦点移到目录树</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + b</td>
-<td style="text-align:left">在打开的文件之间切换</td>
-</tr>
-</tbody>
-</table>
-<a id="more"></a>
-<h2 id="文本编辑"><a href="#文本编辑" class="headerlink" title="文本编辑"></a>文本编辑</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">快捷键</th>
-<th style="text-align:left">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Ctrl + /</td>
-<td style="text-align:left">快速注释</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Shift + D</td>
-<td style="text-align:left">复制当前行</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Shift + K</td>
-<td style="text-align:left">删除当前行</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + D</td>
-<td style="text-align:left">匹配选定的下一个 （对于局部替换操作很有用）</td>
-</tr>
-<tr>
-<td style="text-align:left">Alt + F3</td>
-<td style="text-align:left">匹配选定的所有</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + L</td>
-<td style="text-align:left">选中当前行</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Up</td>
-<td style="text-align:left">使当前行上移</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Down</td>
-<td style="text-align:left">使当前行下移</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + [ 或者 shift + tbale</td>
-<td style="text-align:left">向左缩进</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + ] 或者 table</td>
-<td style="text-align:left">向右缩进</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + J</td>
-<td style="text-align:left">合并当前行与下一行(去掉两行之间的换行符)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">快捷键</th>
-<th style="text-align:left">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Ctrl + M</td>
-<td style="text-align:left">相应括号之间，html标签之间等跳转</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Left</td>
-<td style="text-align:left">移动到单词开始</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Right</td>
-<td style="text-align:left">移动到单词末尾</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Home</td>
-<td style="text-align:left">移动到文件起始</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + End</td>
-<td style="text-align:left">移动到文件末尾</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + R</td>
-<td style="text-align:left">在文章目录之间跳转</td>
-</tr>
-</tbody>
-</table>
-<h2 id="查找和替换"><a href="#查找和替换" class="headerlink" title="查找和替换"></a>查找和替换</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">快捷键</th>
-<th style="text-align:left">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Ctrl + F</td>
-<td style="text-align:left">在当前文件中查找</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Shift + F</td>
-<td style="text-align:left">在当前工程中查找</td>
-</tr>
-</tbody>
-</table>
-<h2 id="折叠和展开"><a href="#折叠和展开" class="headerlink" title="折叠和展开"></a>折叠和展开</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">快捷键</th>
-<th style="text-align:left">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Ctrl + Alt + [</td>
-<td style="text-align:left">折叠</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Alt + ]</td>
-<td style="text-align:left">展开</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Alt + Shift + [</td>
-<td style="text-align:left">折叠所有</td>
-</tr>
-<tr>
-<td style="text-align:left">Ctrl + Alt + Shift + ]</td>
-<td style="text-align:left">展开所有</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Markdown写作"><a href="#Markdown写作" class="headerlink" title="Markdown写作"></a>Markdown写作</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">快捷键</th>
-<th style="text-align:left">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Ctrl + Shift + m</td>
-<td style="text-align:left">打开Markdown预览</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Markdown语法补全"><a href="#Markdown语法补全" class="headerlink" title="Markdown语法补全"></a>Markdown语法补全</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">~</th>
-<th style="text-align:left">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">b</td>
-<td style="text-align:left">粗体</td>
-</tr>
-<tr>
-<td style="text-align:left">legal</td>
-<td style="text-align:left">版权信息</td>
-</tr>
-<tr>
-<td style="text-align:left">img</td>
-<td style="text-align:left">插入图片</td>
-</tr>
-<tr>
-<td style="text-align:left">l</td>
-<td style="text-align:left">插入链接</td>
-</tr>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">插入代码</td>
-</tr>
-<tr>
-<td style="text-align:left">t</td>
-<td style="text-align:left">可勾选列表</td>
-</tr>
-<tr>
-<td style="text-align:left">table</td>
-<td style="text-align:left">插入表格</td>
-</tr>
-</tbody>
-</table>
-<h1 id="好用的插件"><a href="#好用的插件" class="headerlink" title="好用的插件"></a>好用的插件</h1><h2 id="UI美化"><a href="#UI美化" class="headerlink" title="UI美化"></a>UI美化</h2><ul>
-<li><a href="https://atom.io/themes/atom-material-syntax" target="_blank" rel="external">atom-material-syntax</a> 这个UI看着真的很舒服。</li>
-<li><a href="https://atom.io/packages/file-icons" target="_blank" rel="external">file-icons</a> 给文件加上图标</li>
-</ul>
-<h2 id="代码编辑"><a href="#代码编辑" class="headerlink" title="代码编辑"></a>代码编辑</h2><ul>
-<li><a href="https://atom.io/packages/atom-beautify" target="_blank" rel="external">atom-beautify</a> 一件美化代码，支持大多数语言。</li>
-<li><a href="https://atom.io/packages/activate-power-mode" target="_blank" rel="external">activate-power-mode</a> 编辑代码时有各种华丽的特效。</li>
-<li><a href="https://atom.io/packages/https://atom.io/packages/pigments" target="_blank" rel="external">pigments</a> 颜色显示插件</li>
-</ul>
-<h2 id="备份插件"><a href="#备份插件" class="headerlink" title="备份插件"></a>备份插件</h2><ul>
-<li><a href="https://atom.io/packages/sync-settings" target="_blank" rel="external">sync-settings</a> 备份插件</li>
-</ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li><a href="https://atom.io/packages/platformio-ide-terminal" target="_blank" rel="external">platformio-ide-terminal</a> 在Atom中集成终端</li>
-<li><a href="https://atom.io/packages/markdown-writer" target="_blank" rel="external">markdown-writer</a> Markdown利器</li>
-</ul>
+        <h1 id="建库"><a href="#建库" class="headerlink" title="建库"></a>建库</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> wechat_order_system;</div></pre></td></tr></table></figure>
+<h1 id="商品表"><a href="#商品表" class="headerlink" title="商品表"></a>商品表</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> product_info (</div><div class="line">  product_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">  product_name <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'商品名称'</span>,</div><div class="line">  product_price <span class="built_in">decimal</span>(<span class="number">8</span>,<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'单价'</span>,</div><div class="line">  product_stock <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'库存'</span>,</div><div class="line">  product_icon <span class="built_in">varchar</span>(<span class="number">512</span>) <span class="keyword">comment</span> <span class="string">'商品图片链接'</span>,</div><div class="line">  category_type <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'类目编号'</span>,</div><div class="line">  create_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'创建时间'</span>,</div><div class="line">  update_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">on</span> <span class="keyword">update</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'更新时间'</span>,</div><div class="line">  primary <span class="keyword">key</span>(product_id)</div><div class="line">) <span class="keyword">comment</span> <span class="string">'商品表'</span>;</div></pre></td></tr></table></figure>
+<h1 id="类目表"><a href="#类目表" class="headerlink" title="类目表"></a>类目表</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> product_category (</div><div class="line">  category_id <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> auto_increment,</div><div class="line">  category_name <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'类目名字'</span>,</div><div class="line">  category_type <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'类目编号'</span>,</div><div class="line">  <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'创建时间'</span>,</div><div class="line">  update_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">on</span> <span class="keyword">update</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'更新时间'</span>,</div><div class="line">  primary <span class="keyword">key</span>(category_id),</div><div class="line">  <span class="keyword">unique</span> <span class="keyword">key</span> uqe_category_type (category_type)</div><div class="line">)<span class="keyword">comment</span> <span class="string">'类目表'</span>;</div></pre></td></tr></table></figure>
+<h1 id="订单表"><a href="#订单表" class="headerlink" title="订单表"></a>订单表</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> order_master(</div><div class="line">  order_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">  buyer_name <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'买家姓名'</span>,</div><div class="line">  buyer_phone <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'买家电话'</span>,</div><div class="line">  buyer_address <span class="built_in">varchar</span>(<span class="number">128</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'买家地址'</span>,</div><div class="line">  buyer_openid <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'买家微信openId'</span>,</div><div class="line">  order_amount <span class="built_in">decimal</span>(<span class="number">8</span>,<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'订单总金额'</span>,</div><div class="line">  order_status tinyint(<span class="number">3</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'0'</span> <span class="keyword">comment</span> <span class="string">'订单状态,默认为0表示新订单'</span>,</div><div class="line">  pay_status tinyint(<span class="number">3</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'0'</span> <span class="keyword">comment</span> <span class="string">'支付状态，默认为0表示未支付'</span>,</div><div class="line">  create_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'创建时间'</span>,</div><div class="line">  update_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">on</span> <span class="keyword">update</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'更新时间'</span>,</div><div class="line">  primary <span class="keyword">key</span> (order_id),</div><div class="line">  <span class="keyword">key</span> idx_buyer_openid (buyer_openid)</div><div class="line">)<span class="keyword">comment</span> <span class="string">'订单表'</span>;</div></pre></td></tr></table></figure>
+<h1 id="订单详情表"><a href="#订单详情表" class="headerlink" title="订单详情表"></a>订单详情表</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> order_detail(</div><div class="line">  detail_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> ,</div><div class="line">  order_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> ,</div><div class="line">  product_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> ,</div><div class="line">  product_name <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'商品名称'</span>,</div><div class="line">  product_price <span class="built_in">decimal</span>(<span class="number">8</span>,<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'单价'</span>,</div><div class="line">  product_quantity <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'商品数量'</span>,</div><div class="line">  product_icon <span class="built_in">varchar</span>(<span class="number">512</span>) <span class="keyword">comment</span> <span class="string">'商品图片链接'</span>,</div><div class="line">  create_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'创建时间'</span>,</div><div class="line">  update_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">on</span> <span class="keyword">update</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'更新时间'</span>,</div><div class="line">  <span class="keyword">key</span> idx_order_id (order_id)</div><div class="line">)<span class="keyword">comment</span> <span class="string">'订单详情表'</span>;</div></pre></td></tr></table></figure>
 
       
 
@@ -442,7 +206,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">atom</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">project</a>
         		</li>
       		
 		</ul>
@@ -498,7 +262,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://echo0.cn/2017/09/18/atom-skills/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://echo0.cn/2017/10/02/wechat-order-system-dev-database/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -512,18 +276,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/19/junit4/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/10/03/english-2/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Junit4使用教程
+          Everyday English(2)
         
       </div>
     </a>
   
   
-    <a href="/2017/09/18/english-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Everyday English(1)</div>
+    <a href="/2017/09/30/fallibility/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一些常见的易错笔试题（JAVA）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -550,7 +314,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用快捷键"><span class="toc-number">1.</span> <span class="toc-text">常用快捷键</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#编码方式"><span class="toc-number">1.1.</span> <span class="toc-text">编码方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件切换"><span class="toc-number">1.2.</span> <span class="toc-text">文件切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文本编辑"><span class="toc-number">1.3.</span> <span class="toc-text">文本编辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导航"><span class="toc-number">1.4.</span> <span class="toc-text">导航</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查找和替换"><span class="toc-number">1.5.</span> <span class="toc-text">查找和替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#折叠和展开"><span class="toc-number">1.6.</span> <span class="toc-text">折叠和展开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown写作"><span class="toc-number">1.7.</span> <span class="toc-text">Markdown写作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown语法补全"><span class="toc-number">1.8.</span> <span class="toc-text">Markdown语法补全</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#好用的插件"><span class="toc-number">2.</span> <span class="toc-text">好用的插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#UI美化"><span class="toc-number">2.1.</span> <span class="toc-text">UI美化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码编辑"><span class="toc-number">2.2.</span> <span class="toc-text">代码编辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#备份插件"><span class="toc-number">2.3.</span> <span class="toc-text">备份插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">2.4.</span> <span class="toc-text">其他</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#建库"><span class="toc-number">1.</span> <span class="toc-text">建库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#商品表"><span class="toc-number">2.</span> <span class="toc-text">商品表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类目表"><span class="toc-number">3.</span> <span class="toc-text">类目表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#订单表"><span class="toc-number">4.</span> <span class="toc-text">订单表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#订单详情表"><span class="toc-number">5.</span> <span class="toc-text">订单详情表</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -566,7 +330,7 @@
   
 
   
-  <div id="SOHUCS" sid="atom-skills" ></div> 
+  <div id="SOHUCS" sid="wechat-order-system-dev-database" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cytbNO1rA"; 

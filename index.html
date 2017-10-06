@@ -189,7 +189,7 @@
 
       
         <p>人生来本就是孤独的。</p>
-<h1 id="2017年10月3日-沉郁的雨天"><a href="#2017年10月3日-沉郁的雨天" class="headerlink" title="2017年10月3日 沉郁的雨天"></a>2017年10月3日 沉郁的雨天</h1>
+<h1 id="2017年10月3日-沉郁的雨天"><a href="#2017年10月3日-沉郁的雨天" class="headerlink" title="2017年10月3日 沉郁的雨天"></a>2017年10月3日 沉郁的雨天</h1><p><strong>pursue</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">All our dreams can come true if we have the courage to purse them .</div></pre></td></tr></table></figure></p>
         
           <a class="article-more-a" href="/2017/10/03/english-2/#more">more >></a>
         
@@ -220,88 +220,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/10/03/english-2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-wechat-order-system-dev-database" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/02/wechat-order-system-dev-database/">微信点餐系统数据库设计</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/02/wechat-order-system-dev-database/" class="archive-article-date">
-  	<time datetime="2017-10-02T08:09:37.802Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      <!--edit by echo0 2017年8月29日09:48:38 -->
-      <!--<canvas id="Mycanvas"></canvas>-->
-
-      
-        <h1 id="建库"><a href="#建库" class="headerlink" title="建库"></a>建库</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> wechat_order_system;</div></pre></td></tr></table></figure>
-<h1 id="商品表"><a href="#商品表" class="headerlink" title="商品表"></a>商品表</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> product_info (</div><div class="line">  product_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">  product_name <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'商品名称'</span>,</div><div class="line">  product_price <span class="built_in">decimal</span>(<span class="number">8</span>,<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'单价'</span>,</div><div class="line">  product_stock <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'库存'</span>,</div><div class="line">  product_description <span class="built_in">varchar</span>(<span class="number">512</span>) <span class="keyword">default</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'描述'</span>,</div><div class="line">  product_icon <span class="built_in">varchar</span>(<span class="number">512</span>) <span class="keyword">comment</span> <span class="string">'商品图片链接'</span>,</div><div class="line">  product_status tinyint(<span class="number">3</span>) <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">comment</span> <span class="string">'商品状态，0整除，1下架'</span>,</div><div class="line">  category_type <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'类目编号'</span>,</div><div class="line">  create_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'创建时间'</span>,</div><div class="line">  update_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">on</span> <span class="keyword">update</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'更新时间'</span>,</div><div class="line">  primary <span class="keyword">key</span>(product_id)</div><div class="line">) <span class="keyword">comment</span> <span class="string">'商品表'</span>;</div></pre></td></tr></table></figure>
-<h1 id="类目表"><a href="#类目表" class="headerlink" title="类目表"></a>类目表</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> product_category (</div><div class="line">  category_id <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> auto_increment,</div><div class="line">  category_name <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'类目名字'</span>,</div><div class="line">  category_type <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'类目编号'</span>,</div><div class="line">  <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'创建时间'</span>,</div><div class="line">  update_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">on</span> <span class="keyword">update</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'更新时间'</span>,</div><div class="line">  primary <span class="keyword">key</span>(category_id),</div><div class="line">  <span class="keyword">unique</span> <span class="keyword">key</span> uqe_category_type (category_type)</div><div class="line">)<span class="keyword">comment</span> <span class="string">'类目表'</span>;</div></pre></td></tr></table></figure>
-<h1 id="订单表"><a href="#订单表" class="headerlink" title="订单表"></a>订单表</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> order_master(</div><div class="line">  order_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span>,</div><div class="line">  buyer_name <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'买家姓名'</span>,</div><div class="line">  buyer_phone <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'买家电话'</span>,</div><div class="line">  buyer_address <span class="built_in">varchar</span>(<span class="number">128</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'买家地址'</span>,</div><div class="line">  buyer_openid <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'买家微信openId'</span>,</div><div class="line">  order_amount <span class="built_in">decimal</span>(<span class="number">8</span>,<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'订单总金额'</span>,</div><div class="line">  order_status tinyint(<span class="number">3</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'0'</span> <span class="keyword">comment</span> <span class="string">'订单状态,默认为0表示新订单'</span>,</div><div class="line">  pay_status tinyint(<span class="number">3</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'0'</span> <span class="keyword">comment</span> <span class="string">'支付状态，默认为0表示未支付'</span>,</div><div class="line">  create_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'创建时间'</span>,</div><div class="line">  update_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">on</span> <span class="keyword">update</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'更新时间'</span>,</div><div class="line">  primary <span class="keyword">key</span> (order_id),</div><div class="line">  <span class="keyword">key</span> idx_buyer_openid (buyer_openid)</div><div class="line">)<span class="keyword">comment</span> <span class="string">'订单表'</span>;</div></pre></td></tr></table></figure>
-<h1 id="订单详情表"><a href="#订单详情表" class="headerlink" title="订单详情表"></a>订单详情表</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> order_detail(</div><div class="line">  detail_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> ,</div><div class="line">  order_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> ,</div><div class="line">  product_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> ,</div><div class="line">  product_name <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'商品名称'</span>,</div><div class="line">  product_price <span class="built_in">decimal</span>(<span class="number">8</span>,<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'单价'</span>,</div><div class="line">  product_quantity <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'商品数量'</span>,</div><div class="line">  product_icon <span class="built_in">varchar</span>(<span class="number">512</span>) <span class="keyword">comment</span> <span class="string">'商品图片链接'</span>,</div><div class="line">  create_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'创建时间'</span>,</div><div class="line">  update_time <span class="keyword">timestamp</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">current_timestamp</span> <span class="keyword">on</span> <span class="keyword">update</span> <span class="keyword">current_timestamp</span> <span class="keyword">comment</span> <span class="string">'更新时间'</span>,</div><div class="line">  <span class="keyword">key</span> idx_order_id (order_id)</div><div class="line">)<span class="keyword">comment</span> <span class="string">'订单详情表'</span>;</div></pre></td></tr></table></figure>
-<p>考虑到数据的存取效率，没有使用外键约束，选择在程序中保证参照完整性。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">project</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/02/wechat-order-system-dev-database/">展开全文 >></a>
         </p>
       
 
@@ -571,6 +489,89 @@
 
 
   
+    <article id="post-interview-frontend" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/22/interview-frontend/">前端相关面试题</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/22/interview-frontend/" class="archive-article-date">
+  	<time datetime="2017-09-22T05:27:20.791Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h2 id="1-介绍一下XMLHTTPREQUEST对象"><a href="#1-介绍一下XMLHTTPREQUEST对象" class="headerlink" title="1. 介绍一下XMLHTTPREQUEST对象"></a>1. 介绍一下XMLHTTPREQUEST对象</h2><p>Ajax的核心是JavaScript对象XmlHttpRequest。该对象在Internet Explorer 5中首次引入，它是一种支持异步请求的技术。简而言之，XmlHttpRequest使您可以使用JavaScript向服务器提出请求并处理响应，而不阻塞用户。通过XMLHttpRequest对象，Web开发人员可以在页面加载以后进行页面的局部更新。</p>
+        
+          <a class="article-more-a" href="/2017/09/22/interview-frontend/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interview</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">frontEnd</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/22/interview-frontend/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -694,18 +695,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cisco</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">路由器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ccna</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
@@ -726,11 +715,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color1">cisco</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+                <a href="javascript:void(0)" class="js-tag color4">路由器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ccna</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -739,6 +732,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,11 +767,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -790,11 +791,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -803,10 +804,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">project</a>
               </li>
             
             <div class="clearfix"></div>

@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/30/fallibility/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="整理一波笔试中一些比较有意思的题目，顺便复习下 ~ 秋招真是叫人头大 。 不定时持续更新 ~">
-<meta property="og:updated_time" content="2017-10-03T12:34:00.244Z">
+<meta property="og:updated_time" content="2017-10-07T05:32:42.147Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些常见的易错笔试题（JAVA）">
 <meta name="twitter:description" content="整理一波笔试中一些比较有意思的题目，顺便复习下 ~ 秋招真是叫人头大 。 不定时持续更新 ~">
@@ -228,6 +228,13 @@ D. System.out.println(i02==i04);
 <p>C. 语句：b3=b1+b2编译出错</p>
 <p>D. 运行期抛出异常</p>
 <p>答案：C , 解析 ：b1和b2是byte类型，JAVA中进行计算时候将他们提升为int类型，再进行计算，b1+b2计算后已经是int类型，赋值给b3，b3是byte类型，类型不匹配，编译不会通过，需要进行强制转换。被final修饰的变量是常量，类似于C语言中的宏变量，在编译时就会被替换为对应的字面量，故这里的b6=b4+b5可以看成是b6=10。</p>
+<h1 id="7-JMM"><a href="#7-JMM" class="headerlink" title="7. JMM"></a>7. JMM</h1><h2 id="检查程序，是否存在问题，如果存在指出问题所在，如果不存在，说明输出结果。"><a href="#检查程序，是否存在问题，如果存在指出问题所在，如果不存在，说明输出结果。" class="headerlink" title="检查程序，是否存在问题，如果存在指出问题所在，如果不存在，说明输出结果。"></a>检查程序，是否存在问题，如果存在指出问题所在，如果不存在，说明输出结果。</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.echo0.jmm;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LocalVariableTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        LocalVariableTest localVariableTest = <span class="keyword">new</span> LocalVariableTest();</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        localVariableTest.increase(i);</div><div class="line">        i = i++;</div><div class="line">        System.out.println(i);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">increase</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">        i++;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>答案 ： 能正常运行，输出结果为 <code>0</code>。</p>
+<p>需要理解：</p>
+<p>① Java中都是值传递。</p>
+<p>② 对于 i=i++; 一句 ，Java使用了中间缓存变量机制，等同于以下代码段：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">temp = i;  ( 对应于i=i++ 等号右边的i )</div><div class="line">i = i + <span class="number">1</span>; ( 等号右边的 i )</div><div class="line">i = temp;  ( 等号左边的 i )</div></pre></td></tr></table></figure></p>
+<h1 id="8-math"><a href="#8-math" class="headerlink" title="8. math"></a>8. math</h1><p>Math.round(11.5) 等于多少 (). Math.round(-11.5) 等于多少 (  )?</p>
+<p>答案：12，-11 。 Math.round(x) 等同于 Math.floor(x+0.5) ， 即将原来的数字加上0.5后再向下取整 。</p>
 
       
 
@@ -349,7 +356,7 @@ D. System.out.println(i02==i04);
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Try-Catch"><span class="toc-number">1.</span> <span class="toc-text">1. Try-Catch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-基本包装类型"><span class="toc-number">2.</span> <span class="toc-text">2. 基本包装类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-getClass"><span class="toc-number">3.</span> <span class="toc-text">3. getClass()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面一段代码的输出结果是什么-？"><span class="toc-number">3.1.</span> <span class="toc-text">下面一段代码的输出结果是什么 ？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-数组的复制"><span class="toc-number">4.</span> <span class="toc-text">4. 数组的复制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面几种数组复制方法中，哪个效率最高？"><span class="toc-number">4.1.</span> <span class="toc-text">下面几种数组复制方法中，哪个效率最高？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-静态方法的绑定"><span class="toc-number">5.</span> <span class="toc-text">5.静态方法的绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#有关下述Java代码描述正确的选项是-？"><span class="toc-number">5.1.</span> <span class="toc-text">有关下述Java代码描述正确的选项是__？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-final-修饰变量"><span class="toc-number">6.</span> <span class="toc-text">6. final 修饰变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于下面的代码段，叙述正确的是？"><span class="toc-number">6.1.</span> <span class="toc-text">关于下面的代码段，叙述正确的是？</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Try-Catch"><span class="toc-number">1.</span> <span class="toc-text">1. Try-Catch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-基本包装类型"><span class="toc-number">2.</span> <span class="toc-text">2. 基本包装类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-getClass"><span class="toc-number">3.</span> <span class="toc-text">3. getClass()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面一段代码的输出结果是什么-？"><span class="toc-number">3.1.</span> <span class="toc-text">下面一段代码的输出结果是什么 ？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-数组的复制"><span class="toc-number">4.</span> <span class="toc-text">4. 数组的复制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面几种数组复制方法中，哪个效率最高？"><span class="toc-number">4.1.</span> <span class="toc-text">下面几种数组复制方法中，哪个效率最高？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-静态方法的绑定"><span class="toc-number">5.</span> <span class="toc-text">5.静态方法的绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#有关下述Java代码描述正确的选项是-？"><span class="toc-number">5.1.</span> <span class="toc-text">有关下述Java代码描述正确的选项是__？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-final-修饰变量"><span class="toc-number">6.</span> <span class="toc-text">6. final 修饰变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于下面的代码段，叙述正确的是？"><span class="toc-number">6.1.</span> <span class="toc-text">关于下面的代码段，叙述正确的是？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-JMM"><span class="toc-number">7.</span> <span class="toc-text">7. JMM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检查程序，是否存在问题，如果存在指出问题所在，如果不存在，说明输出结果。"><span class="toc-number">7.1.</span> <span class="toc-text">检查程序，是否存在问题，如果存在指出问题所在，如果不存在，说明输出结果。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-math"><span class="toc-number">8.</span> <span class="toc-text">8. math</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -490,10 +497,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">atom</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
@@ -506,11 +509,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+                <a href="javascript:void(0)" class="js-tag color5">atom</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,6 +525,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">junit4</a>
               </li>
              
@@ -534,19 +545,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,23 +557,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">api</a>
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,11 +585,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+                <a href="javascript:void(0)" class="js-tag color4">api</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,6 +602,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
               </li>
             
             <div class="clearfix"></div>

@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/23/common-sense/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="重要的基本概念1. 什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。">
-<meta property="og:updated_time" content="2017-10-01T10:34:52.107Z">
+<meta property="og:updated_time" content="2017-10-07T02:40:03.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机基础">
 <meta name="twitter:description" content="重要的基本概念1. 什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。">
@@ -205,6 +205,9 @@
 <p>线程是进程的一个实体,是CPU调度和分派的基本单位,它是比进程更小的能独立运行的基本单位.</p>
 <p>线程自己基本上不拥有系统资源,只拥有一点在运行中必不可少的资源(如程序计数器,一组寄存器和栈),但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源.</p>
 <p>一个线程可以创建和撤销另一个线程;同一个进程中的多个线程之间可以并发执行.</p>
+<h2 id="3-内部碎片与外部碎片"><a href="#3-内部碎片与外部碎片" class="headerlink" title="3. 内部碎片与外部碎片"></a>3. 内部碎片与外部碎片</h2><p>内部碎片是已经被分配出去的的内存空间大于请求所需的内存空间。</p>
+<p>外部碎片是指还没有分配出去，但是由于大小太小而无法分配给申请空间的新进程的内存空间空闲块。</p>
+<p> 固定分区存在内部碎片，可变式分区分配会存在外部碎片； 页式虚拟存储系统存在内部碎片；段式虚拟存储系统，存在外部碎片。</p>
 <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="1-乐观锁与悲观锁"><a href="#1-乐观锁与悲观锁" class="headerlink" title="1. 乐观锁与悲观锁"></a>1. <a href="http://www.open-open.com/lib/view/open1452046967245.html" target="_blank" rel="external">乐观锁与悲观锁</a></h2><p>悲观锁 ：</p>
 <p>在关系数据库管理系统里，悲观并发控制（又名“悲观锁”，Pessimistic Concurrency Control，缩写“PCC”）是一种并发控制的方法。它可以阻止一个事务以影响其他用户的方式来修改数据。如果一个事务执行的操作都某行数据应用了锁，那只有当这个事务把锁释放，其他事务才能够执行与该锁冲突的操作。悲观并发控制主要用于数据争用激烈的环境，以及发生并发冲突时使用锁保护数据的成本要低于回滚事务的成本的环境中。</p>
 <p>在数据库中，悲观锁的流程如下：</p>
@@ -219,6 +222,9 @@
 <h2 id="2-使用-UNION-组合两个查询的结果集的两个基本规则"><a href="#2-使用-UNION-组合两个查询的结果集的两个基本规则" class="headerlink" title="2. 使用 UNION 组合两个查询的结果集的两个基本规则"></a>2. 使用 UNION 组合两个查询的结果集的两个基本规则</h2><p>1、要合并的结果的列数，列的顺序、以及每列的数据类型必须兼容</p>
 <p>2、使用UNION关键字，是将两个结果集合并到一个结果集中，并且它会去掉重复的部分</p>
 <p>还有一个问题是关于使用UNION关键字后的列名问题，在这里我们需要注意，如果叠加后的列名，我们没有使用AS子句将其变为相同的列名的话，那么，它会采取UNION关键字前Select语句中的字段名如果不想把重复的部分去掉的话，我们还可以使用关键字UNION ALL。</p>
+<h2 id="3-两段锁协议"><a href="#3-两段锁协议" class="headerlink" title="3. 两段锁协议"></a>3. 两段锁协议</h2><p>两段锁协议是指每个事务的执行可以分为两个阶段：生长阶段（加锁阶段）和衰退阶段（解锁阶段）。</p>
+<p>加锁阶段：在该阶段可以进行加锁操作。在对任何数据进行读操作之前要申请并获得S锁，在进行写操作之前要申请并获得X锁。加锁不成功，则事务进入等待状态，直到加锁成功才继续执行。</p>
+<p>解锁阶段：当事务释放了一个封锁以后，事务进入解锁阶段，在该阶段只能进行解锁操作不能再进行加锁操作。</p>
 
       
 
@@ -340,7 +346,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#重要的基本概念"><span class="toc-number">1.</span> <span class="toc-text">重要的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是尾递归-？"><span class="toc-number">1.1.</span> <span class="toc-text">1. 什么是尾递归 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-同步和异步"><span class="toc-number">1.2.</span> <span class="toc-text">2. 同步和异步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-阻塞与非阻塞"><span class="toc-number">1.3.</span> <span class="toc-text">3. 阻塞与非阻塞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-异步传输和同步传输"><span class="toc-number">1.4.</span> <span class="toc-text">4. 异步传输和同步传输</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作系统"><span class="toc-number">2.</span> <span class="toc-text">操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-产生死锁的四个必要条件："><span class="toc-number">2.1.</span> <span class="toc-text">1. 产生死锁的四个必要条件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-进程和线程"><span class="toc-number">2.2.</span> <span class="toc-text">2. 进程和线程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库"><span class="toc-number">3.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-乐观锁与悲观锁"><span class="toc-number">3.1.</span> <span class="toc-text">1. 乐观锁与悲观锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-使用-UNION-组合两个查询的结果集的两个基本规则"><span class="toc-number">3.2.</span> <span class="toc-text">2. 使用 UNION 组合两个查询的结果集的两个基本规则</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#重要的基本概念"><span class="toc-number">1.</span> <span class="toc-text">重要的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是尾递归-？"><span class="toc-number">1.1.</span> <span class="toc-text">1. 什么是尾递归 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-同步和异步"><span class="toc-number">1.2.</span> <span class="toc-text">2. 同步和异步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-阻塞与非阻塞"><span class="toc-number">1.3.</span> <span class="toc-text">3. 阻塞与非阻塞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-异步传输和同步传输"><span class="toc-number">1.4.</span> <span class="toc-text">4. 异步传输和同步传输</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作系统"><span class="toc-number">2.</span> <span class="toc-text">操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-产生死锁的四个必要条件："><span class="toc-number">2.1.</span> <span class="toc-text">1. 产生死锁的四个必要条件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-进程和线程"><span class="toc-number">2.2.</span> <span class="toc-text">2. 进程和线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-内部碎片与外部碎片"><span class="toc-number">2.3.</span> <span class="toc-text">3. 内部碎片与外部碎片</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库"><span class="toc-number">3.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-乐观锁与悲观锁"><span class="toc-number">3.1.</span> <span class="toc-text">1. 乐观锁与悲观锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-使用-UNION-组合两个查询的结果集的两个基本规则"><span class="toc-number">3.2.</span> <span class="toc-text">2. 使用 UNION 组合两个查询的结果集的两个基本规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-两段锁协议"><span class="toc-number">3.3.</span> <span class="toc-text">3. 两段锁协议</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -481,10 +487,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">atom</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
@@ -497,11 +499,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+                <a href="javascript:void(0)" class="js-tag color5">atom</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,6 +515,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">junit4</a>
               </li>
              
@@ -525,19 +535,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,23 +547,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">api</a>
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,11 +575,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+                <a href="javascript:void(0)" class="js-tag color4">api</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,6 +592,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
               </li>
             
             <div class="clearfix"></div>

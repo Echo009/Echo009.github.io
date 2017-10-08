@@ -7,17 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://echo0.cn">
 
-  <title>Archives: 2017/9 | Imagine</title>
+  <title>Git 常用命令 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="想要学习好多好多东西啊！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Imagine">
-<meta property="og:url" content="http://echo0.cn/archives/2017/09/page/2/index.html">
+  <meta name="description" content="嗯，也算用了挺久的git了吧，虽然只有三个月，整理一下常用的命令什么的。 配置1234567git config --global user.name &quot;Echo009&quot; #配置用户名git config --global user.email &quot;extreme.lll@echo0.cn&quot; #配置邮箱# 除了 global 还有local以及system# 其中local只影响当前仓库的配置# g">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 常用命令">
+<meta property="og:url" content="http://echo0.cn/2017/10/08/git-command/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="想要学习好多好多东西啊！">
+<meta property="og:description" content="嗯，也算用了挺久的git了吧，虽然只有三个月，整理一下常用的命令什么的。 配置1234567git config --global user.name &quot;Echo009&quot; #配置用户名git config --global user.email &quot;extreme.lll@echo0.cn&quot; #配置邮箱# 除了 global 还有local以及system# 其中local只影响当前仓库的配置# g">
+<meta property="og:updated_time" content="2017-10-08T07:31:20.216Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Imagine">
-<meta name="twitter:description" content="想要学习好多好多东西啊！">
+<meta name="twitter:title" content="Git 常用命令">
+<meta name="twitter:description" content="嗯，也算用了挺久的git了吧，虽然只有三个月，整理一下常用的命令什么的。 配置1234567git config --global user.name &quot;Echo009&quot; #配置用户名git config --global user.email &quot;extreme.lll@echo0.cn&quot; #配置邮箱# 除了 global 还有local以及system# 其中local只影响当前仓库的配置# g">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -163,185 +165,187 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-git-command" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git 常用命令
+    </h1>
+  
+
+        
+        <a href="/2017/10/08/git-command/" class="archive-article-date">
+  	<time datetime="2017-10-08T05:50:37.414Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-08</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <p>嗯，也算用了挺久的git了吧，虽然只有三个月，整理一下常用的命令什么的。</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"Echo009"</span> <span class="comment">#配置用户名</span></div><div class="line">git config --global user.email <span class="string">"extreme.lll@echo0.cn"</span> <span class="comment">#配置邮箱</span></div><div class="line"></div><div class="line"><span class="comment"># 除了 global 还有local以及system</span></div><div class="line"><span class="comment"># 其中local只影响当前仓库的配置</span></div><div class="line"><span class="comment"># global影响当前用户下的所有仓库的配置</span></div><div class="line"><span class="comment"># system 则是影响系统下的所有用户的配置</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="初始化一个仓库"><a href="#初始化一个仓库" class="headerlink" title="初始化一个仓库"></a>初始化一个仓库</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure>
+<h1 id="查看状态信息"><a href="#查看状态信息" class="headerlink" title="查看状态信息"></a>查看状态信息</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure>
+<p>状态可分为两种 ： 文件状态和内容状态 。</p>
+<p>文件状态分为 <strong>未跟踪</strong> 和 <strong>已跟踪</strong> 。</p>
+<p>内容状态分为 <strong>工作目录</strong> ， <strong>暂存区</strong> 以及 <strong>提交区</strong></p>
+<h1 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add . <span class="comment"># 添加当前目录下的所有文件添加到暂存区，</span></div><div class="line">          <span class="comment"># 但不包括.gitignore文件中指定的内容，</span></div><div class="line">          <span class="comment"># 同时该文件会被跟踪</span></div></pre></td></tr></table></figure>
+<h1 id="从暂存区删除文件"><a href="#从暂存区删除文件" class="headerlink" title="从暂存区删除文件"></a>从暂存区删除文件</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git rm --cached  fileName <span class="comment"># 仅从暂存区删除文件</span></div><div class="line">git rm fileName <span class="comment"># 从工作区和暂存区删除文件</span></div><div class="line">git rm $(git ls-files --deleted) <span class="comment">#删除所有被跟踪且在工作区已经被删除的文件</span></div></pre></td></tr></table></figure>
+<h1 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git commit -m <span class="string">"commit message"</span> <span class="comment"># 将暂存区的内容提交</span></div><div class="line">git commit -a -m <span class="string">"commit message"</span> <span class="comment"># 将工作区内容添加到暂存区，并提交</span></div></pre></td></tr></table></figure>
+<h1 id="查看提交记录"><a href="#查看提交记录" class="headerlink" title="查看提交记录"></a>查看提交记录</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">log</span> <span class="comment"># 详细信息</span></div><div class="line">git <span class="built_in">log</span> --oneline <span class="comment"># 简要信息</span></div></pre></td></tr></table></figure>
+<h1 id="查看差异信息"><a href="#查看差异信息" class="headerlink" title="查看差异信息"></a>查看差异信息</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff <span class="comment"># 查看工作目录与暂存区的差异</span></div></pre></td></tr></table></figure>
+<h1 id="撤销本地修改"><a href="#撤销本地修改" class="headerlink" title="撤销本地修改"></a>撤销本地修改</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout --fileName <span class="comment"># 将文件内容从暂存区复制到工作目录</span></div></pre></td></tr></table></figure>
+<h1 id="撤销暂存区的修改"><a href="#撤销暂存区的修改" class="headerlink" title="撤销暂存区的修改"></a>撤销暂存区的修改</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset HEAD fileName <span class="comment"># 将文件内容从上次提交复制到暂存区</span></div></pre></td></tr></table></figure>
+<h1 id="撤销全部改动"><a href="#撤销全部改动" class="headerlink" title="撤销全部改动"></a>撤销全部改动</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout HEAD --fileName <span class="comment"># 将内容从上次提交复制到工作目录</span></div></pre></td></tr></table></figure>
+<h1 id="创建，切换分支"><a href="#创建，切换分支" class="headerlink" title="创建，切换分支"></a>创建，切换分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git branch branchName <span class="comment"># 创建分支</span></div><div class="line">git checkout branchName <span class="comment"># 切换分支</span></div><div class="line"></div><div class="line">git checkout -b branchName <span class="comment"># 创建分支并切换到该分支</span></div></pre></td></tr></table></figure>
+<h1 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -v</div></pre></td></tr></table></figure>
+<h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git reset --hard versionHasCode <span class="comment"># 将工作区以及暂存区回退到versionHashCode指定的版本  </span></div><div class="line"><span class="comment">#其中 versionHashCode 可用 ^ 的形式替代，比如 HEAD^ 指上一次的提交</span></div></pre></td></tr></table></figure>
+<h1 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git merge</div><div class="line">git merge --no-ff <span class="comment"># 不使用快速合并，保证分支合并信息会被保留下来</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/22/interview-backend/" class="archive-article-date">
-  	<time datetime="2017-09-22T00:50:37.773Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/22/interview-backend/">Java后端开发面试题整理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interview</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://echo0.cn/2017/10/08/git-command/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/22/maven/" class="archive-article-date">
-  	<time datetime="2017-09-22T00:39:09.949Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/03/english-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Everyday English(2)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/22/maven/">使用Maven中常遇到的问题及解决方案</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Maven</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#配置"><span class="toc-number">1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#初始化一个仓库"><span class="toc-number">2.</span> <span class="toc-text">初始化一个仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看状态信息"><span class="toc-number">3.</span> <span class="toc-text">查看状态信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#添加文件到暂存区"><span class="toc-number">4.</span> <span class="toc-text">添加文件到暂存区</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#从暂存区删除文件"><span class="toc-number">5.</span> <span class="toc-text">从暂存区删除文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#提交"><span class="toc-number">6.</span> <span class="toc-text">提交</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看提交记录"><span class="toc-number">7.</span> <span class="toc-text">查看提交记录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看差异信息"><span class="toc-number">8.</span> <span class="toc-text">查看差异信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#撤销本地修改"><span class="toc-number">9.</span> <span class="toc-text">撤销本地修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#撤销暂存区的修改"><span class="toc-number">10.</span> <span class="toc-text">撤销暂存区的修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#撤销全部改动"><span class="toc-number">11.</span> <span class="toc-text">撤销全部改动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建，切换分支"><span class="toc-number">12.</span> <span class="toc-text">创建，切换分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看分支"><span class="toc-number">13.</span> <span class="toc-text">查看分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#版本回退"><span class="toc-number">14.</span> <span class="toc-text">版本回退</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#合并分支"><span class="toc-number">15.</span> <span class="toc-text">合并分支</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/21/java-interview/" class="archive-article-date">
-  	<time datetime="2017-09-20T17:33:46.353Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/21/java-interview/">Java 面试题</a>
-    </h1>
+        
+    </div>
+</aside>
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/19/junit4/" class="archive-article-date">
-  	<time datetime="2017-09-19T05:58:53.994Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/19/junit4/">Junit4使用教程</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">junit4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">test</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
+  <div id="SOHUCS" sid="git-command" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cytbNO1rA"; 
+var conf = "prod_4fe0c917b9b999b4a07c07296da1fcba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/09/">&laquo; Prev</a><a class="page-number" href="/archives/2017/09/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2017/09/page/3/">3</a><a class="page-number" href="/archives/2017/09/page/4/">4</a><a class="extend next" rel="next" href="/archives/2017/09/page/3/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -366,8 +370,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

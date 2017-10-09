@@ -9,17 +9,17 @@
 
   <title>浅析Java中的公平锁与非公平锁 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ReentrantLock在ReentrantLock的实现中，带有一个boolean类型的参数的构造方法，用于指定创建的锁是否是公平的 ：123456789/** * Creates an instance of &amp;#123;@code ReentrantLock&amp;#125; with the * given fairness policy. * * @param fair &amp;#123;@cod">
+  <meta name="description" content="Java中公平锁与非公平锁在ReentrantLock的实现中，带有一个boolean类型的参数的构造方法，用于指定创建的锁是否是公平的 ：">
 <meta name="keywords" content="Java,lock">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅析Java中的公平锁与非公平锁">
 <meta property="og:url" content="http://echo0.cn/2017/10/09/java-lock/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="ReentrantLock在ReentrantLock的实现中，带有一个boolean类型的参数的构造方法，用于指定创建的锁是否是公平的 ：123456789/** * Creates an instance of &amp;#123;@code ReentrantLock&amp;#125; with the * given fairness policy. * * @param fair &amp;#123;@cod">
-<meta property="og:updated_time" content="2017-10-09T02:47:14.953Z">
+<meta property="og:description" content="Java中公平锁与非公平锁在ReentrantLock的实现中，带有一个boolean类型的参数的构造方法，用于指定创建的锁是否是公平的 ：">
+<meta property="og:updated_time" content="2017-10-09T05:37:18.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析Java中的公平锁与非公平锁">
-<meta name="twitter:description" content="ReentrantLock在ReentrantLock的实现中，带有一个boolean类型的参数的构造方法，用于指定创建的锁是否是公平的 ：123456789/** * Creates an instance of &amp;#123;@code ReentrantLock&amp;#125; with the * given fairness policy. * * @param fair &amp;#123;@cod">
+<meta name="twitter:description" content="Java中公平锁与非公平锁在ReentrantLock的实现中，带有一个boolean类型的参数的构造方法，用于指定创建的锁是否是公平的 ：">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -188,7 +188,9 @@
       <!--<canvas id="Mycanvas"></canvas>-->
 
       
-        <h1 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h1><p>在ReentrantLock的实现中，带有一个boolean类型的参数的构造方法，用于指定创建的锁是否是公平的 ：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Creates an instance of &#123;<span class="doctag">@code</span> ReentrantLock&#125; with the</span></div><div class="line"><span class="comment"> * given fairness policy.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> fair &#123;<span class="doctag">@code</span> true&#125; if this lock should use a fair ordering policy</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">(<span class="keyword">boolean</span> fair)</span> </span>&#123;</div><div class="line">    sync = fair ? <span class="keyword">new</span> FairSync() : <span class="keyword">new</span> NonfairSync();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <h1 id="Java中公平锁与非公平锁"><a href="#Java中公平锁与非公平锁" class="headerlink" title="Java中公平锁与非公平锁"></a>Java中公平锁与非公平锁</h1><p>在ReentrantLock的实现中，带有一个boolean类型的参数的构造方法，用于指定创建的锁是否是公平的 ：</p>
+<a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Creates an instance of &#123;<span class="doctag">@code</span> ReentrantLock&#125; with the</span></div><div class="line"><span class="comment"> * given fairness policy.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> fair &#123;<span class="doctag">@code</span> true&#125; if this lock should use a fair ordering policy</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">(<span class="keyword">boolean</span> fair)</span> </span>&#123;</div><div class="line">    sync = fair ? <span class="keyword">new</span> FairSync() : <span class="keyword">new</span> NonfairSync();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>同样，读写锁的实现类 ReentrantReadWriteLock 中同样也有一个这样的构造方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Creates a new &#123;<span class="doctag">@code</span> ReentrantReadWriteLock&#125; with</span></div><div class="line"><span class="comment"> * the given fairness policy.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> fair &#123;<span class="doctag">@code</span> true&#125; if this lock should use a fair ordering policy</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantReadWriteLock</span><span class="params">(<span class="keyword">boolean</span> fair)</span> </span>&#123;</div><div class="line">    sync = fair ? <span class="keyword">new</span> FairSync() : <span class="keyword">new</span> NonfairSync();</div><div class="line">    readerLock = <span class="keyword">new</span> ReadLock(<span class="keyword">this</span>);</div><div class="line">    writerLock = <span class="keyword">new</span> WriteLock(<span class="keyword">this</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h1 id="那么公平锁与非公平锁的区别在哪呢？"><a href="#那么公平锁与非公平锁的区别在哪呢？" class="headerlink" title="那么公平锁与非公平锁的区别在哪呢？"></a>那么公平锁与非公平锁的区别在哪呢？</h1><p>在面试的时候遇到了这个问题，</p>
 <p>当时，很自然的就以为公平锁的话就是所有线程公平竞争，而非公平锁则是优先级高的线程优先获得锁 。</p>
@@ -316,7 +318,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ReentrantLock"><span class="toc-number">1.</span> <span class="toc-text">ReentrantLock</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#那么公平锁与非公平锁的区别在哪呢？"><span class="toc-number">2.</span> <span class="toc-text">那么公平锁与非公平锁的区别在哪呢？</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java中公平锁与非公平锁"><span class="toc-number">1.</span> <span class="toc-text">Java中公平锁与非公平锁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#那么公平锁与非公平锁的区别在哪呢？"><span class="toc-number">2.</span> <span class="toc-text">那么公平锁与非公平锁的区别在哪呢？</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -457,39 +459,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">atom</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">lock</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,19 +475,43 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">lock</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,11 +527,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">api</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,23 +575,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">mybatis-generator</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
             
             <div class="clearfix"></div>

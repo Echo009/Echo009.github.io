@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/30/fallibility/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="整理一波笔试中一些比较有意思的题目，顺便复习下 ~ 秋招真是叫人头大 。 不定时持续更新 ~">
-<meta property="og:updated_time" content="2017-10-07T05:54:11.244Z">
+<meta property="og:updated_time" content="2017-10-09T06:33:48.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些常见的易错笔试题（JAVA）">
 <meta name="twitter:description" content="整理一波笔试中一些比较有意思的题目，顺便复习下 ~ 秋招真是叫人头大 。 不定时持续更新 ~">
@@ -241,6 +241,8 @@ D. System.out.println(i02==i04);
 <h1 id="9-类的初始化"><a href="#9-类的初始化" class="headerlink" title="9. 类的初始化"></a>9. 类的初始化</h1><p>下面代码的输出是什么？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">private</span> String baseName = <span class="string">"base"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        callName();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">callName</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        System. out. println(baseName);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Base</span></span></div><div class="line"><span class="class">    </span>&#123;</div><div class="line">        <span class="keyword">private</span> String baseName = <span class="string">"sub"</span>;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">callName</span><span class="params">()</span></span></div><div class="line"><span class="function">        </span>&#123;</div><div class="line">            System. out. println (baseName) ;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        Base b = <span class="keyword">new</span> Sub();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>答案 ： null 。</p>
 <p>解析 ： 在创建子类对象时，总是会先创建父类对象，创建父类即默认调用Base()方法，在base()中调用了callName()方法，而子类重写了这个方法，所以被调用的是子类中的callName（）方法，但是此时子类仍未构造，所以变量baseName的值为null。</p>
+<h1 id="10-Java中的关键字"><a href="#10-Java中的关键字" class="headerlink" title="10. Java中的关键字"></a>10. Java中的关键字</h1><p>null 是java中的关键字吗？ true 和 false 呢 ？ 那么 const 和 goto 呢？</p>
+<p>答案 ： null 仅仅只是空字面常量，true和false也仅仅只是布尔字面常量，并非关键字，在 Java 中 const 和 goto 尽管没有被使用，但仍然被保留为关键字了 。</p>
 
       
 
@@ -362,7 +364,7 @@ D. System.out.println(i02==i04);
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Try-Catch"><span class="toc-number">1.</span> <span class="toc-text">1. Try-Catch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-基本包装类型"><span class="toc-number">2.</span> <span class="toc-text">2. 基本包装类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-getClass"><span class="toc-number">3.</span> <span class="toc-text">3. getClass()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面一段代码的输出结果是什么-？"><span class="toc-number">3.1.</span> <span class="toc-text">下面一段代码的输出结果是什么 ？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-数组的复制"><span class="toc-number">4.</span> <span class="toc-text">4. 数组的复制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面几种数组复制方法中，哪个效率最高？"><span class="toc-number">4.1.</span> <span class="toc-text">下面几种数组复制方法中，哪个效率最高？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-静态方法的绑定"><span class="toc-number">5.</span> <span class="toc-text">5.静态方法的绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#有关下述Java代码描述正确的选项是-？"><span class="toc-number">5.1.</span> <span class="toc-text">有关下述Java代码描述正确的选项是__？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-final-修饰变量"><span class="toc-number">6.</span> <span class="toc-text">6. final 修饰变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于下面的代码段，叙述正确的是？"><span class="toc-number">6.1.</span> <span class="toc-text">关于下面的代码段，叙述正确的是？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-JMM"><span class="toc-number">7.</span> <span class="toc-text">7. JMM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检查程序，是否存在问题，如果存在指出问题所在，如果不存在，说明输出结果。"><span class="toc-number">7.1.</span> <span class="toc-text">检查程序，是否存在问题，如果存在指出问题所在，如果不存在，说明输出结果。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-math"><span class="toc-number">8.</span> <span class="toc-text">8. math</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-类的初始化"><span class="toc-number">9.</span> <span class="toc-text">9. 类的初始化</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Try-Catch"><span class="toc-number">1.</span> <span class="toc-text">1. Try-Catch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-基本包装类型"><span class="toc-number">2.</span> <span class="toc-text">2. 基本包装类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-getClass"><span class="toc-number">3.</span> <span class="toc-text">3. getClass()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面一段代码的输出结果是什么-？"><span class="toc-number">3.1.</span> <span class="toc-text">下面一段代码的输出结果是什么 ？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-数组的复制"><span class="toc-number">4.</span> <span class="toc-text">4. 数组的复制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下面几种数组复制方法中，哪个效率最高？"><span class="toc-number">4.1.</span> <span class="toc-text">下面几种数组复制方法中，哪个效率最高？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-静态方法的绑定"><span class="toc-number">5.</span> <span class="toc-text">5.静态方法的绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#有关下述Java代码描述正确的选项是-？"><span class="toc-number">5.1.</span> <span class="toc-text">有关下述Java代码描述正确的选项是__？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-final-修饰变量"><span class="toc-number">6.</span> <span class="toc-text">6. final 修饰变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于下面的代码段，叙述正确的是？"><span class="toc-number">6.1.</span> <span class="toc-text">关于下面的代码段，叙述正确的是？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-JMM"><span class="toc-number">7.</span> <span class="toc-text">7. JMM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#检查程序，是否存在问题，如果存在指出问题所在，如果不存在，说明输出结果。"><span class="toc-number">7.1.</span> <span class="toc-text">检查程序，是否存在问题，如果存在指出问题所在，如果不存在，说明输出结果。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-math"><span class="toc-number">8.</span> <span class="toc-text">8. math</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-类的初始化"><span class="toc-number">9.</span> <span class="toc-text">9. 类的初始化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-Java中的关键字"><span class="toc-number">10.</span> <span class="toc-text">10. Java中的关键字</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -503,39 +505,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">atom</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">lock</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,19 +521,43 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sentence</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">lock</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,11 +573,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">api</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,23 +621,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">mybatis-generator</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
             
             <div class="clearfix"></div>

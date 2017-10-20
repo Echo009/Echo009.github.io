@@ -7,17 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://echo0.cn">
 
-  <title>Tag: api doc | Imagine</title>
+  <title>阿里巴巴Java编码规范学习笔记 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="想要学习好多好多东西啊！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Imagine">
-<meta property="og:url" content="http://echo0.cn/tags/api-doc/index.html">
+  <meta name="description" content="“现代软件架构都需要协同开发完成，高效协作即降低协同成本，提升沟通效率，所谓无规矩不成方圆，无规范不能协作。众所周知，制订交通法规表面上是要限制行车权，实际上是保障公众的人身安全。试想如果没有限速，没有红绿灯，谁还敢上路行驶。对软件来说，适当的规范和标准绝不是消灭代码内容的创造性、优雅性，而是限制过度个性化，以一种普遍认可的统一方式一起做事，提升协作效率。代码的字里行间流淌的是软件生命中的血液，">
+<meta name="keywords" content="code-style,编码规范">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里巴巴Java编码规范学习笔记">
+<meta property="og:url" content="http://echo0.cn/2017/10/20/code-style/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="想要学习好多好多东西啊！">
+<meta property="og:description" content="“现代软件架构都需要协同开发完成，高效协作即降低协同成本，提升沟通效率，所谓无规矩不成方圆，无规范不能协作。众所周知，制订交通法规表面上是要限制行车权，实际上是保障公众的人身安全。试想如果没有限速，没有红绿灯，谁还敢上路行驶。对软件来说，适当的规范和标准绝不是消灭代码内容的创造性、优雅性，而是限制过度个性化，以一种普遍认可的统一方式一起做事，提升协作效率。代码的字里行间流淌的是软件生命中的血液，">
+<meta property="og:updated_time" content="2017-10-20T01:37:04.215Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Imagine">
-<meta name="twitter:description" content="想要学习好多好多东西啊！">
+<meta name="twitter:title" content="阿里巴巴Java编码规范学习笔记">
+<meta name="twitter:description" content="“现代软件架构都需要协同开发完成，高效协作即降低协同成本，提升沟通效率，所谓无规矩不成方圆，无规范不能协作。众所周知，制订交通法规表面上是要限制行车权，实际上是保障公众的人身安全。试想如果没有限速，没有红绿灯，谁还敢上路行驶。对软件来说，适当的规范和标准绝不是消灭代码内容的创造性、优雅性，而是限制过度个性化，以一种普遍认可的统一方式一起做事，提升协作效率。代码的字里行间流淌的是软件生命中的血液，">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -163,68 +165,196 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-code-style" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/04/swagger/" class="archive-article-date">
-  	<time datetime="2017-09-04T04:13:28.467Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/04/swagger/">Springboot中使用Swagger2构建RESTful API文档</a>
+    <h1 class="article-title" itemprop="name">
+      阿里巴巴Java编码规范学习笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/10/20/code-style/" class="archive-article-date">
+  	<time datetime="2017-10-20T01:26:26.756Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <blockquote>
+<p>“现代软件架构都需要协同开发完成，高效<br>协作即降低协同成本，提升沟通效率，所谓无规矩不成方圆，无规范不能协作。众所<br>周知，制订交通法规表面上是要限制行车权，实际上是保障公众的人身安全。试想如<br>果没有限速，没有红绿灯，谁还敢上路行驶。对软件来说，适当的规范和标准绝不是<br>消灭代码内容的创造性、优雅性，而是限制过度个性化，以一种普遍认可的统一方式<br>一起做事，提升协作效率。代码的字里行间流淌的是软件生命中的血液，质量的提升<br>是尽可能少踩坑，杜绝踩重复的坑，切实提升质量意识。”<br><a id="more"></a></p>
+<h1 id="编程规约"><a href="#编程规约" class="headerlink" title="编程规约"></a>编程规约</h1><h2 id="命名风格"><a href="#命名风格" class="headerlink" title="命名风格"></a>命名风格</h2><ol>
+<li>…</li>
+<li>Pojo 类型中的  Boolean 类型的成员变量不要使用is前缀，避免某些框架在序列化的时候出现错误</li>
+<li>抽象类使用Abstract 或者Base 开头</li>
+<li>包名统一使用小写，类名如果带有复数含义，则可以使用复数形式</li>
+<li>类、接口、模块的中若使用到了设计模式要体现出具体模式 ， 如BeanFactory</li>
+<li>接口中定义的方法以及属性不要使用任何修饰符，保持代码的简洁性</li>
+<li>枚举类要带上Enum后缀，枚举成员要大写并且使用下划线分割。枚举类实际上就是特殊的常量类</li>
+<li>各层的命名规约：</li>
+</ol>
+</blockquote>
+<pre><code>- Service、Dao层的命名规约：
+  -  获取单个对象的方法使用get作为前缀
+  -  获取多个对象的方法使用list作为前缀
+  -  获取统计值的方法使用count作为前缀
+  -  插入的方法使用save 、insert作为前缀
+  -  删除的方法使用remove、delete作为前缀
+  -  修改的方法使用update作为前缀
+- 领域模型的命名规范
+  - 数据传输对象 ：  xxxDo,其中xxx为表名
+  - 数据传输对象：xxxDTO ，xxx为业务领域相关的名称
+  - 展示对象 ：xxxVo ， xxx一般为网页名称
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">code-style</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">swagger</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">api doc</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编码规范</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://echo0.cn/2017/10/20/code-style/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/10/09/java-lock/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浅析Java中的公平锁与非公平锁</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编程规约"><span class="toc-number">1.</span> <span class="toc-text">编程规约</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命名风格"><span class="toc-number">1.1.</span> <span class="toc-text">命名风格</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+  <div id="SOHUCS" sid="code-style" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cytbNO1rA"; 
+var conf = "prod_4fe0c917b9b999b4a07c07296da1fcba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -248,9 +378,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

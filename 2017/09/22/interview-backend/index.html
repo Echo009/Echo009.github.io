@@ -16,10 +16,12 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/22/interview-backend/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="一定要成为一个很厉害的人 ！！！ JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍">
-<meta property="og:updated_time" content="2017-10-16T15:48:37.432Z">
+<meta property="og:image" content="http://ovqnrx6ra.bkt.clouddn.com/blog/img/mysql/mysql-slave.png">
+<meta property="og:updated_time" content="2017-10-17T15:54:37.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java后端开发面试题整理">
 <meta name="twitter:description" content="一定要成为一个很厉害的人 ！！！ JavaJMM 相关1. 什么情况下会触发Full GC ？方法区（永久代）空间不足，老年代空间不足，System.gc()（可能） 2.  新生代中Eden ： FromSurvivor ： ToSurvivor 区的默认比例为多少 ？ 为什么要这样设计？8:1:1  一般情况下，新创建的对象都会被分配到Eden区，这些对象经过第一次minor GC 后，如果仍">
+<meta name="twitter:image" content="http://ovqnrx6ra.bkt.clouddn.com/blog/img/mysql/mysql-slave.png">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -259,7 +261,24 @@
 <h2 id="二-、数据类型"><a href="#二-、数据类型" class="headerlink" title="二 、数据类型"></a>二 、数据类型</h2><h3 id="1-char和varchar有何区别-？"><a href="#1-char和varchar有何区别-？" class="headerlink" title="1. char和varchar有何区别 ？"></a>1. char和varchar有何区别 ？</h3><p>首先明确的是,<strong>char的长度是不可变的，而varchar的长度是可变的</strong>，也就是说定义一个char[10]和varchar[10],如果存进去的是‘csdn’,那么char所占的长度依然为10，除了字符‘csdn’外，后面跟六个空格，而varchar就立马把长度变为4了，<strong>取数据的时候，char类型的要用trim()去掉多余的空格，而varchar是不需要的</strong>。</p>
 <p>尽管如此，<strong>char的存取数度还是要比varchar要快得多</strong>，因为其长度固定，方便程序的存储与查找；但是char也为此付出的是空间的代价，因为其长度固定，所以难免会有多余的空格占位符占据空间，可谓是以空间换取时间效率，而varchar是以空间效率为首位的。</p>
 <p>再者，<strong>char的存储方式是，对英文字符（ASCII）占用1个字节，对一个汉字占用两个字节；而varchar的存储方式是，对每个英文字符占用2个字节，汉字也占用2个字节</strong>两者的存储数据都非unicode的字符数据。</p>
-<h2 id="三-、-高可用"><a href="#三-、-高可用" class="headerlink" title="三 、 高可用"></a>三 、 高可用</h2><h3 id="主从复制作用及原理"><a href="#主从复制作用及原理" class="headerlink" title="主从复制作用及原理"></a>主从复制作用及原理</h3><h1 id="Spring相关"><a href="#Spring相关" class="headerlink" title="Spring相关"></a>Spring相关</h1><h2 id="1-Resource-和-AutoWired"><a href="#1-Resource-和-AutoWired" class="headerlink" title="1. @Resource 和 @AutoWired"></a>1. @Resource 和 @AutoWired</h2><p>@Autowire默认按照类型装配，默认情况下它要求依赖对象必须存在,如果允许为null，可以设置它required属性为false，如果我们想使用按照名称装配，可以结合@Qualifier注解一起使用。</p>
+<h2 id="三-、-高可用"><a href="#三-、-高可用" class="headerlink" title="三 、 高可用"></a>三 、 高可用</h2><h3 id="主从复制作用及原理"><a href="#主从复制作用及原理" class="headerlink" title="主从复制作用及原理"></a>主从复制作用及原理</h3><p>作用：</p>
+<ul>
+<li>实时灾备，用于故障切换</li>
+<li>读写分离，用于构建高可用的mysql集群方案</li>
+<li>数据备份</li>
+</ul>
+<p>原理 ：</p>
+<ol>
+<li>从库生成两个线程，一个I/O线程，一个SQL线程</li>
+<li>I/O线程去请求主库 的binlog，并将得到的binlog日志写到relay log（中继日志） 文件中 ， 主库会生成一个 log dump 线程，用来给从库 I/O线程传binlog</li>
+<li>SQL 线程，会读取relay log文件中的日志，并解析成具体操作，来实现主从的操作一致，而最终数据一致</li>
+</ol>
+<p><strong>详细描述如下图</strong> ：<br><img src="http://ovqnrx6ra.bkt.clouddn.com/blog/img/mysql/mysql-slave.png" alt=""></p>
+<p>该过程的第一部分就是master记录二进制日志。在每个事务更新数据完成之前，master在二日志记录这些改变。MySQL将事务串行的写入二进制日志，即使事务中的语句都是交叉执行的。在事件写入二进制日志完成后，master通知存储引擎提交事务。</p>
+<p>下一步就是slave将master的binary log拷贝到它自己的中继日志。首先，slave开始一个工作线程——I/O线程。I/O线程在master上打开一个普通的连接，然后开始binlog dump process。Binlog dump process从master的二进制日志中读取事件，如果已经跟上master，它会睡眠并等待master产生新的事件。I/O线程将这些事件写入中继日志。</p>
+<p>SQL slave thread（SQL从线程）处理该过程的最后一步。SQL线程从中继日志读取事件，并重放其中的事件而更新slave的数据，使其与master中的数据一致。只要该线程与I/O线程保持一致，中继日志通常会位于OS的缓存中，所以中继日志的开销很小。</p>
+<p>此外，在master中也有一个工作线程：和其它MySQL的连接一样，slave在master中打开一个连接也会使得master开始一个线程。复制过程有一个很重要的限制——复制在slave上是串行化的，也就是说master上的并行更新操作不能在slave上并行操作。</p>
+<h1 id="Spring相关"><a href="#Spring相关" class="headerlink" title="Spring相关"></a>Spring相关</h1><h2 id="1-Resource-和-AutoWired"><a href="#1-Resource-和-AutoWired" class="headerlink" title="1. @Resource 和 @AutoWired"></a>1. @Resource 和 @AutoWired</h2><p>@Autowire默认按照类型装配，默认情况下它要求依赖对象必须存在,如果允许为null，可以设置它required属性为false，如果我们想使用按照名称装配，可以结合@Qualifier注解一起使用。</p>
 <p>@Resource默认按照名称装配，当找不到与名称匹配的bean才会按照类型装配，可以通过name属性指定，如果没有指定name属性，当注解标注在字段上，即默认取字段的名称作为bean名称寻找依赖对象，如果按照默认的名称仍然找不到依赖的对象时候，会回退到按照类型装配，但一旦指定了name属性，就只能按照名称装配了.</p>
 <h2 id="2-IOC-和-DI-的区别？"><a href="#2-IOC-和-DI-的区别？" class="headerlink" title="2. IOC 和 DI 的区别？"></a>2. IOC 和 DI 的区别？</h2><p>IOC ： 创建对象实例的控制权从代码控制剥离到IOC容器控制，实际就是你在xml文件控制，侧重于原理 。</p>
 <p>DI ： 说的是创建对象实例时，为这个对象注入属性值或其它对象实例，侧重于实现。</p>
@@ -525,6 +544,18 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">atom</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">code-style</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cisco</a>
               </li>
              
@@ -537,19 +568,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sentence</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">atom</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,19 +592,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">lock</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">api</a>
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,7 +620,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
+                <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">api</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,11 +648,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+                <a href="javascript:void(0)" class="js-tag color5">echo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -618,26 +665,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">api doc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">echo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">

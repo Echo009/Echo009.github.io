@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/10/20/code-style/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="如何高质量，高效的开发？ 作为一个伪完美主义者，我觉得，具有良好的编码风格便是第一个要求。一份具有良好编码规范的代码，会具有很好的可读性，易于理解，在协同开发的时候可以提升效率，且更益于后期的扩展维护。 （一些个人认为比较基本的要求就没有列举出来了，如变量，方法等命名要尽量做到见名识义）">
-<meta property="og:updated_time" content="2017-10-21T05:29:18.424Z">
+<meta property="og:updated_time" content="2017-10-23T15:56:42.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里巴巴Java编码规范学习笔记">
 <meta name="twitter:description" content="如何高质量，高效的开发？ 作为一个伪完美主义者，我觉得，具有良好的编码风格便是第一个要求。一份具有良好编码规范的代码，会具有很好的可读性，易于理解，在协同开发的时候可以提升效率，且更益于后期的扩展维护。 （一些个人认为比较基本的要求就没有列举出来了，如变量，方法等命名要尽量做到见名识义）">
@@ -249,6 +249,19 @@
 </ul>
 </li>
 </ol>
+<h2 id="OOP-规约"><a href="#OOP-规约" class="headerlink" title="OOP 规约"></a>OOP 规约</h2><ol>
+<li>避免通过一个类的对象引用访问此类的静态变量或静态方法，无谓增加编译器解析成本，直接用类名来访问即可</li>
+<li>所有的覆写方法，必须加@ Override 注解</li>
+<li><p>相同参数类型，相同业务含义，才可以使用 Java 的可变参数，避免使用 Object 。</p>
+<p> 说明：可变参数必须放置在参数列表的最后。 （ 提倡同学们尽量不用可变参数编程 ）</p>
+<p> 正例： <code>public User getUsers(String type, Integer... ids) {...}</code></p>
+</li>
+<li>外部正在调用或者二方库依赖的接口，不允许修改方法签名，避免对接口调用方产生影响。接口过时必须加@ Deprecated 注解，并清晰地说明采用的新接口或者新服务是什么</li>
+<li>不能使用过时的类或方法</li>
+<li>Object 的 equals 方法容易抛空指针异常，应使用常量或确定有值的对象来调用equals</li>
+<li>所有的相同类型的包装类对象之间值的比较，全部使用 equals 方法比较</li>
+<li></li>
+</ol>
 
       
 
@@ -365,7 +378,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编程规约"><span class="toc-number">1.</span> <span class="toc-text">编程规约</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命名风格"><span class="toc-number">1.1.</span> <span class="toc-text">命名风格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量定义"><span class="toc-number">1.2.</span> <span class="toc-text">常量定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码格式"><span class="toc-number">1.3.</span> <span class="toc-text">代码格式</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编程规约"><span class="toc-number">1.</span> <span class="toc-text">编程规约</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命名风格"><span class="toc-number">1.1.</span> <span class="toc-text">命名风格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量定义"><span class="toc-number">1.2.</span> <span class="toc-text">常量定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码格式"><span class="toc-number">1.3.</span> <span class="toc-text">代码格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OOP-规约"><span class="toc-number">1.4.</span> <span class="toc-text">OOP 规约</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -554,6 +567,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">lock</a>
               </li>
              
@@ -566,10 +583,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -578,15 +591,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,15 +603,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,11 +623,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">echo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/10/20/code-style/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="如何高质量，高效的开发？ 作为一个伪完美主义者，我觉得，具有良好的编码风格便是第一个要求。一份具有良好编码规范的代码，会具有很好的可读性，易于理解，在协同开发的时候可以提升效率，且更益于后期的扩展维护。 （一些个人认为比较基本的要求就没有列举出来了，如变量，方法等命名要尽量做到见名识义）">
-<meta property="og:updated_time" content="2017-10-24T14:34:33.237Z">
+<meta property="og:updated_time" content="2017-10-24T22:21:51.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里巴巴Java编码规范学习笔记">
 <meta name="twitter:description" content="如何高质量，高效的开发？ 作为一个伪完美主义者，我觉得，具有良好的编码风格便是第一个要求。一份具有良好编码规范的代码，会具有很好的可读性，易于理解，在协同开发的时候可以提升效率，且更益于后期的扩展维护。 （一些个人认为比较基本的要求就没有列举出来了，如变量，方法等命名要尽量做到见名识义）">
@@ -202,8 +202,7 @@
 <li>类、接口、模块的中若使用到了设计模式要体现出具体模式 ， 如BeanFactory</li>
 <li>接口中定义的方法以及属性不要使用任何修饰符，保持代码的简洁性</li>
 <li>枚举类要带上Enum后缀，枚举成员要大写并且使用下划线分割。枚举类实际上就是特殊的常量类</li>
-<li><p>各层的命名规约：</p>
-<ul>
+<li>各层的命名规约：<ul>
 <li>Service、Dao层的命名规约：<ul>
 <li>获取单个对象的方法使用get作为前缀</li>
 <li>获取多个对象的方法使用list作为前缀</li>
@@ -236,15 +235,12 @@
 <li>方法参数在定义和传入时，多个参数逗号后边必须加空格</li>
 <li>注释的双斜线与注释内容之间有且仅有一个空格</li>
 <li>方法体内的执行语句组、变量的定义语句组、不同的业务逻辑之间或者不同的语义之间插入一个空行。相同业务逻辑和语义之间不需要插入空行</li>
-<li><p>单行字符数限制不超过 120 个，超出需要换行，换行时遵循如下原则：</p>
-<ul>
+<li>单行字符数限制不超过 120 个，超出需要换行，换行时遵循如下原则：<ul>
 <li>第二行相对第一行缩进 4 个空格，从第三行开始，不再继续缩进</li>
 <li>运算符与下文一起换行</li>
 <li>方法调用的点符号与下文一起换行</li>
 <li>方法调用时，多个参数，需要换行时，在逗号后进行</li>
-<li><p>在括号前不要换行</p>
-<p>如</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder(<span class="number">1</span> &lt;&lt; <span class="number">6</span>);</div><div class="line">      sb.append(<span class="string">"this"</span>)</div><div class="line">              .append(<span class="string">" is"</span>)</div><div class="line">              .append(<span class="string">" a"</span>)</div><div class="line">              .append(<span class="string">" simple demo"</span>);</div></pre></td></tr></table></figure>
+<li>在括号前不要换行<br>如<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder(<span class="number">1</span> &lt;&lt; <span class="number">6</span>);</div><div class="line">      sb.append(<span class="string">"this"</span>)</div><div class="line">              .append(<span class="string">" is"</span>)</div><div class="line">              .append(<span class="string">" a"</span>)</div><div class="line">              .append(<span class="string">" simple demo"</span>);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -253,7 +249,7 @@
 <li>避免通过一个类的对象引用访问此类的静态变量或静态方法，无谓增加编译器解析成本，直接用类名来访问即可</li>
 <li>所有的覆写方法，必须加@ Override 注解</li>
 <li>相同参数类型，相同业务含义，才可以使用 Java 的可变参数，避免使用 Object<ul>
-<li>说明：可变参数必须放置在参数列表的最后。 （ 提倡同学们尽量不用可变参数编程 ）</li>
+<li>说明：可变参数必须放置在参数列表的最后。 （ 提倡同学们尽量不用可变参数编程 ）参数编程 ）变参数编程 ）参数编程 ）</li>
 <li>正例： <code>public User getUsers(String type, Integer... ids) {...}</code></li>
 </ul>
 </li>
@@ -261,15 +257,13 @@
 <li>不能使用过时的类或方法</li>
 <li>Object 的 equals 方法容易抛空指针异常，应使用常量或确定有值的对象来调用equals</li>
 <li>所有的相同类型的包装类对象之间值的比较，全部使用 equals 方法比较</li>
-<li><p>关于基本数据类型与包装数据类型的使用标准如下 :</p>
-<ul>
+<li>关于基本数据类型与包装数据类型的使用标准如下 :<ul>
 <li>所有的 POJO 类属性必须使用包装数据类型</li>
 <li>RPC 方法的返回值和参数必须使用包装数据类型</li>
 <li>所有的局部变量使用基本数据类型</li>
 </ul>
 </li>
-<li><p>定义 DO / DTO / VO 等 POJO 类时，不要设定任何属性默认值</p>
-</li>
+<li>定义 DO / DTO / VO 等 POJO 类时，不要设定任何属性默认值</li>
 <li>序列化类新增属性时，请不要修改 serialVersionUID 字段，避免反序列失败 ； 如果完全不兼容升级，避免反序列化混乱,那么请改serialVersionUID 值</li>
 <li>构造方法里面禁止加入任何业务逻辑，如果有初始化逻辑，请放在 init 方法中</li>
 <li>POJO 类必须写 toString 方法。使用 IDE 的中工具： source &gt;  generate toString时，如果继承了另一个 POJO 类，注意在前面加一下 <code>super . toString</code></li>
@@ -278,7 +272,70 @@
 <li>setter 方法中，参数名称与类成员变量名称一致， this .成员名 = 参数名。在getter / setter 方法中，不要增加业务逻辑，增加排查问题的难度</li>
 <li>循环体内，字符串的连接方式，使用 StringBuilder 的 append 方法进行扩展</li>
 <li>类成员与方法访问控制从严</li>
-<li></li>
+</ol>
+<h2 id="集合处理"><a href="#集合处理" class="headerlink" title="集合处理"></a>集合处理</h2><ol>
+<li>关于 hashCode 和 equals 的处理:<ul>
+<li>只要重写 equals ，就必须重写 hashCode</li>
+<li>因为 Set 存储的是不重复的对象，依据 hashCode 和 equals 进行判断，所以 Set 存储的对象必须重写这两个方法。</li>
+<li>如果自定义对象做为 Map 的键，那么必须重写 hashCode 和 equals</li>
+</ul>
+</li>
+<li>ArrayList 的 subList 结果不可强转成 ArrayList ，否则会抛出 ClassCastException异常，即 <code>java . util . RandomAccessSubList cannot be cast to java . util . ArrayList .</code><br>说明： subList 返回的是  ArrayList 的内部类  SubList ，并不是  ArrayList ，而是ArrayList 的一个视图，对于 SubList 子列表的所有操作最终会反映到原列表上。</li>
+<li>使用集合转数组的方法，必须使用集合的 toArray(T[] array) ，传入的是类型完全一样的数组，大小就是 <code>list . size()</code> 。<br>说明：使用 toArray 带参方法，入参分配的数组空间不够大时， toArray 方法内部将重新分配内存空间，并返回新数组地址 ； 如果数组元素大于实际所需，下标为 [ list . size() ] 的数组元素将被置为 null ，其它数组元素保持原值，因此最好将方法入参数组大小定义与集合元素个数一致。使用不带参数的toArray方法时返回的是Object类型的数组，<strong>若强转其它类型数组将出现 ClassCastException 错误，故无法将其转换成其他类型的数组，需要一个个强制转换，效率很低。</strong></li>
+<li>在 JDK 7 版本及以上， Comparator 要满足如下三个条件，不然 Arrays . sort ，Collections . sort 会报IllegalArgumentException 异常：<ul>
+<li>x ， y 的比较结果和 y ， x 的比较结果相反</li>
+<li>x &gt; y ， y &gt; z ，则 x &gt; z</li>
+<li>x = y ，则 x ， z 比较结果和 y ， z 比较结果相同</li>
+</ul>
+</li>
+<li>集合初始化时，指定集合初始值大小 <strong>initialCapacity = (需要存储的元素个数 / 负载因子) + 1</strong>。注意负载因子（即loader factor）默认为 0.75， 如果暂时无法确定初始值大小，请设置为 16（即默认值）</li>
+<li>使用 entrySet 遍历 Map 类集合 KV ，而不是 keySet 方式进行遍历<br>说明： keySet 其实是遍历了 2 次，一次是转为 Iterator 对象，另一次是从 hashMap 中取出key 所对应的 value 。而 entrySet 只是遍历了一次就把 key 和 value 都放到了 entry 中，效率更高。如果是 JDK 8，使用<code>Map . foreach</code>方法。</li>
+<li>高度注意 Map 类集合 K / V 能不能存储 null 值的情况，如下表格：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">集合类</th>
+<th style="text-align:left">Key</th>
+<th style="text-align:left">Value</th>
+<th style="text-align:left">Super</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Hashtable</td>
+<td style="text-align:left">不允许为 null</td>
+<td style="text-align:left">不允许为 null</td>
+<td style="text-align:left">Dictionary</td>
+<td style="text-align:left">线程安全</td>
+</tr>
+<tr>
+<td style="text-align:left">ConcurrentHashMap</td>
+<td style="text-align:left">不允许为 null</td>
+<td style="text-align:left">不允许为 null</td>
+<td style="text-align:left">AbstractMap</td>
+<td style="text-align:left">锁分段技术（JDK8:CAS）</td>
+</tr>
+<tr>
+<td style="text-align:left">TreeMap</td>
+<td style="text-align:left">不允许为 null</td>
+<td style="text-align:left">允许为 null</td>
+<td style="text-align:left">AbstractMap</td>
+<td style="text-align:left">线程不安全</td>
+</tr>
+<tr>
+<td style="text-align:left">HashMap</td>
+<td style="text-align:left">允许为 null</td>
+<td style="text-align:left">允许为 null</td>
+<td style="text-align:left">AbstractMap</td>
+<td style="text-align:left">线程不安全</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>合理利用好集合的有序性 (sort) 和稳定性 (order) ，避免集合的无序性 (unsort) 和不稳定性 (unorder) 带来的负面影响<br>说明：有序性是指遍历的结果是按某种比较规则依次排列的。稳定性指集合每次遍历的元素次 序是一定的。如： ArrayList 是 order / unsort；HashMap 是 unorder / unsort；TreeSet 是 order / sort</li>
+<li>利用 Set 元素唯一的特性，可以快速对一个集合进行去重操作，避免使用 List 的 contains 方法进行遍历、对比、去重操作</li>
 </ol>
 
       
@@ -396,7 +453,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编程规约"><span class="toc-number">1.</span> <span class="toc-text">编程规约</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命名风格"><span class="toc-number">1.1.</span> <span class="toc-text">命名风格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量定义"><span class="toc-number">1.2.</span> <span class="toc-text">常量定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码格式"><span class="toc-number">1.3.</span> <span class="toc-text">代码格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OOP-规约"><span class="toc-number">1.4.</span> <span class="toc-text">OOP 规约</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编程规约"><span class="toc-number">1.</span> <span class="toc-text">编程规约</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命名风格"><span class="toc-number">1.1.</span> <span class="toc-text">命名风格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量定义"><span class="toc-number">1.2.</span> <span class="toc-text">常量定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码格式"><span class="toc-number">1.3.</span> <span class="toc-text">代码格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OOP-规约"><span class="toc-number">1.4.</span> <span class="toc-text">OOP 规约</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集合处理"><span class="toc-number">1.5.</span> <span class="toc-text">集合处理</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -541,6 +598,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">code-style</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cisco</a>
               </li>
              
@@ -553,14 +622,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">code-style</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
@@ -569,11 +630,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,11 +642,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color5">lock</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,10 +655,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">lock</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -629,18 +686,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
@@ -650,6 +695,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">api doc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -7,17 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://echo0.cn">
 
-  <title>Tag: 事务管理 | Imagine</title>
+  <title>优雅的将一个对象的集合转化成另一个对象的集合 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="想要学习好多好多东西啊！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Imagine">
-<meta property="og:url" content="http://echo0.cn/tags/事务管理/index.html">
+  <meta name="description" content="编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 ：">
+<meta name="keywords" content="elegant-code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优雅的将一个对象的集合转化成另一个对象的集合">
+<meta property="og:url" content="http://echo0.cn/2017/10/25/elegant-code-convert-collection/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="想要学习好多好多东西啊！">
+<meta property="og:description" content="编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 ：">
+<meta property="og:updated_time" content="2017-10-25T06:27:26.631Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Imagine">
-<meta name="twitter:description" content="想要学习好多好多东西啊！">
+<meta name="twitter:title" content="优雅的将一个对象的集合转化成另一个对象的集合">
+<meta name="twitter:description" content="编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 ：">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -163,64 +165,184 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-elegant-code-convert-collection" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/02/spring-transaction/" class="archive-article-date">
-  	<time datetime="2017-09-02T03:24:33.668Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/02/spring-transaction/">Spring中的事务管理</a>
+    <h1 class="article-title" itemprop="name">
+      优雅的将一个对象的集合转化成另一个对象的集合
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/10/25/elegant-code-convert-collection/" class="archive-article-date">
+  	<time datetime="2017-10-24T22:34:30.744Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <p>编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 ：<br><a id="more"></a><br>在实际的应用场景中，经常会遇到需要 <strong>将另一个对象的集合转化为另一个集合的对象</strong> 的需求，比如：</p>
+<p>现在有一个OrderDetail（订单详情）对象的集合 OrderDetailList，OrderDetail对象的结构如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.echo0.ordersystem.pojo;</div><div class="line"><span class="keyword">import</span> lombok.Data;</div><div class="line"><span class="keyword">import</span> javax.persistence.Entity;</div><div class="line"><span class="keyword">import</span> javax.persistence.Id;</div><div class="line"><span class="keyword">import</span> java.math.BigDecimal;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Author : Ech0</span></div><div class="line"><span class="comment"> * Email  : ech0.extreme@foxmail.com</span></div><div class="line"><span class="comment"> * Time   : 10/03/2017 02:37 PM</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="meta">@Data</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderDetail</span> </span>&#123;</div><div class="line">    <span class="meta">@Id</span></div><div class="line">    <span class="keyword">private</span> String detailId;</div><div class="line">    <span class="comment">/** 订单id */</span></div><div class="line">    <span class="keyword">private</span> String orderId;</div><div class="line">    <span class="comment">/** 商品id */</span></div><div class="line">    <span class="keyword">private</span> String productId;</div><div class="line">    <span class="comment">/** 商品名称 */</span></div><div class="line">    <span class="keyword">private</span> String productName;</div><div class="line">    <span class="comment">/** 商品价格*/</span></div><div class="line">    <span class="keyword">private</span> BigDecimal productPrice;</div><div class="line">    <span class="comment">/** 商品数量 */</span></div><div class="line">    <span class="keyword">private</span> Integer productQuantity;</div><div class="line">    <span class="comment">/** 商品图片连接 */</span></div><div class="line">    <span class="keyword">private</span> String productIcon;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下单的话，需要根据这个集合来扣除库存，Service层的方法签名如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">decreaseStock</span><span class="params">(@NotNull List&lt;CartDTO&gt; carts)</span> <span class="keyword">throws</span> ServiceException</span></div></pre></td></tr></table></figure>
+<p>其中 CartDTO 对象结构如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.echo0.ordersystem.dto;</div><div class="line"><span class="keyword">import</span> lombok.Data;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Author : Ech0</span></div><div class="line"><span class="comment"> * Email  : ech0.extreme@foxmail.com</span></div><div class="line"><span class="comment"> * Time   : 10/04/2017 10:23 AM</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 购物车</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">@Data</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CartDTO</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 商品id</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> String productId;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 商品数量</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> Integer productQuantity;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CartDTO</span><span class="params">(String productId, Integer productQuantity)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.productId = productId;</div><div class="line">        <span class="keyword">this</span>.productQuantity = productQuantity;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>那么仅需提取OrderDetail中的productId以及productQuantity属性，将其转换为CartDTO的集合即可，那么问题来了，怎样才能优雅的完成这个简单的工作呢？</p>
+<p>最普通的方式无非就是遍历orderDetailList中的每个元素，将其转换成CartDTO对象，并且存入集合中 ：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">List&lt;CartDTO&gt; cartDTOList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"><span class="keyword">for</span> (OrderDetail item : orderDetailList)&#123;</div><div class="line">  cartDTOList.add(<span class="keyword">new</span> CartDTO(item.getProductId(),item.getProductQuantity()));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>嗯，其实这样也挺简短的。</p>
+<p>还有更优雅的方式吗？ 答案是肯定的，使用 Java8 的Stream api ：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">List&lt;CartDTO&gt; cartDTOList = orderDetailList.stream()</div><div class="line">                .map(e -&gt; <span class="keyword">new</span> CartDTO(e.getProductId(), e.getProductQuantity()))</div><div class="line">                .collect(Collectors.toList());</div></pre></td></tr></table></figure></p>
+<ol>
+<li>首先调用stream()方法，将其转换为流</li>
+<li>在流上调用map方法将其转换为另一个对象流</li>
+<li>调用collect方法，将对象流收集起来转化为集合</li>
+</ol>
+<p>嗯，这样看起来爽多了（gao bi ge） 了有木有 ？ 哈哈哈，溜了溜了 。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">事务管理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">elegant-code</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://echo0.cn/2017/10/25/elegant-code-convert-collection/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/10/20/code-style/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">阿里巴巴Java编码规范学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+  <div id="SOHUCS" sid="elegant-code-convert-collection" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cytbNO1rA"; 
+var conf = "prod_4fe0c917b9b999b4a07c07296da1fcba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -244,9 +366,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

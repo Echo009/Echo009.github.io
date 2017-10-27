@@ -9,17 +9,17 @@
 
   <title>优雅的将一个对象的集合转化成另一个对象的集合 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 ：">
+  <meta name="description" content="编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 。">
 <meta name="keywords" content="elegant-code">
 <meta property="og:type" content="article">
 <meta property="og:title" content="优雅的将一个对象的集合转化成另一个对象的集合">
 <meta property="og:url" content="http://echo0.cn/2017/10/25/elegant-code-convert-collection/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 ：">
-<meta property="og:updated_time" content="2017-10-25T06:27:26.631Z">
+<meta property="og:description" content="编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 。">
+<meta property="og:updated_time" content="2017-10-25T06:28:51.153Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优雅的将一个对象的集合转化成另一个对象的集合">
-<meta name="twitter:description" content="编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 ：">
+<meta name="twitter:description" content="编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 。">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -188,7 +188,7 @@
       <!--<canvas id="Mycanvas"></canvas>-->
 
       
-        <p>编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 ：<br><a id="more"></a><br>在实际的应用场景中，经常会遇到需要 <strong>将另一个对象的集合转化为另一个集合的对象</strong> 的需求，比如：</p>
+        <p>编码如同写作，应当追求字迹工整，逻辑清晰，分段合理且言简意赅。其他的先不谈，如何做到言简意赅呢？ 答案就是用尽可能短的代码去实现需求，其实也不然，简短的代码可能对于新手不太友好，但大多情况下，尽可能短的代码总是更有优势的。下面结合实际场景举个栗子简要分析一波 。<br><a id="more"></a><br>在实际的应用场景中，经常会遇到需要 <strong>将另一个对象的集合转化为另一个集合的对象</strong> 的需求，比如：</p>
 <p>现在有一个OrderDetail（订单详情）对象的集合 OrderDetailList，OrderDetail对象的结构如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.echo0.ordersystem.pojo;</div><div class="line"><span class="keyword">import</span> lombok.Data;</div><div class="line"><span class="keyword">import</span> javax.persistence.Entity;</div><div class="line"><span class="keyword">import</span> javax.persistence.Id;</div><div class="line"><span class="keyword">import</span> java.math.BigDecimal;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Author : Ech0</span></div><div class="line"><span class="comment"> * Email  : ech0.extreme@foxmail.com</span></div><div class="line"><span class="comment"> * Time   : 10/03/2017 02:37 PM</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="meta">@Data</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderDetail</span> </span>&#123;</div><div class="line">    <span class="meta">@Id</span></div><div class="line">    <span class="keyword">private</span> String detailId;</div><div class="line">    <span class="comment">/** 订单id */</span></div><div class="line">    <span class="keyword">private</span> String orderId;</div><div class="line">    <span class="comment">/** 商品id */</span></div><div class="line">    <span class="keyword">private</span> String productId;</div><div class="line">    <span class="comment">/** 商品名称 */</span></div><div class="line">    <span class="keyword">private</span> String productName;</div><div class="line">    <span class="comment">/** 商品价格*/</span></div><div class="line">    <span class="keyword">private</span> BigDecimal productPrice;</div><div class="line">    <span class="comment">/** 商品数量 */</span></div><div class="line">    <span class="keyword">private</span> Integer productQuantity;</div><div class="line">    <span class="comment">/** 商品图片连接 */</span></div><div class="line">    <span class="keyword">private</span> String productIcon;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>下单的话，需要根据这个集合来扣除库存，Service层的方法签名如下：</p>
@@ -286,6 +286,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/10/26/thread-pool/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java 中的线程池
+        
+      </div>
+    </a>
   
   
     <a href="/2017/10/20/code-style/" id="article-nav-older" class="article-nav-link-wrap">
@@ -521,14 +530,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -545,6 +546,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">junit4</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RESTful</a>
               </li>
              
@@ -557,6 +566,22 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">thread</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">concurrence</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
@@ -566,14 +591,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">api doc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">

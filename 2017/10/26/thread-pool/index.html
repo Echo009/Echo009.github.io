@@ -7,17 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://echo0.cn">
 
-  <title>Archives: 2017 | Imagine</title>
+  <title>Java 中的线程池 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="想要学习好多好多东西啊！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Imagine">
-<meta property="og:url" content="http://echo0.cn/archives/2017/page/4/index.html">
+  <meta name="description" content="在中等强度的负载水平下，“每任务每线程（thread-per-task）”的方法是对顺序化执行的良好改进，在请求的到达速度尚未超出服务器的请求处理能力的情况下，这种方法可以同时带来更快的响应性和更大的吞吐量。 当用于生产环境中时，该方法存在一些实际的缺陷尤其在需要创建大量的线程时尤为突出：">
+<meta name="keywords" content="thread,concurrence">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 中的线程池">
+<meta property="og:url" content="http://echo0.cn/2017/10/26/thread-pool/index.html">
 <meta property="og:site_name" content="Imagine">
-<meta property="og:description" content="想要学习好多好多东西啊！">
+<meta property="og:description" content="在中等强度的负载水平下，“每任务每线程（thread-per-task）”的方法是对顺序化执行的良好改进，在请求的到达速度尚未超出服务器的请求处理能力的情况下，这种方法可以同时带来更快的响应性和更大的吞吐量。 当用于生产环境中时，该方法存在一些实际的缺陷尤其在需要创建大量的线程时尤为突出：">
+<meta property="og:updated_time" content="2017-10-27T15:23:07.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Imagine">
-<meta name="twitter:description" content="想要学习好多好多东西啊！">
+<meta name="twitter:title" content="Java 中的线程池">
+<meta name="twitter:description" content="在中等强度的负载水平下，“每任务每线程（thread-per-task）”的方法是对顺序化执行的良好改进，在请求的到达速度尚未超出服务器的请求处理能力的情况下，这种方法可以同时带来更快的响应性和更大的吞吐量。 当用于生产环境中时，该方法存在一些实际的缺陷尤其在需要创建大量的线程时尤为突出：">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
   
@@ -163,189 +165,249 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-thread-pool" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 中的线程池
+    </h1>
+  
+
+        
+        <a href="/2017/10/26/thread-pool/" class="archive-article-date">
+  	<time datetime="2017-10-26T13:19:00.818Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-26</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      <!--edit by echo0 2017年8月29日09:48:38 -->
+      <!--<canvas id="Mycanvas"></canvas>-->
+
+      
+        <p>在中等强度的负载水平下，“每任务每线程（thread-per-task）”的方法是对顺序化执行的良好改进，在请求的到达速度尚未超出服务器的请求处理能力的情况下，这种方法可以同时带来更快的响应性和更大的吞吐量。</p>
+<p>当用于生产环境中时，该方法存在一些实际的缺陷尤其在需要创建大量的线程时尤为突出：</p>
+<a id="more"></a>
+<ul>
+<li><strong>线程生命周期的开销</strong>。线程的创建与销毁并不是“免费”的，实际的开销依据不同的平台而不同，但是创建线程的确需要时间，带来处理请求的延迟，并且需要在JVM和操作系统之间进行相应的处理活动。如果请求是频繁的且轻量的，就像大多数服务器程序一样，那么为每个请求创建一个新线程的做法就会消耗大量的计算资源。</li>
+<li><strong>资源消耗量</strong>。活动的线程会消耗系统资源，尤其是内存。如果可运行的线程数多于可用的处理器数，线程将会空闲。大量空闲线程占用更多的内存，给垃圾回收器带来压力，而且大量线程在竞争CPU资源，还会产生其他的性能开销。如果你已经有了足够多的线程保持所有CPU忙碌，俺么创建更多的线程是百害而无一利的。</li>
+<li><strong>稳定性</strong>。应该限制可创建线程的数目。限制的数目依据不同的平台而定，同时也受到JVM的启动参数、Thread的构造方法中请求的栈大小等因素的影响，以及底层操作系统线程的限制。而一昧的创建线程，会导致应用程序面临奔溃。为了摆脱这种危险，应该设置一个范围来限制你的应用程序可以创建的线程数，然后彻底的测试你的应用程序，确保即使线程数达到了这个范围的极限，应用程序也不至于耗尽所有的资源。</li>
+</ul>
+<p>通过线程池可以使得线程可以被复用，执行完一个任务并不被销毁，而是可以继续执行其他的任务，从而提升效率。并且将任务提交与任务执行之间进行解耦。</p>
+<h1 id="ThreadPoolExecutor"><a href="#ThreadPoolExecutor" class="headerlink" title="ThreadPoolExecutor"></a>ThreadPoolExecutor</h1><p>线程池中最核心的一个类就是<code>ThreadPoolExecutor</code> ，继承自<code>AbstractExecutor</code> 。</p>
+<p>从最核心的构造方法分析：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></div><div class="line"><span class="function"><span class="params">                             <span class="keyword">int</span> maximumPoolSize,</span></span></div><div class="line"><span class="function"><span class="params">                             <span class="keyword">long</span> keepAliveTime,</span></span></div><div class="line"><span class="function"><span class="params">                             TimeUnit unit,</span></span></div><div class="line"><span class="function"><span class="params">                             BlockingQueue&lt;Runnable&gt; workQueue,</span></span></div><div class="line"><span class="function"><span class="params">                             ThreadFactory threadFactory,</span></span></div><div class="line"><span class="function"><span class="params">                             RejectedExecutionHandler handler)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (corePoolSize &lt; <span class="number">0</span> ||</div><div class="line">           maximumPoolSize &lt;= <span class="number">0</span> ||</div><div class="line">           maximumPoolSize &lt; corePoolSize ||</div><div class="line">           keepAliveTime &lt; <span class="number">0</span>)</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</div><div class="line">       <span class="keyword">if</span> (workQueue == <span class="keyword">null</span> || threadFactory == <span class="keyword">null</span> || handler == <span class="keyword">null</span>)</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">       <span class="keyword">this</span>.corePoolSize = corePoolSize;</div><div class="line">       <span class="keyword">this</span>.maximumPoolSize = maximumPoolSize;</div><div class="line">       <span class="keyword">this</span>.workQueue = workQueue;</div><div class="line">       <span class="keyword">this</span>.keepAliveTime = unit.toNanos(keepAliveTime);</div><div class="line">       <span class="keyword">this</span>.threadFactory = threadFactory;</div><div class="line">       <span class="keyword">this</span>.handler = handler;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>关键参数：</p>
+<ul>
+<li>corePoolSize ： <strong>核心池的大小</strong>，在创建了线程池后，默认情况下，该线程池中是没有任何线程的，而是等待有任务到来才会创建线程去执行，当线程池中的线程数目达到corePoolSize后，就会吧到达的任务放到缓存队列当中。还有另一种情况就是，创建线程池后紧接着调用了<code>prestartCoreThread</code>或者<code>prestartAllCoreThreads</code> 方法，将会预创建一个线程或者corePoolSize个线程。</li>
+<li>maximumPoolSize ： <strong>线程池的最大线程数</strong>。</li>
+<li>keepAliveTime ： <strong>表示线程最大空闲时间</strong>。在默认情况下，只有在线程池中的线程数量大于corePoolSize时才会起作用，知道线程池中的线程数量不大于corePoolSize，即当线程池中的线程数大于corePoolSize时，如果一个线程空闲的时间达到keepAliveTime，则会终止，直到线程池中的线程数不超过corePoolSize。但是如果调用了allowCoreThreadTimeOut(boolean)方法，在线程池中的线程数不大于corePoolSize时，keepAliveTime参数也会起作用，直到线程池中的线程数为0。</li>
+<li>unit : 参数keepAliveTime的时间单位。</li>
+<li>workQueue：一个阻塞队列，用来存储等待执行的任务，这个参数的选择也很重要，会对线程池的运行过程产生重大影响，一般来说，这里的阻塞队列有以下几种选择：<ul>
+<li>ArrayBlockingQueue</li>
+<li>LinkedBlockingQueue</li>
+<li>SynchronousQueue<br>ArrayBlockingQueue和PriorityBlockingQueue使用较少，一般使用LinkedBlockingQueue和Synchronous。线程池的排队策略与BlockingQueue有关。</li>
+</ul>
+</li>
+<li>threadFactory：线程工厂，主要用来创建线程。</li>
+<li>handler：表示当拒绝处理任务时的策略，有以下四种取值：<ul>
+<li>ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。</li>
+<li>ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。</li>
+<li>ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）</li>
+<li>ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务</li>
+</ul>
+</li>
+</ul>
+<p>在ThreadPoolExecutor类中有几个非常重要的方法：</p>
+<ul>
+<li>execute()</li>
+<li>submit()</li>
+<li>shutdown()</li>
+<li>shutdownNow()</li>
+</ul>
+<p>execute()方法实际上是Executor中声明的方法，在ThreadPoolExecutor进行了具体的实现，这个方法是ThreadPoolExecutor的核心方法，通过这个方法可以向线程池提交一个任务，交由线程池去执行。</p>
+<p>submit()方法是在ExecutorService中声明的方法，在AbstractExecutorService就已经有了具体的实现，在ThreadPoolExecutor中并没有对其进行重写，这个方法也是用来向线程池提交任务的，<strong>但是它和execute()方法不同，它能够返回任务执行的结果</strong>，去看submit()方法的实现，会发现它实际上还是调用的execute()方法，只不过它利用了Future来获取任务执行结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// AbstractExecutorService</span></div><div class="line"><span class="keyword">public</span> Future&lt;?&gt; submit(Runnable task) &#123;</div><div class="line">       <span class="keyword">if</span> (task == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">       RunnableFuture&lt;Void&gt; ftask = newTaskFor(task, <span class="keyword">null</span>);</div><div class="line">       execute(ftask);</div><div class="line">       <span class="keyword">return</span> ftask;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>shutdown()和shutdownNow()是用来关闭线程池的,不同在于shutdown()不会立即终止线程池，而是要等所有任务缓存队列中的任务都执行完后才终止，但再也不会接受新的任务，而shutdownNow()立即终止线程池，并尝试打断正在执行的任务，并且清空任务缓存队列，返回尚未执行的任务列表（List类型）。</p>
+<h1 id="深入剖析线程池实现原理"><a href="#深入剖析线程池实现原理" class="headerlink" title="深入剖析线程池实现原理"></a>深入剖析线程池实现原理</h1><h2 id="线程池的状态"><a href="#线程池的状态" class="headerlink" title="线程池的状态"></a>线程池的状态</h2><p>在ThreadPoolExecutor中定义了一个volatile变量，另外定义了几个static final变量表示线程池的各个状态(JDK8)：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">    <span class="comment">/* The runState provides the main lifecycle control, taking on values:</span></div><div class="line"><span class="comment">    *</span></div><div class="line"><span class="comment">    *   RUNNING:  Accept new tasks and process queued tasks</span></div><div class="line"><span class="comment">    *   SHUTDOWN: Don't accept new tasks, but process queued tasks</span></div><div class="line"><span class="comment">    *   STOP:     Don't accept new tasks, don't process queued tasks,</span></div><div class="line"><span class="comment">    *             and interrupt in-progress tasks</span></div><div class="line"><span class="comment">    *   TIDYING:  All tasks have terminated, workerCount is zero,</span></div><div class="line"><span class="comment">    *             the thread transitioning to state TIDYING</span></div><div class="line"><span class="comment">    *             will run the terminated() hook method</span></div><div class="line"><span class="comment">    *   TERMINATED: terminated() has completed</span></div><div class="line"><span class="comment">    *</span></div><div class="line"><span class="comment">    * The numerical order among these values matters, to allow</span></div><div class="line"><span class="comment">    * ordered comparisons. The runState monotonically increases over</span></div><div class="line"><span class="comment">    * time, but need not hit each state. The transitions are:</span></div><div class="line"><span class="comment">    *</span></div><div class="line"><span class="comment">    * RUNNING -&gt; SHUTDOWN</span></div><div class="line"><span class="comment">    *    On invocation of shutdown(), perhaps implicitly in finalize()</span></div><div class="line"><span class="comment">    * (RUNNING or SHUTDOWN) -&gt; STOP</span></div><div class="line"><span class="comment">    *    On invocation of shutdownNow()</span></div><div class="line"><span class="comment">    * SHUTDOWN -&gt; TIDYING</span></div><div class="line"><span class="comment">    *    When both queue and pool are empty</span></div><div class="line"><span class="comment">    * STOP -&gt; TIDYING</span></div><div class="line"><span class="comment">    *    When pool is empty</span></div><div class="line"><span class="comment">    * TIDYING -&gt; TERMINATED</span></div><div class="line"><span class="comment">    *    When the terminated() hook method has completed</span></div><div class="line"><span class="comment">    *</span></div><div class="line"><span class="comment">    * Threads waiting in awaitTermination() will return when the</span></div><div class="line"><span class="comment">    * state reaches TERMINATED.</span></div><div class="line"><span class="comment">    *</span></div><div class="line"><span class="comment">    * Detecting the transition from SHUTDOWN to TIDYING is less</span></div><div class="line"><span class="comment">    * straightforward than you'd like because the queue may become</span></div><div class="line"><span class="comment">    * empty after non-empty and vice versa during SHUTDOWN state, but</span></div><div class="line"><span class="comment">    * we can only terminate if, after seeing that it is empty, we see</span></div><div class="line"><span class="comment">    * that workerCount is 0 (which sometimes entails a recheck -- see</span></div><div class="line"><span class="comment">    * below).</span></div><div class="line"><span class="comment">    */</span></div><div class="line"><span class="comment">// runState is stored in the high-order bits</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> RUNNING    = -<span class="number">1</span> &lt;&lt; COUNT_BITS;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SHUTDOWN   =  <span class="number">0</span> &lt;&lt; COUNT_BITS;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> STOP       =  <span class="number">1</span> &lt;&lt; COUNT_BITS;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TIDYING    =  <span class="number">2</span> &lt;&lt; COUNT_BITS;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TERMINATED =  <span class="number">3</span> &lt;&lt; COUNT_BITS;</div></pre></td></tr></table></figure></p>
+<p>runState表示当前线程池的状态，它是一个volatile变量用来保证线程之间的可见性。（各个状态之间的含义参照上方注释）。</p>
+<ul>
+<li><strong>RUNNING</strong> ：接收新任务并且处理已经置入任务队列的任务</li>
+<li><strong>SHUTDOWN</strong> ：不接受新的任务，但会继续处理已经置入任务队列的任务</li>
+<li><strong>STOP</strong> ： 不接受新的任务，不再处理任务队列中的任务，且会中断正在处理的任务</li>
+<li><strong>TIDYING</strong> ：所有任务都被终结，并且工作线程（workerCount）为0,在调用terminated()方法时才会变成这个状态</li>
+<li><strong>TERMINATED</strong> ： terminated() 方法运行完后将会变为这个状态</li>
+</ul>
+<h2 id="任务的执行"><a href="#任务的执行" class="headerlink" title="任务的执行"></a>任务的执行</h2><p>在了解将任务提交给线程池到任务执行完毕整个过程之前，先看下该类中其他的一些比较重要的成员变量：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> BlockingQueue&lt;Runnable&gt; workQueue; <span class="comment">// 任务缓存队列，用来存放等待执行的任务</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock mainLock = <span class="keyword">new</span> ReentrantLock(); <span class="comment">// 线程池的主要状态锁，对线程池状态（比如线程池大小runState等）的改变都要使用这个锁</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> HashSet&lt;Worker&gt; workers = <span class="keyword">new</span> HashSet&lt;Worker&gt;(); <span class="comment">// 用来存放工作线程</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">long</span>  keepAliveTime;  <span class="comment">// 线程存货时间   </span></div><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> allowCoreThreadTimeOut; <span class="comment">// 是否允许为核心线程设置存活时间</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span>   corePoolSize; <span class="comment">// 核心池的大小（即线程池中的线程数目大于这个参数时，提交的任务会被放进任务缓存队列）</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span>   maximumPoolSize;  <span class="comment">// 线程池最大能容纳的线程数</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span>   poolSize; <span class="comment">// 线程池中当前的线程数</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> RejectedExecutionHandler handler; <span class="comment">// 任务拒绝策略</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> ThreadFactory threadFactory; <span class="comment">// 线程工厂，用来创建线程</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> largestPoolSize; <span class="comment">// 用来记录线程池中曾经出现过的最大线程数</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">long</span> completedTaskCount; <span class="comment">// 用来记录已经执行完毕的任务个数</span></div></pre></td></tr></table></figure></p>
+<p>重要的是corePoolSize，maximumPoolSize，largestPoolSize这三个变量。</p>
+<p>corePoolSize在很多地方被翻译成核心池大小，其实我的理解这个就是线程池的大小。举个简单的例子：</p>
+<p>假如有一个工厂，工厂里面有10个工人，每个工人同时只能做一件任务。</p>
+<p>因此只要当10个工人中有工人是空闲的，来了任务就分配给空闲的工人做；</p>
+<p>当10个工人都有任务在做时，如果还来了任务，就把任务进行排队等待；</p>
+<p>如果说新任务数目增长的速度远远大于工人做任务的速度，那么此时工厂主管可能会想补救措施，比如重新招4个临时工人进来；</p>
+<p>然后就将任务也分配给这4个临时工人做；</p>
+<p>如果说着14个工人做任务的速度还是不够，此时工厂主管可能就要考虑不再接收新的任务或者抛弃前面的一些任务了。</p>
+<p>当这14个工人当中有人空闲时，而新任务增长的速度又比较缓慢，工厂主管可能就考虑辞掉4个临时工了，只保持原来的10个工人，毕竟请额外的工人是要花钱的。</p>
+<p>这个例子中的corePoolSize就是10，而maximumPoolSize就是14（10+4）。</p>
+<p>也就是说corePoolSize就是线程池大小，maximumPoolSize在我看来是线程池的一种补救措施，即任务量突然过大时的一种补救措施。</p>
+<p>largestPoolSize只是一个用来起记录作用的变量，用来记录线程池中曾经有过的最大线程数目，跟线程池的容量没有任何关系。</p>
+<p>下面我们进入正题，看一下任务从提交到最终执行完毕经历了哪些过程。</p>
+<p>在ThreadPoolExecutor类中，最核心的任务提交方法是execute()方法，虽然通过submit也可以提交任务，但是实际上submit方法里面最终调用的还是execute()方法，所以我们只需要研究execute()方法的实现原理即可：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (command == <span class="keyword">null</span>)</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">     * Proceed in 3 steps:</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * 1. If fewer than corePoolSize threads are running, try to</span></div><div class="line"><span class="comment">     * start a new thread with the given command as its first</span></div><div class="line"><span class="comment">     * task.  The call to addWorker atomically checks runState and</span></div><div class="line"><span class="comment">     * workerCount, and so prevents false alarms that would add</span></div><div class="line"><span class="comment">     * threads when it shouldn't, by returning false.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * 2. If a task can be successfully queued, then we still need</span></div><div class="line"><span class="comment">     * to double-check whether we should have added a thread</span></div><div class="line"><span class="comment">     * (because existing ones died since last checking) or that</span></div><div class="line"><span class="comment">     * the pool shut down since entry into this method. So we</span></div><div class="line"><span class="comment">     * recheck state and if necessary roll back the enqueuing if</span></div><div class="line"><span class="comment">     * stopped, or start a new thread if there are none.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * 3. If we cannot queue task, then we try to add a new</span></div><div class="line"><span class="comment">     * thread.  If it fails, we know we are shut down or saturated</span></div><div class="line"><span class="comment">     * and so reject the task.</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">int</span> c = ctl.get();</div><div class="line">    <span class="keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;</div><div class="line">        <span class="keyword">if</span> (addWorker(command, <span class="keyword">true</span>))</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        c = ctl.get();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</div><div class="line">        <span class="keyword">int</span> recheck = ctl.get();</div><div class="line">        <span class="keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))</div><div class="line">            reject(command);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (workerCountOf(recheck) == <span class="number">0</span>)</div><div class="line">            addWorker(<span class="keyword">null</span>, <span class="keyword">false</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!addWorker(command, <span class="keyword">false</span>))</div><div class="line">        reject(command);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其中<code>ctl</code>是一个成员变量：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> AtomicInteger ctl = <span class="keyword">new</span> AtomicInteger(ctlOf(RUNNING, <span class="number">0</span>));</div></pre></td></tr></table></figure></p>
+<p>其中ctlof方法源码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将runState和workerCount装入一个整形变量，注意这里的runState是经过左移操作的只有高三位是有效的</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">ctlOf</span><span class="params">(<span class="keyword">int</span> rs, <span class="keyword">int</span> wc)</span> </span>&#123; <span class="keyword">return</span> rs | wc; &#125;</div></pre></td></tr></table></figure></p>
+<p>源码中关于ctl变量的注释如下：</p>
+<pre><code>The main pool control state, ctl, is an atomic integer packing two conceptual fields
+workerCount, indicating the effective number of threads
+runState,    indicating whether running, shutting down etc
+
+In order to pack them into one int, we limit workerCount to (2^29)-1 (about 500 million) threads rather than (2^31)-1 (2 billion) otherwise representable. If this is ever an issue in the future, the variable can be changed to be an AtomicLong, and the shift/mask constants below adjusted. But until the need arises, this code is a bit faster and simpler using an int.
+
+The workerCount is the number of workers that have been permitted to start and not permitted to stop.  The value may be transiently different from the actual number of live threads, for example when a ThreadFactory fails to create a thread when asked, and when exiting threads are still performing bookkeeping before terminating. The user-visible pool size is reported as the current size of the workers set.
+</code></pre><p>该原子变量用于表示线程池的控制状态信息，包括workerCount（工作线程数）以及runstate（线程池的运行状态），这个设计非常巧妙，高2位用于表示runstate，后面的29位用于表示workerCount的数量,充分的利用了空间。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/21/java-interview/" class="archive-article-date">
-  	<time datetime="2017-09-20T17:33:46.353Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/21/java-interview/">Java 面试题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">thread</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">concurrence</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://echo0.cn/2017/10/26/thread-pool/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/19/junit4/" class="archive-article-date">
-  	<time datetime="2017-09-19T05:58:53.994Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/25/elegant-code-convert-collection/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">优雅的将一个对象的集合转化成另一个对象的集合</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/19/junit4/">Junit4使用教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">junit4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">test</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ThreadPoolExecutor"><span class="toc-number">1.</span> <span class="toc-text">ThreadPoolExecutor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#深入剖析线程池实现原理"><span class="toc-number">2.</span> <span class="toc-text">深入剖析线程池实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程池的状态"><span class="toc-number">2.1.</span> <span class="toc-text">线程池的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务的执行"><span class="toc-number">2.2.</span> <span class="toc-text">任务的执行</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/18/atom-skills/" class="archive-article-date">
-  	<time datetime="2017-09-18T02:00:15.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/18/atom-skills/">Atom的使用技巧</a>
-    </h1>
+        
+    </div>
+</aside>
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">atom</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/18/english-1/" class="archive-article-date">
-  	<time datetime="2017-09-18T00:28:57.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/18/english-1/">Everyday English(1)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sentence</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
+  <div id="SOHUCS" sid="thread-pool" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cytbNO1rA"; 
+var conf = "prod_4fe0c917b9b999b4a07c07296da1fcba"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2017/page/5/">5</a><a class="page-number" href="/archives/2017/page/6/">6</a><a class="extend next" rel="next" href="/archives/2017/page/5/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -370,8 +432,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

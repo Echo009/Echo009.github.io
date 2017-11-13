@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://echo0.cn/2017/09/23/common-sense/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="重要的基本概念1. 什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。">
-<meta property="og:updated_time" content="2017-10-11T02:13:38.786Z">
+<meta property="og:updated_time" content="2017-10-29T07:23:44.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机基础">
 <meta name="twitter:description" content="重要的基本概念1. 什么是尾递归 ？尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。">
@@ -224,6 +224,7 @@
 <p>响应比R定义如下： R =(W+T)/T = 1+W/T</p>
 <p>其中T为该作业估计需要的执行时间，W为作业在后备状态队列中的等待时间。每当要进行作业调度时，系统计算每个作业的响应比，选择其中R最大者投入执行。这样，即使是长作业，随着它等待时间的增加，W / T也就随着增加，也就有机会获得调度执行。这种算法是介于FCFS和SJF之间的一种折中算法。由于长作业也有机会投入运行，在同一时间内处理的作业数显然要少于SJF法，从而采用HRN方式时其吞吐量将小于采用SJF 法时的吞吐量。另外，由于每次调度前要计算响应比，系统开销也要相应增加。</p>
 <p>是一种有利于短作业且兼顾到长作业的调度算法。</p>
+<h2 id="5-内核态与用户态"><a href="#5-内核态与用户态" class="headerlink" title="5. 内核态与用户态"></a>5. 内核态与用户态</h2><h3 id="内核态-CPU可以访问内存所有数据-包括外围设备-例如硬盘-网卡-CPU也可以将自己从一个程序切换到另一个程序"><a href="#内核态-CPU可以访问内存所有数据-包括外围设备-例如硬盘-网卡-CPU也可以将自己从一个程序切换到另一个程序" class="headerlink" title="内核态: CPU可以访问内存所有数据, 包括外围设备, 例如硬盘, 网卡. CPU也可以将自己从一个程序切换到另一个程序"></a>内核态: CPU可以访问内存所有数据, 包括外围设备, 例如硬盘, 网卡. CPU也可以将自己从一个程序切换到另一个程序</h3><h3 id="用户态-只能受限的访问内存-且不允许访问外围设备-占用CPU的能力被剥夺-CPU资源可以被其他程序获取"><a href="#用户态-只能受限的访问内存-且不允许访问外围设备-占用CPU的能力被剥夺-CPU资源可以被其他程序获取" class="headerlink" title="用户态: 只能受限的访问内存, 且不允许访问外围设备. 占用CPU的能力被剥夺, CPU资源可以被其他程序获取"></a>用户态: 只能受限的访问内存, 且不允许访问外围设备. 占用CPU的能力被剥夺, CPU资源可以被其他程序获取</h3><h3 id="为什么要有用户态和内核态"><a href="#为什么要有用户态和内核态" class="headerlink" title="为什么要有用户态和内核态"></a>为什么要有用户态和内核态</h3><p>由于需要限制不同的程序之间的访问能力, 防止他们获取别的程序的内存数据, 或者获取外围设备的数据, 并发送到网络, CPU划分出两个权限等级 – 用户态 和 内核态</p>
 <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="1-乐观锁与悲观锁"><a href="#1-乐观锁与悲观锁" class="headerlink" title="1. 乐观锁与悲观锁"></a>1. <a href="http://www.open-open.com/lib/view/open1452046967245.html" target="_blank" rel="external">乐观锁与悲观锁</a></h2><p>悲观锁 ：</p>
 <p>在关系数据库管理系统里，悲观并发控制（又名“悲观锁”，Pessimistic Concurrency Control，缩写“PCC”）是一种并发控制的方法。它可以阻止一个事务以影响其他用户的方式来修改数据。如果一个事务执行的操作都某行数据应用了锁，那只有当这个事务把锁释放，其他事务才能够执行与该锁冲突的操作。悲观并发控制主要用于数据争用激烈的环境，以及发生并发冲突时使用锁保护数据的成本要低于回滚事务的成本的环境中。</p>
 <p>在数据库中，悲观锁的流程如下：</p>
@@ -362,7 +363,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#重要的基本概念"><span class="toc-number">1.</span> <span class="toc-text">重要的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是尾递归-？"><span class="toc-number">1.1.</span> <span class="toc-text">1. 什么是尾递归 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-同步和异步"><span class="toc-number">1.2.</span> <span class="toc-text">2. 同步和异步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-阻塞与非阻塞"><span class="toc-number">1.3.</span> <span class="toc-text">3. 阻塞与非阻塞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-异步传输和同步传输"><span class="toc-number">1.4.</span> <span class="toc-text">4. 异步传输和同步传输</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作系统"><span class="toc-number">2.</span> <span class="toc-text">操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-产生死锁的四个必要条件："><span class="toc-number">2.1.</span> <span class="toc-text">1. 产生死锁的四个必要条件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-进程和线程"><span class="toc-number">2.2.</span> <span class="toc-text">2. 进程和线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-内部碎片与外部碎片"><span class="toc-number">2.3.</span> <span class="toc-text">3. 内部碎片与外部碎片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-作业调度算法"><span class="toc-number">2.4.</span> <span class="toc-text">4. 作业调度算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库"><span class="toc-number">3.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-乐观锁与悲观锁"><span class="toc-number">3.1.</span> <span class="toc-text">1. 乐观锁与悲观锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-使用-UNION-组合两个查询的结果集的两个基本规则"><span class="toc-number">3.2.</span> <span class="toc-text">2. 使用 UNION 组合两个查询的结果集的两个基本规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-两段锁协议"><span class="toc-number">3.3.</span> <span class="toc-text">3. 两段锁协议</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#重要的基本概念"><span class="toc-number">1.</span> <span class="toc-text">重要的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是尾递归-？"><span class="toc-number">1.1.</span> <span class="toc-text">1. 什么是尾递归 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-同步和异步"><span class="toc-number">1.2.</span> <span class="toc-text">2. 同步和异步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-阻塞与非阻塞"><span class="toc-number">1.3.</span> <span class="toc-text">3. 阻塞与非阻塞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-异步传输和同步传输"><span class="toc-number">1.4.</span> <span class="toc-text">4. 异步传输和同步传输</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作系统"><span class="toc-number">2.</span> <span class="toc-text">操作系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-产生死锁的四个必要条件："><span class="toc-number">2.1.</span> <span class="toc-text">1. 产生死锁的四个必要条件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-进程和线程"><span class="toc-number">2.2.</span> <span class="toc-text">2. 进程和线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-内部碎片与外部碎片"><span class="toc-number">2.3.</span> <span class="toc-text">3. 内部碎片与外部碎片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-作业调度算法"><span class="toc-number">2.4.</span> <span class="toc-text">4. 作业调度算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-内核态与用户态"><span class="toc-number">2.5.</span> <span class="toc-text">5. 内核态与用户态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内核态-CPU可以访问内存所有数据-包括外围设备-例如硬盘-网卡-CPU也可以将自己从一个程序切换到另一个程序"><span class="toc-number">2.5.1.</span> <span class="toc-text">内核态: CPU可以访问内存所有数据, 包括外围设备, 例如硬盘, 网卡. CPU也可以将自己从一个程序切换到另一个程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户态-只能受限的访问内存-且不允许访问外围设备-占用CPU的能力被剥夺-CPU资源可以被其他程序获取"><span class="toc-number">2.5.2.</span> <span class="toc-text">用户态: 只能受限的访问内存, 且不允许访问外围设备. 占用CPU的能力被剥夺, CPU资源可以被其他程序获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要有用户态和内核态"><span class="toc-number">2.5.3.</span> <span class="toc-text">为什么要有用户态和内核态</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库"><span class="toc-number">3.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-乐观锁与悲观锁"><span class="toc-number">3.1.</span> <span class="toc-text">1. 乐观锁与悲观锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-使用-UNION-组合两个查询的结果集的两个基本规则"><span class="toc-number">3.2.</span> <span class="toc-text">2. 使用 UNION 组合两个查询的结果集的两个基本规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-两段锁协议"><span class="toc-number">3.3.</span> <span class="toc-text">3. 两段锁协议</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -503,18 +504,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">code-style</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">atom</a>
               </li>
              
@@ -531,6 +520,22 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">code-style</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">elegant-code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
@@ -540,14 +545,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">elegant-code</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,6 +564,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">junit4</a>
               </li>
              
@@ -575,19 +576,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,6 +604,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
@@ -612,14 +621,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">api doc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,7 +707,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">已然发觉，&lt;br&gt; 蹉跎了许多岁月。&lt;br&gt;想要，&lt;br&gt; 试着每天努力一点，&lt;br&gt; 试着去变得更好。&lt;br&gt; 不想再错过你。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">为什么？&lt;br&gt; 你在干什么？ &lt;br&gt;</div>
   	  	
     	</section>
     

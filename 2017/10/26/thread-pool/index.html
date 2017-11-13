@@ -7,18 +7,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://echo0.cn">
 
-  <title>Java 中的线程池 | Imagine</title>
+  <title>深入剖析 Java 中的线程池 | Imagine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在中等强度的负载水平下，“每任务每线程（thread-per-task）”的方法是对顺序化执行的良好改进，在请求的到达速度尚未超出服务器的请求处理能力的情况下，这种方法可以同时带来更快的响应性和更大的吞吐量。 当用于生产环境中时，该方法存在一些实际的缺陷尤其在需要创建大量的线程时尤为突出：">
 <meta name="keywords" content="thread,concurrence">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 中的线程池">
+<meta property="og:title" content="深入剖析 Java 中的线程池">
 <meta property="og:url" content="http://echo0.cn/2017/10/26/thread-pool/index.html">
 <meta property="og:site_name" content="Imagine">
 <meta property="og:description" content="在中等强度的负载水平下，“每任务每线程（thread-per-task）”的方法是对顺序化执行的良好改进，在请求的到达速度尚未超出服务器的请求处理能力的情况下，这种方法可以同时带来更快的响应性和更大的吞吐量。 当用于生产环境中时，该方法存在一些实际的缺陷尤其在需要创建大量的线程时尤为突出：">
-<meta property="og:updated_time" content="2017-10-28T05:38:25.605Z">
+<meta property="og:updated_time" content="2017-10-28T06:53:40.998Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 中的线程池">
+<meta name="twitter:title" content="深入剖析 Java 中的线程池">
 <meta name="twitter:description" content="在中等强度的负载水平下，“每任务每线程（thread-per-task）”的方法是对顺序化执行的良好改进，在请求的到达速度尚未超出服务器的请求处理能力的情况下，这种方法可以同时带来更快的响应性和更大的吞吐量。 当用于生产环境中时，该方法存在一些实际的缺陷尤其在需要创建大量的线程时尤为突出：">
   
     <link rel="alternative" href="/atom.xml" title="Imagine" type="application/atom+xml">
@@ -172,7 +172,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java 中的线程池
+      深入剖析 Java 中的线程池
     </h1>
   
 
@@ -589,18 +589,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">code-style</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">atom</a>
               </li>
              
@@ -617,6 +605,22 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">code-style</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">elegant-code</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
@@ -626,14 +630,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">elegant-code</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,6 +649,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">junit4</a>
               </li>
              
@@ -661,19 +661,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">反向代理服务器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -689,6 +689,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
@@ -698,14 +706,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">api doc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">事务管理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -792,7 +792,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">已然发觉，&lt;br&gt; 蹉跎了许多岁月。&lt;br&gt;想要，&lt;br&gt; 试着每天努力一点，&lt;br&gt; 试着去变得更好。&lt;br&gt; 不想再错过你。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">为什么？&lt;br&gt; 你在干什么？ &lt;br&gt;</div>
   	  	
     	</section>
     

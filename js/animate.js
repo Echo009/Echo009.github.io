@@ -1,5 +1,5 @@
 //定义画布宽高和生成点的个数
-const WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 35;
+const WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 9;
 
 const canvas = document.getElementById('canvas');
 canvas.width = WIDTH,
